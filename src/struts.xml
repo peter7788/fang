@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="accountcontroller" extends="struts-default" namespace="/">
+		<action name="login" class="action.AccountController">
+			<result name="success">/index.html</result>
+		</action>
+		<action name="search" class="action.AccountController" method="search">
+			<result name="success">/test.jsp</result>
+		</action>
+	</package>
+</struts>    

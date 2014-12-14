@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="model.Guest" table="Guest">
+		<comment>客户账户</comment>
+		<!-- id必须放在第一位 -->
+		<id name="user_name" type="java.lang.String">
+			<column name="user_name" length="50">
+				<comment>用户名称</comment>
+			</column>
+		</id>
+		<property name="user_email" type="java.lang.String">
+			<column name="user_email" length="50" not-null="true">
+				<comment>电子邮箱</comment>
+			</column>
+		</property>
+		<property name="user_password" type="java.lang.String">
+			<column name="user_password" length="50" not-null="true">
+				<comment>用户密码</comment>
+			</column>
+		</property>
+		<property name="user_level" type="java.lang.Integer">
+			<column name="user_level" not-null="true">
+				<comment>用户等级</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

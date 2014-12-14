@@ -1,0 +1,241 @@
+/* reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration: none;
+transition: 0.5s ease;
+-o-transition: 0.5s ease;
+-webkit-transition: 0.5s ease;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+body{
+	font-family: "微软雅黑", Arial, sans-serif;
+}
+.header{
+	background:#313232;
+	border-bottom: 5px solid #D63B37;
+}
+.wrap{
+	width:80%;
+	margin:0 auto;
+}
+.logo{
+	float: left;
+	padding: 21px 0px 0px 0px;
+}
+.top-nav{
+	float:right;
+}
+.top-nav ul li{
+	display:inline-block;
+	float:left;
+}
+.top-nav li.active> a, .top-nav li> a:hover {
+	background: #D63B37;
+	color:#FFF;
+}
+.top-nav ul li a{
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 0.875em;
+	color: #FFF;
+	padding: 30px;
+	display: block;
+	text-transform: uppercase;
+}
+.manager {
+	float: left;
+	width: 40%;
+	text-align: center;
+	padding-top: 60px;
+}
+#camera_wrap_1 {
+	float: left;
+	width: 60%;
+}
+.second_block {
+	margin-top: 50px;
+}
+.manager_image {
+	height: 200px;
+	width: 168px;
+	margin:0 auto;
+}
+.content {
+	background-color: #EEE;
+	margin-top: 50px;
+}
+.contact_content {
+	background-color: #EEE;
+}
+
+
+.mid-grid {
+	float: left;
+	width: 21%;
+	margin-right: 4%;
+	margin-bottom: 1%;
+}
+.search {
+	float: left;
+	width: 30%;
+}
+.result {
+	float: left;
+	width: 70%;
+}
+.copy-right {
+	background-color: #313232;
+	text-align: center;
+	height: 50px;
+}
+.top-to-page {
+	float: right;
+}
+/***** contact *****/
+.span_2_of_3 {
+	width: 63.1%;
+	padding:1.5%;
+	float: left;
+}
+.span_1_of_3 {
+	width: 29.2%;
+	padding:1.5%;
+	float: left;
+}
+.span_2_of_3  h3,
+.span_1_of_3  h3 {
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding: 15px 0px;
+	color: #313232;
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+.contact-form{
+	position:relative;
+	padding-bottom:30px;
+}
+.contact-form div{
+	padding:5px 0;
+}
+.contact-form span{
+	display:block;
+	font-size:0.875em;
+	color: #454545;
+	padding-bottom:5px;
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.contact-form input[type="text"],.contact-form textarea{
+		    padding:8px;
+			display:block;
+			width:98%;
+			border: none;
+			outline:none;
+			color:#313232;
+			font-size:0.8125em;
+			font-family:Arial, Helvetica, sans-serif;
+			border: 1px solid rgba(192, 192, 192, 0.41);
+			-webkit-appearance:none;
+}
+.contact-form textarea{
+		resize:none;
+		height:120px;		
+}
+.contact-form input[type="submit"]{
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	border:none;
+	cursor:pointer;
+	color: #D63B37;
+	font-size: 0.875em;
+	text-transform: uppercase;
+	padding: 1em 1.5em;
+	border: 1px solid #EEE;
+	display: inline-block;
+	background:#FFF;
+	text-decoration: none;
+	transition: 0.5s ease;
+	-o-transition: 0.5s ease;
+	-webkit-transition: 0.5s ease;
+}
+.contact-form input[type="submit"]:hover{
+	background: #D63B37;
+	color: #FFF;
+}
+.contact-form input[type="submit"]:active{
+	background: #D63B37;
+	color: #FFF;
+}
+.company_address{
+}
+.company_address p{
+	font-size: 0.875em;
+	color: #6a6a6a;
+	line-height: 1.8em;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.company_address p span{
+	text-decoration:underline;
+	color:#454545;
+	cursor:pointer;
+}
+.map{
+	margin-bottom:15px;
+}
+.Gmap {
+	height: 600px;
+	width: 100%;
+}
+.single_image {
+	width: 40%;
+	float: left;
+	height: 200px;
+}
+.house_properties {
+	float: left;
+	width: 55%;
+	margin-left: 5%;
+}
+.wrap .level1 .house_properties tr td {
+	text-align: center;
+	width: 150px;
+	border: thin solid #000;
+	height: 40px;
+	vertical-align: middle;
+}
+.level1 {
+	height: 200px;
+	width: 100%;
+}
+.level2 {
+	margin-top: 20px;
+}
+.company_map {
+	height: 175px;
+	width: 100%;
+}
+.ad_management_properties {
+	width: 100%;
+}
+
+.wrap .ad_management_properties td {
+	text-align: center;
+	width: 500px;
+	border: thin solid #000;
+	height: 40px;
+	vertical-align: middle;
+}

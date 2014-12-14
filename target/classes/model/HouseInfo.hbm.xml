@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="model.HouseInfo" table="HouseInfo">
+		<comment>房屋信息</comment>
+		<!-- id必须放在第一位 -->
+		<id name="id" type="java.lang.Integer">
+			<column name="id"/>
+			<generator class="native"/>
+		</id>
+		<property name="zone" type="java.lang.String">
+			<column name="zone" length="50" not-null="true">
+				<comment>所在区域</comment>
+			</column>
+		</property>
+		<property name="address" type="java.lang.String">
+			<column name="address" length="50" not-null="true">
+				<comment>所在地址</comment>
+			</column>
+		</property>
+		<property name="area" type="java.lang.Integer">
+			<column name="area" not-null="true">
+				<comment>面积</comment>
+			</column>
+		</property>
+		<property name="price" type="java.lang.Integer">
+			<column name="price" not-null="true">
+				<comment>价格</comment>
+			</column>
+		</property>
+		<property name="type" type="java.lang.String">
+			<column name="type" length="50" not-null="true">
+				<comment>房型</comment>
+			</column>
+		</property>
+		<property name="direction" type="java.lang.String">
+			<column name="direction" length="50" not-null="true">
+				<comment>朝向</comment>
+			</column>
+		</property>
+		<property name="floor" type="java.lang.Integer">
+			<column name="floor" not-null="true">
+				<comment>楼层</comment>
+			</column>
+		</property>
+		<property name="age" type="java.lang.Integer">
+			<column name="age" not-null="true">
+				<comment>房龄</comment>
+			</column>
+		</property>
+		<property name="decoration" type="java.lang.String">
+			<column name="decoration" not-null="true">
+				<comment>装修类型</comment>
+			</column>
+		</property>
+		<property name="mark" type="java.lang.String">
+			<column name="mark" length="50" not-null="true">
+				<comment>标签</comment>
+			</column>
+		</property>
+		<property name="publish_time" type="java.sql.Date">
+			<column name="publish_time" not-null="true">
+				<comment>发布时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
