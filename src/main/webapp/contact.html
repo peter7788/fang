@@ -7,21 +7,20 @@
 		<script type="text/javascript" src="js/map.js"></script>
 		<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyASlIihgkxQwX1KCbGcuUJzAn2cuZtdkW8&sensor=FALSE&language=zh-CN"></script>
 	</head>
-	<body onload="map_initialize(1.3318916, 103.8493879, 'Hello World!')">
+	<body onLoad="map_initialize(1.3318916, 103.8493879, 'Hello World!')">
 		<!---start-header---->
 		<div class="header">
 			<div class="wrap">
 			<div class="logo">
-				<a href="index.html"><img src="images2/logo.png" title="logo" /></a>
+				<a href="index.html"><img src="images/logo.png" title="logo" /></a>
 			</div>
             <div class="top-nav">
 				<ul>
 					<li><a href="index.html">首页</a></li>
-					<li><a href="about.html">关于我们</a></li>
-					<li><a href="services.html">Services</a></li>
-					<li><a href="portfolio.html">Portfolio</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li class="active"><a href="contact.html">联系我们</a></li>
+                        <li><a href="message.html">留言板</a></li>
+                        <li><a href="house.html">房屋信息</a></li>
+						<li><a href="about.html">关于我们</a></li>
+						<li class="active"><a href="contact.html">联系我们</a></li>
 					<div class="clear"> </div>
 				</ul>
 			</div>
@@ -37,24 +36,26 @@
 				<div class="section group">				
 				<div class="col span_1_of_3">
 					<div class="contact_info">
-			    	 	<h3>Find Us Here</h3>
+			    	 	<h3>找到我们</h3>
                         <div id="map_div" class="company_map"></div>
       				</div>
       				<div class="company_address">
-				     	<h3>Company Information :</h3>
-						    	<p>500 Lorem Ipsum Dolor Sit,</p>
-						   		<p>22-56-2-9 Sit Amet, Lorem,</p>
-						   		<p>USA</p>
-				   		<p>Phone:(00) 222 666 444</p>
-				   		<p>Fax: (000) 000 00 00 0</p>
-				 	 	<p>Email: <span>info@mycompany.com</span></p>
-				   		<p>Follow on: <span>Facebook</span>, <span>Twitter</span></p>
+				     	<h3>公司信息 :</h3>
+						    	<p>DTZ 戴德梁行</p>
+						   		<p>480 大巴窖6巷</p>
+						   		<p>#14-08 建屋发展局（东侧）</p>
+                                <p>新加坡</p>
+				   		<p>手机：+65 8128 9908</p>
+				   		<p>电话：+65 6725 3888</p>
+                        <p>传真：+65 6822 1128</p>
+				 	 	<p>电子邮箱: <span>huijing99@gmail.com</span></p>
+                        <p><span>www.dtz.com/sg</span></p>
 				   </div>
 				</div>				
 				<div class="col span_2_of_3">
 				  <div class="contact-form">
-				  	<h3>Contact Us</h3>
-					    <form method="post" action="contact.action">
+				  	<h3>联系我们</h3>
+					    <form method="post" action="contact-post.html">
 					    	<div>
 						    	<span><label>姓名</label></span>
 						    	<span><input name="userName" type="text" class="textbox"></span>
@@ -69,7 +70,7 @@
 						    </div>
 						    <div>
 						    	<span><label>主题</label></span>
-						    	<span><textarea name="userMsg"></textarea></span>
+						    	<span><textarea name="userMsg"> </textarea></span>
 						    </div>
 						   <div>
 						   		<span><input type="submit" value="确 认"></span>
@@ -86,11 +87,8 @@
 		 <!---End-content---->
 		 <!---start-copy-right----->
 		 <div class="copy-right">
-			<div class="top-to-page">
-				<a href="#top" class="scroll"> </a>
-					<div class="clear"> </div>
-			</div>
-			<p>Design by Businex</p>
+			<p>2014 © 华南理工大学 版权所有<p>
+            <p>地址：广州市天河区五山路381号/广州市番禺区广州大学城邮政编码：510641/510006<p>
 		</div>
 		 <!---End-copy-right---->
 	</body>
