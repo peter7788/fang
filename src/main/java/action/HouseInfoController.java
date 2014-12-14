@@ -1,14 +1,18 @@
 package action;
 
 import java.util.*;
+
 import javax.servlet.http.HttpSession;
+
 import org.apache.struts2.ServletActionContext;
+
 import model.HouseInfo;
 import service.HouseInfoService;
+
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AccountController extends ActionSupport {
-	private static final long serialVersionUID = 1L;
+@SuppressWarnings("serial")
+public class HouseInfoController extends ActionSupport {
 	private String direction;// 房屋方位信息
 	private String floor;// 房屋楼层信息
 	private String type;// 房屋类型
@@ -17,6 +21,7 @@ public class AccountController extends ActionSupport {
 	private String age;// 房屋使用年数
 	private String decoration;// 房屋装修情况
 	private List<HouseInfo> houseInfo_list;// 房屋信息集合
+	private HouseInfo houseInfo;//房屋信息Bean
 
 	@Override
 	public String execute() throws Exception {
@@ -325,9 +330,5 @@ public class AccountController extends ActionSupport {
 
 	public void setHouseInfo_list(List<HouseInfo> houseInfo_list) {
 		this.houseInfo_list = houseInfo_list;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 }
