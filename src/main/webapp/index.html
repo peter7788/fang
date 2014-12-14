@@ -48,14 +48,13 @@
          	<div class="manager">
             	<div class="manager_introduction_block">
             		<div class="manager_image"><img src="images/xu.jpg" /></div>
-                	<div class="manager_introduction">
-                    	<br><br>
+                	<div class="manager_introduction"><br><br>
                     	<p><span class="manager_name">许卉菁</span>&nbsp;&nbsp;&nbsp;<span>销售总监</span></p><br><br>
                     	<p></p>
                         <p>手机：+65 8128 9908</p>
 				   		<p>电话：+65 6725 3888</p>
                     	<p>传真：+65 6822 1128</p>
-				 		<p>电子邮箱: <span>huijing99@gmail.com</span></p>
+				 		<p>电子邮箱: huijing99@gmail.com</p>
                     </div>
                     <div class="clear"> </div>
                 </div>
@@ -71,10 +70,12 @@
 		 <div class="content">
          	<div class="wrap">
 		 	<div class="search">
+            <div class="search_block">
             	<form method="post" id="searchForm" action="search">
-            	<table>
+                	<table>
 				<tr><td><label>方位</label></td>
-   					<td><select>
+   					<td><select name="direction">
+   					<option value ="">不限</option>
 					<option value ="E">东</option>
 					<option value ="W">西</option>
 					<option value="S">南</option>
@@ -82,51 +83,68 @@
 					</select></td>
 				</tr>
     				<tr><td><label>楼层</label></td>
-   					<td><select>
-					<option value ="3">3楼以下</option>
-					<option value ="5">3-5楼</option>
-					<option value="7">5-7楼</option>
-					<option value="10">7楼以上</option>
+   					<td><select name="floor">
+   					<option value ="">不限</option>
+					<option value ="3楼以下">3楼以下</option>
+					<option value ="3-5楼">3-5楼</option>
+					<option value="5-7楼">5-7楼</option>
+					<option value="7楼以上">7楼以上</option>
 					</select></td>
              				</tr>
              				<tr><td>房型<label></label></td>
-   					<td><select>
-					<option value ="3">单间</option>
-					<option value ="5">一厅一房</option>
-					<option value="7">一厅两房</option>
-					<option value="10">一厅三房</option>
+   					<td><select name="type">
+   					<option value ="">不限</option>
+					<option value ="单间">单间</option>
+					<option value ="一厅一房">一厅一房</option>
+					<option value="一厅两房">一厅两房</option>
+					<option value="一厅三房">一厅三房</option>
 					</select></td>
              				</tr>
 				<tr><td>面积<label></label></td>
-   					<td><select>
-					<option value ="3">单间</option>
-					<option value ="5">一厅一房</option>
-					<option value="7">一厅两房</option>
-					<option value="10">一厅三房</option>
+   					<td><select name="area">
+   					<option value ="">不限</option>
+					<option value ="50平米以下">50平米以下</option>
+					<option value ="50-70平米">50-70平米</option>
+					<option value="70-90平米">70-90平米</option>
+					<option value="90-110平米">90-110平米</option>
+					<option value="110-130平米">110-130平米</option>
+					<option value="130-150平米">130-150平米</option>
+					<option value="150-200平米">150-200平米</option>
+					<option value="200-300平米">200-300平米</option>
+					<option value="300-500平米">300-500平米</option>
+					<option value="500平米以上">500平米以上</option>
 					</select></td>
              				</tr>
              				<tr><td>价格<label></label></td>
-   					<td><select>
-					<option value ="3">1000以下</option>
-					<option value ="5">1000-2000</option>
-					<option value="7">2000-3000</option>
-					<option value="10">3000-4000</option>
+   					<td><select name="price">
+   					<option value ="">不限</option>
+					<option value ="50万以下">50万以下</option>
+					<option value ="50-100万">50-100万</option>
+					<option value="100-150万">100-150万</option>
+					<option value="150-200万">150-200万</option>
+					<option value="200-250万">200-250万</option>
+					<option value="250-300万">250-300万</option>
+					<option value="300-500万">300-500万</option>
+					<option value="500-1000万">500-1000万</option>
+					<option value="1000万以上">1000万以上</option>
 					</select></td>
              				</tr>
              				<tr><td>楼龄<label></label></td>
-   					<td><select>
-					<option value ="3">2年以下</option>
-					<option value ="5">3-7年</option>
-					<option value="7">7-20年</option>
-					<option value="10">20-30年</option>
-					<option value="11">30年以上</option>
+   					<td><select name="age">
+   					<option value ="">不限</option>
+					<option value ="5年以下">5年以下</option>
+					<option value ="5-10年">5-10年</option>
+					<option value="10-20年">10-20年</option>
+					<option value="20年以上">20年以上</option>
 					</select></td>
              				</tr>
              				<tr><td>装修情况<label></label></td>
-   					<td><select>
-					<option value ="3">毛坯</option>
-					<option value ="5">中等</option>
-					<option value="7">豪装</option>
+   					<td><select name="decoration">
+   					<option value ="">不限</option>
+					<option value ="毛坯">毛坯</option>
+					<option value ="普通装修">普通装修</option>
+					<option value ="精装修">精装修</option>
+					<option value="豪华装修">豪华装修</option>
 					</select></td>
              				</tr>
                 <tr><td><input type="submit" id="comfirm" value="检索" /></td>
@@ -135,46 +153,47 @@
 				</table>
                 </form>
             </div>
+            </div>
             <div class="result">
-            	<div class="mid-grid"><a href="#"><img src="images/example1.jpg" title="image-name" /></a>
-			 		<h3>Lorem ipsum</h3>
-			 		<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut .</p>
-			 		<a class="mid-button" href="#">More</a>
+            	<div class="mid-grid"><a href="house.html"><img src="images/example1.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="#"><img src="images/example2.jpg" title="image-name" /></a>
-			 		<h3>Lorem ipsum</h3>
-			 		<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut .</p>
-			 		<a class="mid-button" href="#">More</a>
+                <div class="mid-grid"><a href="house.html"><img src="images/example2.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="#"><img src="images/example3.jpg" title="image-name" /></a>
-			 		<h3>Lorem ipsum</h3>
-			 		<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut .</p>
-			 		<a class="mid-button" href="#">More</a>
+                <div class="mid-grid"><a href="house.html"><img src="images/example3.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="#"><img src="images/example4.jpg" title="image-name" /></a>
-			 		<h3>Lorem ipsum</h3>
-			 		<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut .</p>
-			 		<a class="mid-button" href="#">More</a>
+                <div class="mid-grid"><a href="house.html"><img src="images/example4.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="#"><img src="images/example5.jpg" title="image-name" /></a>
-			 		<h3>Lorem ipsum</h3>
-			 		<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut .</p>
-			 		<a class="mid-button" href="#">More</a>
+                <div class="mid-grid"><a href="house.html"><img src="images/example5.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="#"><img src="images/example6.jpg" title="image-name" /></a>
-			 		<h3>Lorem ipsum</h3>
-			 		<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut .</p>
-			 		<a class="mid-button" href="#">More</a>
+                <div class="mid-grid"><a href="house.html"><img src="images/example6.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="#"><img src="images/example7.jpg" title="image-name" /></a>
-			 		<h3>Lorem ipsum</h3>
-			 		<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut .</p>
-			 		<a class="mid-button" href="#">More</a>
+                <div class="mid-grid"><a href="house.html"><img src="images/example7.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="#"><img src="images/example8.jpg" title="image-name" /></a>
-			 		<h3>Lorem ipsum</h3>
-			 		<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut .</p>
-			 		<a class="mid-button" href="#">More</a>
+                <div class="mid-grid"><a href="house.html"><img src="images/example8.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
 			 	</div>
             </div>
             <div class="clear"> </div>

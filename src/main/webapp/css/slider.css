@@ -370,3 +370,17 @@
 	margin: -1px 0 25px;
 	position: relative;
 }
+.content .wrap .search #searchForm table tr td {
+	text-align: center;
+	width: 100px;
+}
+.content .wrap .search #searchForm table tr td select {
+	width: 100%;
+}
+.search_block {
+	width: 100%;
+	margin-top: 30%;
+	margin-right: auto;
+	margin-bottom: 30%;
+	margin-left: auto;
+}
