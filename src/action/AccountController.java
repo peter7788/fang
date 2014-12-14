@@ -1,14 +1,10 @@
 package action;
 
 import java.util.*;
-
 import javax.servlet.http.HttpSession;
-
 import org.apache.struts2.ServletActionContext;
-
 import model.HouseInfo;
 import service.HouseInfoService;
-
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AccountController extends ActionSupport {
