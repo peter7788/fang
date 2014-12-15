@@ -13,5 +13,9 @@
 			<!-- 1、此处跳转页面只供测试使用 -->
 			<result name="success">/index.html</result>
 		</action>
+		<!-- 查看留言信息 -->
+		<action name="searchMessage" class="action.MessageController" method="searchMessage">
+			<result name="success">/message.html</result>
+		</action>
 	</package>
 </struts>    

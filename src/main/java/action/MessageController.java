@@ -1,6 +1,11 @@
 package action;
 
 import java.sql.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 
 import model.Message;
 import service.MessageService;
@@ -13,6 +18,7 @@ public class MessageController extends ActionSupport {
 	private String userEmail;//留言者邮箱
 	private String userPhone;//留言者移动电话
 	private String userMsg;//留言者留言内容
+	private List<Message> message_list;//留言信息集合
 	
 	@Override
 	public String execute() throws Exception {
@@ -30,6 +36,15 @@ public class MessageController extends ActionSupport {
 		msg.setContent(userMsg);
 		msg.setMessage_time(new Date(System.currentTimeMillis()));
 		new MessageService().addMessage(msg);
+		return SUCCESS;
+	}
+	
+	/*查看留言信息*/
+	public String searchMessage(){
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		message_list=new MessageService().findAll();
+		session.setAttribute("message_list", message_list);
+		System.out.println("测试留言条数："+message_list.size());
 		return SUCCESS;
 	}
 	
@@ -57,5 +72,13 @@ public class MessageController extends ActionSupport {
 	}
 	public void setUserMsg(String userMsg) {
 		this.userMsg = userMsg;
+	}
+
+	public List<Message> getMessage_list() {
+		return message_list;
+	}
+
+	public void setMessage_list(List<Message> message_list) {
+		this.message_list = message_list;
 	}
 }
