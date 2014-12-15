@@ -1,19 +1,9 @@
 package service;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.ArrayList;
 import java.util.List;
 
-import javassist.bytecode.Descriptor.Iterator;
-import model.Advertisement;
 import model.Guest;
 import model.HouseInfo;
 import model.Message;
@@ -25,17 +15,15 @@ public class test {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		//添加客户方法测试
+		/*添加客户方法测试
 		Guest guest = new Guest();
 		guest.setUser_email("24647@4646");
-		guest.setUser_name("qiuyuejun1");
+		guest.setUser_name("qiuyuejun2");
 		guest.setUser_password("123456");
 		guest.setUser_level(10);
 		
 		new GuestService().addGuest(guest);
 		
-		/*
 		//查询所有用户测试
 		List<Guest> list= new GuestService().findAll();
 		for(Guest guest: list){
@@ -55,21 +43,22 @@ public class test {
 		GuestService service=new GuestService();
 		Guest guest=service.findByName("qiuyuejun1");
 		service.deleteGuest(guest);
-		 
+		 */
 		
-		//添加留言测试
+		/*添加留言测试
 		Message message=new Message();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
-		message.setUsername("pantianxi");
-		message.setMessage_time(sdf.format(new Date()).toString());
-		message.setContact("7788@qq.com");
-		message.setPhone("15179687895");
+		message.setUser_name("pantianxi");
+		message.setMessage_time(new java.sql.Date(new java.util.Date().getTime()));
+		message.setUser_email("7788@qq.com");
+		message.setUser_phone("15179687895");
+		message.setContent("留言测试内容");
 		
 		new MessageService().addMessage(message);
+		*/
+		//System.out.println(new java.sql.Date(System.currentTimeMillis()));
 		
-		
-		//查看用户留言测试、删除用户留言测试
+		/*查看用户留言测试、删除用户留言测试
 		List<Message> list=new MessageService().findAll();
 		for(Message msg:list){
 			System.out.println("Message from '"+msg.getUsername()+"'");
@@ -97,7 +86,7 @@ public class test {
 		his.addHouseInfo(hi);
 		*/
 		
-		/*房屋信息查询*/
+		/*房屋信息查询
 		HouseInfo hi=new HouseInfo();
 		HouseInfoService his=new HouseInfoService();
 		List<HouseInfo> houseInfo_list=null;
@@ -106,7 +95,7 @@ public class test {
 				+ " and h.area between '150' and '200' and  h.price>'1000'"
 				+ " and  h.age between '5' and '10' and  h.decoration='毛坯'");
 		System.out.println(houseInfo_list.size());
-		
+		*/
 		
 		/*
 		Advertisement ad1=new Advertisement();
@@ -156,5 +145,6 @@ public class test {
 			e.printStackTrace();
 		}
 	*/
+		
 	}
 }

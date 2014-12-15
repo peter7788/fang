@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="accountcontroller" extends="struts-default" namespace="/">
+	<!-- HouseInfoController相关action -->
+	<package name="HouseInfoController" extends="struts-default">
 		<action name="search" class="action.HouseInfoController" method="search">
 			<result name="success">/test.jsp</result>
+		</action>
+	</package>
+	
+	<package name="MessageController" extends="struts-default">
+		<action name="addMessage" class="action.MessageController" method="addMessage">
+			<!-- 1、此处跳转页面只供测试使用 -->
+			<result name="success">/index.html</result>
 		</action>
 	</package>
 </struts>    

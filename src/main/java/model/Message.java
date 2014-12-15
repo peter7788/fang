@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 @SuppressWarnings("serial")
 public class Message implements Serializable {
@@ -8,51 +9,50 @@ public class Message implements Serializable {
 	// 主键id
 	private int id;
 	// 用户名称
-	private String username;
+	private String user_name;
 	// 留言时间
-	private String message_time;
-	// 联系方式
-	private String contact;
-	// 电话
-	private String phone;
-
+	private Date message_time;
+	// 电子邮箱
+	private String user_email;
+	// 移动电话
+	private String user_phone;
+	//用户留言信息
+	private String content;
+	
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getUsername() {
-		return username;
+	public String getUser_name() {
+		return user_name;
 	}
-
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
-
-	public String getMessage_time() {
+	public Date getMessage_time() {
 		return message_time;
 	}
-
-	public void setMessage_time(String message_time) {
+	public void setMessage_time(Date message_time) {
 		this.message_time = message_time;
 	}
-
-	public String getContact() {
-		return contact;
+	public String getUser_email() {
+		return user_email;
 	}
-
-	public void setContact(String contact) {
-		this.contact = contact;
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
-
-	public String getPhone() {
-		return phone;
+	public String getUser_phone() {
+		return user_phone;
 	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setUser_phone(String user_phone) {
+		this.user_phone = user_phone;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 }
