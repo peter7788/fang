@@ -5,23 +5,30 @@
 		<title>首页</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
 		<link href="css/slider.css" rel="stylesheet" type="text/css"  media="all" />
+        <link href="css/camera.css" rel="stylesheet" type="text/css"  media="all" />
 		  <script src="js/jquery.min.js"></script>
+          <script src="js/jquery.mobile.customized.min.js"></script>
 		  <script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
-		    <script type="text/javascript" src="js/camera.min.js"></script>
-				<script type="text/javascript">
-			   jQuery(function(){
+		  <script type="text/javascript" src="js/camera.min.js"></script>
+		  <script type="text/javascript">
+			jQuery(function(){
 				jQuery('#camera_wrap_1').camera({
 					height: '400px',
 					pagination: false,
+					thumbnails: false,
 					hover: false,
 					opacityOnGrid: false,
 					playPause: true,
 					time: 1000,
 				});
 			});
+			$(document).ready(function(){
+				
+			});
 		  </script>
 	</head>
 	<body>
+   		<div class="main">
 		<!----start-header---->
 			<div class="header">
 				<div class="wrap">
@@ -31,7 +38,7 @@
 				<div class="top-nav">
 					<ul>
 						<li class="active"><a href="index.html">首页</a></li>
-                        <li><a href="searchMessage.action">留言板</a></li>
+                        <li><a href="message.html">留言板</a></li>
                         <li><a href="house.html">房屋信息</a></li>
 						<li><a href="about.html">关于我们</a></li>
 						<li><a href="contact.html">联系我们</a></li>
@@ -42,6 +49,12 @@
 			</div>
 		</div>
         <!---End-header---->
+        <div class="language"><select name="language">
+   					<option value ="zh_CN">简体中文</option>
+					<option value ="zh_TW">繁體中文</option>
+					<option value ="en">English</option>
+					</select></div>
+        <div class="clear"> </div>
 		<!--start-second-block---->
         <div class="second_block">
         	<div class="wrap">
@@ -65,42 +78,52 @@
 			</div>
             <!--End-image-slider---->	
             <div class="clear"> </div>     
-		</div>				
+		</div>
 		<!---start-content---->
 		 <div class="content">
          	<div class="wrap">
+            <div class="menu_div">
+        		<ul>
+					<li><a href="about.html">我们的服务</a></li>
+               	 	<li><a href="http://www.mfa.gov.sg/content/mfa/overseasmission/beijing/ch/visa_information/bizSocialPRC.html">投资新加坡</a></li>
+                	<li><a href="http://www.mfa.gov.sg/content/mfa/overseasmission/beijing/ch/visa_information/bizSocialPRC.html">移民新加坡</a></li>
+					<li><a href="house_blank.html">房源信息</a></li>
+					<li><a href="contact.html">资源中心</a></li>
+               		<li><a href="">下载中心</a></li>
+                	<li><a href="contact.html">联系我们</a></li>
+				</ul>
+                <div class="clear"> </div>
+        	</div>	
 		 	<div class="search">
             <div class="search_block">
             	<form method="post" id="searchForm" action="search.action">
                 	<table>
-				<tr><td><label>方位</label></td>
-   					<td><select name="direction">
+                    <tr><td>种类<label></label></td>
+   					<td><select name="Species">
    					<option value ="">不限</option>
-					<option value ="E">东</option>
-					<option value ="W">西</option>
-					<option value="S">南</option>
-					<option value="N">北</option>
-					</select></td>
-				</tr>
-    				<tr><td><label>楼层</label></td>
-   					<td><select name="floor">
-   					<option value ="">不限</option>
-					<option value ="3楼以下">3楼以下</option>
-					<option value ="3-5楼">3-5楼</option>
-					<option value="5-7楼">5-7楼</option>
-					<option value="7楼以上">7楼以上</option>
-					</select></td>
-             				</tr>
-             				<tr><td>房型<label></label></td>
+					<option value ="1">公寓</option>
+					<option value ="2">政府组屋</option>
+					<option value="3">有地住宅</option>
+					<option value="4">商用楼盘</option>
+					</select></td></tr>
+                    <tr><td>地段<label></label></td>
    					<td><select name="type">
    					<option value ="">不限</option>
-					<option value ="单间">单间</option>
-					<option value ="一厅一房">一厅一房</option>
-					<option value="一厅两房">一厅两房</option>
-					<option value="一厅三房">一厅三房</option>
-					</select></td>
-             				</tr>
-				<tr><td>面积<label></label></td>
+					<option value ="1">靠近学校</option>
+					<option value ="2">靠近地铁</option>
+					<option value="3">医院附近</option>
+					<option value="4">交通方便</option>
+					</select></td></tr>
+					<tr><td>房型<label></label></td>
+   					<td><select name="type">
+                    <option value ="">不限</option>
+   					<option value ="1">一室</option>
+					<option value ="2">两室</option>
+					<option value ="3">三室</option>
+					<option value="4">四室</option>
+					<option value="5">四室以上</option>
+					</select></td></tr>
+					<tr><td>面积<label></label></td>
    					<td><select name="area">
    					<option value ="">不限</option>
 					<option value ="50平米以下">50平米以下</option>
@@ -113,48 +136,33 @@
 					<option value="200-300平米">200-300平米</option>
 					<option value="300-500平米">300-500平米</option>
 					<option value="500平米以上">500平米以上</option>
-					</select></td>
-             				</tr>
-             				<tr><td>价格<label></label></td>
-   					<td><select name="price">
-   					<option value ="">不限</option>
-					<option value ="50万以下">50万以下</option>
-					<option value ="50-100万">50-100万</option>
-					<option value="100-150万">100-150万</option>
-					<option value="150-200万">150-200万</option>
-					<option value="200-250万">200-250万</option>
-					<option value="250-300万">250-300万</option>
-					<option value="300-500万">300-500万</option>
-					<option value="500-1000万">500-1000万</option>
-					<option value="1000万以上">1000万以上</option>
-					</select></td>
-             				</tr>
-             				<tr><td>楼龄<label></label></td>
+					</select></td></tr>
+             		<tr><td>房龄<label></label></td>
    					<td><select name="age">
    					<option value ="">不限</option>
 					<option value ="5年以下">5年以下</option>
 					<option value ="5-10年">5-10年</option>
 					<option value="10-20年">10-20年</option>
 					<option value="20年以上">20年以上</option>
-					</select></td>
-             				</tr>
-             				<tr><td>装修情况<label></label></td>
-   					<td><select name="decoration">
-   					<option value ="">不限</option>
-					<option value ="毛坯">毛坯</option>
-					<option value ="普通装修">普通装修</option>
-					<option value ="精装修">精装修</option>
-					<option value="豪华装修">豪华装修</option>
-					</select></td>
-             				</tr>
+					</select></td></tr>
                 <tr><td><input type="submit" id="comfirm" value="检索" /></td>
                 <td><input type="reset" id="reset" value="重置" /></td>
                 </tr>
 				</table>
                 </form>
             </div>
+            <div class="news">
+            	<p class="newest">最新消息</h2>
+                <ul>
+  					<li><a href="">内环内二手豪宅市场成交大爆发</a></li>
+  					<li><a href="">央行降息利好，100万房贷30年可节省9.43万</a></li>
+  					<li><a href="">单价5万元以上的高端市场或将持续走高</a></li>
+				</ul>
+            </div>
             </div>
             <div class="result">
+            <div class="newest_project">
+            	<div class="picture_specify">最新楼盘</div>
             	<div class="mid-grid"><a href="house.html"><img src="images/example1.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
@@ -195,14 +203,64 @@
 			 		<p>66.15平米 170万元</p>
 			 		<a class="mid-button" href="house.html">更多</a>
 			 	</div>
+                <div class="clear"></div>
+                <span><a href="">&nbsp;1&nbsp;</a></span><span><a href="">&nbsp;2&nbsp;</a></span><span><a href="">&nbsp;下一页&nbsp;</a></span>
             </div>
-            <div class="clear"> </div>
+            <br><br>
+            <div class="hotest_project">
+            	<div class="picture_specify">热门推荐</div>
+            	<div class="mid-grid"><a href="house.html"><img src="images/example1.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
+			 	</div>
+                <div class="mid-grid"><a href="house.html"><img src="images/example2.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
+			 	</div>
+                <div class="mid-grid"><a href="house.html"><img src="images/example3.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
+			 	</div>
+                <div class="mid-grid"><a href="house.html"><img src="images/example4.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
+			 	</div>
+                <div class="mid-grid"><a href="house.html"><img src="images/example5.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
+			 	</div>
+                <div class="mid-grid"><a href="house.html"><img src="images/example6.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
+			 	</div>
+                <div class="mid-grid"><a href="house.html"><img src="images/example7.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
+			 	</div>
+                <div class="mid-grid"><a href="house.html"><img src="images/example8.jpg" title="image-name" /></a>
+			 		<h3>北京市 海淀区 三房一厅</h3>
+			 		<p>66.15平米 170万元</p>
+			 		<a class="mid-button" href="house.html">更多</a>
+			 	</div>
+                <div class="clear"></div>
+                <span><a href="">&nbsp;1&nbsp;</a></span><span><a href="">&nbsp;2&nbsp;</a></span><span><a href="">&nbsp;下一页&nbsp;</a></span>
+            </div>
+            </div>
+            <div class="clear"></div>
  			</div>
 		</div>
+  		</div>
         <!---start-copy-right----->
 		 <div class="copy-right">
-			<p>2014 © 华南理工大学 版权所有<p>
-            <p>地址：广州市天河区五山路381号/广州市番禺区广州大学城邮政编码：510641/510006<p>
+			<p>2014 © 华南理工大学 版权所有</p>
+            <p>地址：广州市天河区五山路381号/广州市番禺区广州大学城邮政编码：510641/510006</p>
 		</div>
 		 <!---End-copy-right---->
 	</body>

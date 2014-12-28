@@ -379,8 +379,14 @@
 }
 .search_block {
 	width: 100%;
-	margin-top: 30%;
+	margin-top: 10%;
 	margin-right: auto;
-	margin-bottom: 30%;
+	margin-bottom: 10%;
 	margin-left: auto;
+	height: 30%;
+}
+.mid-grid {
+	float: left;
+	width: 23%;
+	margin-left: 2%;
 }
