@@ -5,9 +5,8 @@ import model.Message;
 import org.hibernate.Session;
 import dao.MessageDao;
 
-
 public class MessageService extends TotalService {
-	
+
 	/**
 	 * 添加留言信息
 	 * 
@@ -20,7 +19,7 @@ public class MessageService extends TotalService {
 	}
 
 	/**
-	 * 查看留言信息
+	 * 查看所有留言信息
 	 * 
 	 * @return
 	 */

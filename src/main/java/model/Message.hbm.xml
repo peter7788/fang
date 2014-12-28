@@ -32,7 +32,7 @@
 		</property>
 		<property name="content" type="java.lang.String">
 			<column name="content" length="255" not-null="true">
-				<comment>移动电话</comment>
+				<comment>内容</comment>
 			</column>
 		</property>
 	</class>

@@ -8,11 +8,14 @@
 		<!-- 配置数据库的驱动程序，hibernate在连接数据库时，需要用到数据库的驱动程序 -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<!-- 设置数据库的连接url -->
+		<!--
 		<property name="hibernate.connection.url">jdbc:mysql://116.56.140.99:3306/fang</property>
+		-->
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/fang</property>
 		<!-- 连接数据库的用户名 -->
 		<property name="hibernate.connection.username">root</property>
 		<!-- 连接数据库的密码 -->
-		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.connection.password">123</property>
 		<!-- 是否在后台显示Hibernate生成的查询数据库的SQL语句，开发时设置为true，便于查询错误，运行时可以在Eclipse的控制台显示Hibernate执行的sql语句。项目部署后可以设置为false，提高运行效率 -->
 		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.format_sql">true</property>
@@ -22,18 +25,22 @@
 			 create：启动hibernate时，自动删除原来的表，新建所有的表，所以每次启动后的以前数据都会丢失。 
 			 create-drop：启动hibernate时，自动创建表，程序关闭时，自动把相应的表都删除。所以程序结束时，表和数据也不会再存在。  -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- 指定Hibernate的连接提供方式，如果没有将不会使用c3p0作为Hibernate的连接池 -->
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
 		<!-- 最小连接数 -->
-		<property name="hibernate.c3p0.min_size">1</property>
+		<property name="hibernate.c3p0.min_size">10</property>
 		<!-- 最大连接数 -->
-		<property name="hibernate.c3p0.max_size">3</property>
-		<!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒 -->
-		<property name="hibernate.c3p0.timeout">5000</property>
+		<property name="hibernate.c3p0.max_size">30</property>
+		<!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
+		<property name="hibernate.c3p0.acquire_increment">5</property>
 		<!-- 最大的PreparedStatement的数量 -->
 		<property name="hibernate.c3p0.max_statements">50</property>
+		<!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位秒   表示连接对象多长时间应该被销毁 -->
+		<property name="hibernate.c3p0.timeout">120</property>
 		<!-- 每隔120秒检查连接池里的空闲连接 ，单位是秒 -->
-		<property name="hibernate.c3p0.idle_test_period">3000</property>
-		<!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
-		<property name="hibernate.c3p0.acquire_increment">1</property>
+		<property name="hibernate.c3p0.idle_test_period">120</property>
+		<!--连接的生存周期/最大空闲时间,86400秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0-->
+		<property name="hibernate.c3p0.maxIdleTime">86400</property>
 		<!-- 每次都验证连接是否可用 -->
 		<property name="hibernate.c3p0.validate">true</property>
 

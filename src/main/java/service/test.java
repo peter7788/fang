@@ -3,7 +3,6 @@ package service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
 import model.Guest;
 import model.HouseInfo;
 import model.Message;
