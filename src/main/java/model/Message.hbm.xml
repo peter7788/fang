@@ -15,7 +15,7 @@
 				<comment>用户名称</comment>
 			</column>
 		</property>
-		<property name="message_time" type="java.sql.Date">
+		<property name="message_time" type="java.util.Date">
 			<column name="message_time" length="50" not-null="true">
 				<comment>留言时间</comment>
 			</column>

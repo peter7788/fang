@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import net.sf.json.JSONObject;
 
 @SuppressWarnings("serial")
 public class Advertisement implements Serializable {
@@ -44,5 +45,14 @@ public class Advertisement implements Serializable {
 
 	public void setLink(String link) {
 		this.link = link;
+	}
+
+	public JSONObject toJson() {
+		JSONObject temp = new JSONObject();
+		temp.put("id", id);
+		temp.put("title", title);
+		temp.put("img_src", img_src);
+		temp.put("link", link);
+		return temp;
 	}
 }

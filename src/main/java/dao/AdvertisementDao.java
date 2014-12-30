@@ -26,8 +26,8 @@ public class AdvertisementDao {
 	 */
 	public List<Advertisement> findAll(Session session) {
 		Transaction tx = session.beginTransaction();
-		List<Advertisement> list = session.createQuery("from Advertisement")
-				.list();
+		List<Advertisement> list = (List<Advertisement>) session.createQuery(
+				"from Advertisement").list();
 		tx.commit();
 		return list;
 	}
@@ -41,7 +41,7 @@ public class AdvertisementDao {
 	 */
 	public List<Advertisement> findById(Session session, int id) {
 		Transaction tx = session.beginTransaction();
-		List<Advertisement> list = session.createQuery(
+		List<Advertisement> list = (List<Advertisement>) session.createQuery(
 				"from Advertisement where id=" + id + "").list();
 		tx.commit();
 		return list;

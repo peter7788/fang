@@ -1,6 +1,5 @@
 package dao;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -29,12 +28,12 @@ public class HouseInfoDao {
 	public List<HouseInfo> findAll(Session session) {
 		// List<HouseInfo> list=new ArrayList<HouseInfo>();
 		Transaction tx = session.beginTransaction();
-		List<HouseInfo> list = (ArrayList<HouseInfo>) session.createQuery(
+		List<HouseInfo> list = (List<HouseInfo>) session.createQuery(
 				"from HouseInfo").list();
 		tx.commit();
 		return list;
 	}
-	
+
 	/**
 	 * 查看某个房产信息
 	 * 
@@ -43,7 +42,7 @@ public class HouseInfoDao {
 	 */
 	public List<HouseInfo> findById(Session session, int id) {
 		Transaction tx = session.beginTransaction();
-		List<HouseInfo> list = (ArrayList<HouseInfo>) session.createQuery(
+		List<HouseInfo> list = (List<HouseInfo>) session.createQuery(
 				"from HouseInfo where id=" + id).list();
 		tx.commit();
 		return list;
@@ -56,10 +55,11 @@ public class HouseInfoDao {
 	 * @param parameter
 	 * @return
 	 */
-	public List<HouseInfo> findByCriteria(Session session,String hql) {
+	public List<HouseInfo> findByCriteria(Session session, String hql) {
 		Transaction tx = session.beginTransaction();
-		List<HouseInfo> list = session.createQuery("from HouseInfo h"+hql).list();
-		System.out.println("输出hql语句:"+"from HouseInfo h"+hql);
+		List<HouseInfo> list = (List<HouseInfo>) session.createQuery(
+				"from HouseInfo h" + hql).list();
+		System.out.println("输出hql语句:" + "from HouseInfo h" + hql);
 		tx.commit();
 		return list;
 	}

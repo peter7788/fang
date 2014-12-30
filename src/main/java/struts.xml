@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+
+	<constant name="struts.multipart.parser" value="jakarta"/>
+	<constant name="struts.multipart.saveDir" value="D:\\tmp"/>
+
 	<!-- HouseInfoController相关action -->
 	<package name="HouseInfoController" extends="struts-default">
 		<action name="search" class="action.HouseInfoController" method="search">
@@ -16,6 +20,14 @@
 		<!-- 查看留言信息 -->
 		<action name="searchMessage" class="action.MessageController" method="searchMessage">
 			<result name="success">/message.html</result>
+		</action>
+	</package>
+	
+	<package name="UploadController" extends="struts-default">
+		<!-- 上传图片 -->
+		<action name="upload" class="action.UploadController" method="upload">
+			<param name="savePath">/uploadFiles</param>
+			<result name="success">/manage_hotest_project.jsp</result>
 		</action>
 	</package>
 </struts>    

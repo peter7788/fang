@@ -26,11 +26,7 @@ public class AdvertisementService extends TotalService {
 		Session session = sessionFactory.openSession();
 		List<Advertisement> list = new AdvertisementDao().findAll(session);
 		session.close();
-		if (list != null && list.size() > 0) {
-			return list;
-		} else {
-			return null;
-		}
+		return list;
 	}
 
 	/**

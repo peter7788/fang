@@ -1,14 +1,31 @@
-
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8"%>
+<%
+	String jsonArray = (String) application.getAttribute("messageList");
+%>
+<!--<%@taglib prefix="s" uri="/struts-tags"%>-->
 <!DOCTYPE HTML>
 <html>
 	<head>
-    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>留言板</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
-		
+    	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		 <title>留言板</title>
+		 <link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
 		 <link href="css/slider.css" rel="stylesheet" type="text/css"  media="all" />
+         <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+         <script type="text/javascript">
+			$(document).ready(function(){
+				var htmlString='';
+				var messageList=eval('('+$('#jsonArray').val()+')');
+				for(var i=0; i<messageList.length; i++){
+					var tempHtmlString="<div class='message'><div class='sub_message'><div class='message_span_1'><div class='message_name'><span>" + messageList[i].user_name + "</span></div><div class='message_contact'><div class='email_phone'><span>电子邮箱: </span><span>" + messageList[i].user_email + "</span></div><div class='email_phone'><span>移动电话: </span><span>" + messageList[i].user_phone + "</span></div></div><div class='clear'></div></div><div class='message_span_2'><div class='message_content'>" + messageList[i].content + "</div></div><div class='message_span_3'><div class='message_time'><span>" + messageList[i].message_time + "</span></div><div class='clear'> </div></div></div></div>";
+					htmlString += tempHtmlString;
+				}
+				$('#message_wrap').html(htmlString);
+			});
+		 </script>
 	</head>
 	<body>
+    <input type="hidden" id="jsonArray" value='<%=jsonArray%>' />
     	<div class="main">
 		<!----start-header---->
 			<div class="header">
@@ -19,7 +36,7 @@
 				<div class="top-nav">
 					<ul>
 						<li><a href="index.html">首页</a></li>
-                        <li class="active"><a href="message.html">留言板</a></li>
+                        <li class="active"><a href="message.jsp">留言板</a></li>
                         <li><a href="house.html">房屋信息</a></li>
 						<li><a href="about.html">关于我们</a></li>
 						<li><a href="contact.html">联系我们</a></li>
@@ -33,7 +50,7 @@
 		
         <!--start-second-block---->
         <div class="second_block">
-        	<div class="message_wrap">
+        	<div class="message_wrap" id="message_wrap">
             	<!--start-message-->
                 <div class="message">
             	<div class="sub_message">

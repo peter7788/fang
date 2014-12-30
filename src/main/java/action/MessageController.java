@@ -1,10 +1,11 @@
 package action;
 
-import java.sql.Date;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
 import model.Message;
 import service.MessageService;
@@ -32,19 +33,19 @@ public class MessageController extends ActionSupport {
 		message.setUser_email(userEmail);
 		message.setUser_phone(userPhone);
 		message.setContent(userMsg);
-		message.setMessage_time(new Date(System.currentTimeMillis()));
+		message.setMessage_time(new Date());
 		new MessageService().addMessage(message);
 
-		// 更新application中的messageList
 		ServletContext context = ServletActionContext.getServletContext();
-		List<Message> messageList = (List<Message>) context
-				.getAttribute("messageList");
-		if (messageList == null) {
-			messageList = new ArrayList<Message>();
+		String messageListString = (String) context.getAttribute("messageList");
+		JSONArray jsonArray;
+		if (messageListString != null) {
+			jsonArray = (JSONArray) JSONSerializer.toJSON(messageListString);
+		} else {
+			jsonArray = new JSONArray();
 		}
-		messageList.add(message);
-		context.setAttribute("messageList", messageList);
-
+		jsonArray.add(message.toJson());
+		context.setAttribute("messageList", jsonArray.toString());
 		return SUCCESS;
 	}
 

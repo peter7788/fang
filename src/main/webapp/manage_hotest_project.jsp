@@ -1,3 +1,9 @@
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8"%>
+<%
+	String jsonArray = (String) application.getAttribute("houseInfoList");
+%>
+<!--<%@taglib prefix="s" uri="/struts-tags"%>-->
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -10,12 +16,20 @@
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="js/jquery.lightbox.js"></script>
         <script type="text/javascript">
-			$(function() {
+			$(document).ready(function(){
 				$('.light a').lightBox();
+				var htmlString='';
+				var houseInfoList=eval('('+$('#jsonArray').val()+')');
+				for(var i=0; i<houseInfoList.length; i++){
+					var tempHtmlString="";
+					htmlString += tempHtmlString;
+				}
+				$('#hotest_project_table').html(htmlString);
 			});
-		</script>
+		 </script>
 	</head>
 	<body>
+    	<input type="hidden" id="jsonArray" value='<%=jsonArray%>' />
     	<div class="main">
 		<!----start-header---->
 			<div class="header">
@@ -53,15 +67,21 @@
                 	<div class="clear"> </div>
         		</div>	
                 <div class="ad_management_properties light">
-                <table>
+                <table id="hotest_project_table">
                 	<tr>
-                    	<th>URL</th>
-                        <th>图片描述</th>
+                    	<th>序号</th>
+                        <th>区域</th>
+                        <th>面积</th>
+                        <th>价格</th>
+                        <th>发布时间</th>
                         <th>操作</th>
                     </tr>
                     <tr>
-                    	<td>例子一属性一</td>
-                        <td>例子一属性二</td>
+                    	<td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                         	<a href="images/example1.jpg"><input type="button" value="预览图片" /></a>
                         	<input type="button" value="删除" />
@@ -70,10 +90,10 @@
                 </table>
                 </div>
                 <div class="add">
-                <form method="post" id="uploadForm" action="upload">
+                <form method="post" id="uploadForm" action="upload.action" enctype="multipart/form-data">
                		<table>
-                    	<tr><td>选择图片</td><td><input type="text" id="pictureURL" name="pictureURL" class="tableCss" value="" /></td></tr>
-                        <tr><td>描述</td><td><input type="text" id="pictureDescription" name="pictureDescription" class="tableCss" value="" /></td></tr>
+                    	<tr><td>选择图片</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
+                        <tr><td>描述</td><td><input type="text" id="description" name="description" class="tableCss" value="" /></td></tr>
                         <tr><td><input type="submit" id="comfirm" value="上传" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>
                 </form>

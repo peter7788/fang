@@ -1,6 +1,5 @@
 package service;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import dao.HouseInfoDao;
@@ -26,8 +25,7 @@ public class HouseInfoService extends TotalService {
 	 */
 	public List<HouseInfo> findAll() {
 		Session session = sessionFactory.openSession();
-		List<HouseInfo> list = (ArrayList<HouseInfo>) new HouseInfoDao()
-				.findAll(session);
+		List<HouseInfo> list = new HouseInfoDao().findAll(session);
 		session.close();
 		return list;
 	}
@@ -41,8 +39,7 @@ public class HouseInfoService extends TotalService {
 	public List<HouseInfo> findByCriteria(String hql) {
 		Session session = sessionFactory.openSession();
 		System.out.println("Service查询测试！");
-		List<HouseInfo> list = (ArrayList<HouseInfo>) new HouseInfoDao()
-				.findByCriteria(session, hql);
+		List<HouseInfo> list = new HouseInfoDao().findByCriteria(session, hql);
 		session.close();
 		return list;
 	}

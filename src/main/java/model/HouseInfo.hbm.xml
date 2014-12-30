@@ -60,7 +60,7 @@
 				<comment>标签</comment>
 			</column>
 		</property>
-		<property name="publish_time" type="java.sql.Date">
+		<property name="publish_time" type="java.util.Date">
 			<column name="publish_time" not-null="true">
 				<comment>发布时间</comment>
 			</column>
