@@ -10,16 +10,16 @@
 		<action name="search" class="action.HouseInfoController" method="search">
 			<result name="success">/test.jsp</result>
 		</action>
+		<action name="addHouseInfo" class="action.HouseInfoController" method="addHouseInfo">
+			<param name="savePath">/uploadFiles</param>
+			<result name="new">/manage_newest_project.jsp</result>
+			<result name="hot">/manage_hotest_project.jsp</result>
+		</action>
 	</package>
 	
 	<package name="MessageController" extends="struts-default">
 		<action name="addMessage" class="action.MessageController" method="addMessage">
-			<!-- 1、此处跳转页面只供测试使用 -->
 			<result name="success">/index.html</result>
-		</action>
-		<!-- 查看留言信息 -->
-		<action name="searchMessage" class="action.MessageController" method="searchMessage">
-			<result name="success">/message.html</result>
 		</action>
 	</package>
 	

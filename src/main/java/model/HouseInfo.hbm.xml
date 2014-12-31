@@ -20,12 +20,12 @@
 				<comment>所在地址</comment>
 			</column>
 		</property>
-		<property name="area" type="java.lang.Integer">
+		<property name="area" type="java.lang.String">
 			<column name="area" not-null="true">
 				<comment>面积</comment>
 			</column>
 		</property>
-		<property name="price" type="java.lang.Integer">
+		<property name="price" type="java.lang.String">
 			<column name="price" not-null="true">
 				<comment>价格</comment>
 			</column>
@@ -40,12 +40,12 @@
 				<comment>朝向</comment>
 			</column>
 		</property>
-		<property name="floor" type="java.lang.Integer">
+		<property name="floor" type="java.lang.String">
 			<column name="floor" not-null="true">
 				<comment>楼层</comment>
 			</column>
 		</property>
-		<property name="age" type="java.lang.Integer">
+		<property name="age" type="java.lang.String">
 			<column name="age" not-null="true">
 				<comment>房龄</comment>
 			</column>
@@ -63,6 +63,11 @@
 		<property name="publish_time" type="java.util.Date">
 			<column name="publish_time" not-null="true">
 				<comment>发布时间</comment>
+			</column>
+		</property>
+		<property name="image_url" type="java.lang.String">
+			<column name="image_url" length="250" not-null="true">
+				<comment>图片的url</comment>
 			</column>
 		</property>
 	</class>

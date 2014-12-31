@@ -1,36 +1,113 @@
 package action;
 
-import java.util.*;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Date;
+import java.util.List;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-
+import net.sf.json.JSONArray;
+import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
-
 import model.HouseInfo;
 import service.HouseInfoService;
-
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
 public class HouseInfoController extends ActionSupport {
-	private String direction;// 房屋方位信息
-	private String floor;// 房屋楼层信息
-	private String type;// 房屋类型
+	private String zone;// 所在区域
+	private String address;// 房屋地址
 	private String area;// 房屋面积
 	private String price;// 房屋价格
+	private String type;// 房屋类型
+	private String direction;// 房屋朝向
+	private String floor;// 房屋楼层信息
 	private String age;// 房屋使用年数
 	private String decoration;// 房屋装修情况
-	private List<HouseInfo> houseInfo_list;// 房屋信息集合
-	private HouseInfo houseInfo;//房屋信息Bean
+	private String mark;// 标签
+	private String image_url;// 图片的url
+	private String savePath;// 上传文件的保存路径
+	private String description;// 图片描述
+	private File upload;// 上传文件
+	private String uploadContentType;// 上传文件类型
+	private String uploadFileName;// 上传文件的文件名
 
-	@Override
-	public String execute() throws Exception {
-		// TODO Auto-generated method stub
+	/**
+	 * 添加房屋信息
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String addHouseInfo() throws Exception {
+		HouseInfo houseInfo = new HouseInfo();
+		houseInfo.setZone(zone);
+		houseInfo.setAddress(address);
+		houseInfo.setArea(area);
+		houseInfo.setPrice(price);
+		houseInfo.setType(type);
+		houseInfo.setDirection(direction);
+		houseInfo.setFloor(floor);
+		houseInfo.setAge(age);
+		houseInfo.setDecoration(decoration);
+		houseInfo.setMark(mark);
+		houseInfo.setPublish_time(new Date());
+		houseInfo.setImage_url(savePath + "/" + getUploadFileName());
+		new HouseInfoService().addHouseInfo(houseInfo);
+		addToServletContext(houseInfo);
+		upload();
 
-		return SUCCESS;
+		if(houseInfo.getMark().equals("new")){
+			System.out.println("1");
+			return "new";
+		}else{
+			return "hot";
+		}
 	}
 
-	// 根据条件对房屋信息检索
+	/**
+	 * 更新缓存中的数据
+	 * 
+	 * @param houseInfo
+	 */
+	public void addToServletContext(HouseInfo houseInfo) {
+		ServletContext context = ServletActionContext.getServletContext();
+		String houseInfoListString = (String) context
+				.getAttribute("houseInfoList");
+		JSONArray jsonArray;
+		if (houseInfoListString != null) {
+			jsonArray = (JSONArray) JSONSerializer.toJSON(houseInfoListString);
+		} else {
+			jsonArray = new JSONArray();
+		}
+		jsonArray.add(houseInfo.toJson());
+		context.setAttribute("houseInfoList", jsonArray.toString());
+	}
+
+	/**
+	 * 上传文件
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("resource")
+	public void upload() throws Exception {
+		// TODO Auto-generated method stub
+		FileOutputStream fos = new FileOutputStream(getSavePath() + "\\"
+				+ getUploadFileName());
+		FileInputStream fis = new FileInputStream(getUpload());
+		byte[] buffer = new byte[1024];
+		int len = 0;
+		while ((len = fis.read(buffer)) > 0) {
+			fos.write(buffer, 0, len);
+		}
+	}
+
+	/**
+	 * 根据条件对房屋信息检索
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String search() throws Exception {
 		String hql = "";
 		boolean flag = false;// 用于标记条件语句hql中是否有"where"
@@ -255,6 +332,7 @@ public class HouseInfoController extends ActionSupport {
 		}
 
 		HttpSession session = ServletActionContext.getRequest().getSession();
+		List<HouseInfo> houseInfo_list;
 		if (hql != null && !hql.equals("")) {
 			houseInfo_list = new HouseInfoService().findByCriteria(hql);
 		} else {
@@ -264,32 +342,24 @@ public class HouseInfoController extends ActionSupport {
 		session.setAttribute("houseInfo_list", houseInfo_list);
 		System.out.println("session属性设置成功！");
 		System.out.println(houseInfo_list.size());
+
 		return SUCCESS;
 	}
 
-	/* 相关属性的setXXX()、getXXX()方法 */
-	public String getDirection() {
-		return direction;
+	public String getZone() {
+		return zone;
 	}
 
-	public void setDirection(String direction) {
-		this.direction = direction;
+	public void setZone(String zone) {
+		this.zone = zone;
 	}
 
-	public String getFloor() {
-		return floor;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setFloor(String floor) {
-		this.floor = floor;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getArea() {
@@ -308,6 +378,30 @@ public class HouseInfoController extends ActionSupport {
 		this.price = price;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
+	public String getFloor() {
+		return floor;
+	}
+
+	public void setFloor(String floor) {
+		this.floor = floor;
+	}
+
 	public String getAge() {
 		return age;
 	}
@@ -324,11 +418,59 @@ public class HouseInfoController extends ActionSupport {
 		this.decoration = decoration;
 	}
 
-	public List<HouseInfo> getHouseInfo_list() {
-		return houseInfo_list;
+	public String getMark() {
+		return mark;
 	}
 
-	public void setHouseInfo_list(List<HouseInfo> houseInfo_list) {
-		this.houseInfo_list = houseInfo_list;
+	public void setMark(String mark) {
+		this.mark = mark;
+	}
+
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+
+	public String getSavePath() {
+		return ServletActionContext.getServletContext().getRealPath(savePath);
+	}
+
+	public void setSavePath(String value) {
+		this.savePath = value;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
 	}
 }

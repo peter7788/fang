@@ -14,23 +14,25 @@ public class HouseInfo implements Serializable {
 	// 房屋地址
 	private String address;
 	// 面积
-	private int area;
+	private String area;
 	// 价格
-	private int price;
+	private String price;
 	// 房型
 	private String type;
 	// 朝向
 	private String direction;
 	// 楼层
-	private int floor;
+	private String floor;
 	// 楼龄
-	private int age;
+	private String age;
 	// 装修类型
 	private String decoration;
 	// 标签
 	private String mark;
 	// 发布时间
 	private Date publish_time;
+	// 图片的url
+	private String image_url;
 
 	public int getId() {
 		return id;
@@ -56,19 +58,19 @@ public class HouseInfo implements Serializable {
 		this.address = address;
 	}
 
-	public int getArea() {
+	public String getArea() {
 		return area;
 	}
 
-	public void setArea(int area) {
+	public void setArea(String area) {
 		this.area = area;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -88,19 +90,19 @@ public class HouseInfo implements Serializable {
 		this.direction = direction;
 	}
 
-	public int getFloor() {
+	public String getFloor() {
 		return floor;
 	}
 
-	public void setFloor(int floor) {
+	public void setFloor(String floor) {
 		this.floor = floor;
 	}
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 
@@ -128,6 +130,14 @@ public class HouseInfo implements Serializable {
 		this.publish_time = publish_time;
 	}
 
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+
 	public JSONObject toJson() {
 		JSONObject temp = new JSONObject();
 		temp.put("id", id);
@@ -141,7 +151,8 @@ public class HouseInfo implements Serializable {
 		temp.put("age", age);
 		temp.put("decoration", decoration);
 		temp.put("mark", mark);
-		temp.put("publish_time", publish_time);
+		temp.put("publish_time", publish_time.toString());
+		temp.put("image_url", image_url);
 		return temp;
 	}
 }

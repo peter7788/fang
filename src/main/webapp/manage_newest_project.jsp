@@ -8,7 +8,7 @@
 <html>
 	<head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>管理（热卖楼盘）</title>
+		<title>管理（最新楼盘）</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
 		<link href="css/slider.css" rel="stylesheet" type="text/css"  media="all" />
         <link rel="stylesheet" type="text/css" href="css/lightbox.css" media="screen">
@@ -22,7 +22,7 @@
 				var houseInfoList=eval('('+$('#jsonArray').val()+')');
 				htmlString+="<table id='hotest_project_table'><tr><th>序号</th><th>区域</th><th>面积</th><th>价格</th><th>发布时间</th><th>操作</th></tr>";
 				for(var i=0; i<houseInfoList.length; i++){
-					if(houseInfoList[i].mark=="hot"){
+					if(houseInfoList[i].mark=="new"){
 						var tempHtmlString="<tr><td>"+houseInfoList[i].id+"</td><td>"+houseInfoList[i].zone+"</td><td>"+houseInfoList[i].area+"</td><td>"+houseInfoList[i].price+"</td><td>"+houseInfoList[i].publish_time+"</td><td><a href='"+houseInfoList[i].image_url+"'><input type='button' value='预览图片' /></a><input type='button' value='删除' /></td></tr>";
 						htmlString += tempHtmlString;
 					}
@@ -61,8 +61,8 @@
             	<div class="menu_div">
         			<ul>
 						<li><a href="manage_scroll.html">滚动页面</a></li>
-               	 		<li><a href="manage_newest_project.jsp">最新楼盘</a></li>
-                		<li><a href="manage_hotest_project.jsp" class="active">热门楼盘</a></li>
+               	 		<li><a href="manage_newest_project.jsp" class="active">最新楼盘</a></li>
+                		<li><a href="manage_hotest_project.jsp">热门楼盘</a></li>
 						<li><a href="manage_news.html">最新消息</a></li>
 						<li></li>
                			<li></li>
@@ -104,7 +104,7 @@
                         <tr><td>朝向</td><td><input type="text" name="direction" class="tableCss" value="" /></td></tr>
                         <tr><td>楼层</td><td><input type="text" name="floor" class="tableCss" value="" /></td></tr>
                         <tr><td>楼龄</td><td><input type="text" name="age" class="tableCss" value="" /></td></tr>
-                        <tr><td>装修类型</td><td><input type="text" name="decoration" class="tableCss" value="" /><input type="hidden" name="mark" value="hot" /></td></tr>
+                        <tr><td>装修类型</td><td><input type="text" name="decoration" class="tableCss" value="" /><input type="hidden" name="mark" value="new" /></td></tr>
                     	<tr><td>选择图片</td><td><input type="file" name="upload" class="tableCss" value="" /></td></tr>
                         <tr><td>描述</td><td><input type="text" name="description" class="tableCss" value="" /></td></tr>
                         <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
@@ -122,4 +122,3 @@
 		 <!---End-copy-right---->
 	</body>
 </html>
-

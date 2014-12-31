@@ -3,7 +3,6 @@ package action;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
@@ -19,14 +18,12 @@ public class MessageController extends ActionSupport {
 	private String userMsg;// 留言者留言内容
 	private List<Message> message_list;// 留言信息集合
 
-	@Override
-	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-		return SUCCESS;
-	}
-
-	/* 添加留言信息方法 */
-	public String addMessage() {
+	/**
+	 * 添加留言信息
+	 * 
+	 * @return
+	 */
+	public String addMessage() throws Exception{
 		// System.out.println("进入留言添加页面！");
 		Message message = new Message();
 		message.setUser_name(userName);
@@ -35,7 +32,17 @@ public class MessageController extends ActionSupport {
 		message.setContent(userMsg);
 		message.setMessage_time(new Date());
 		new MessageService().addMessage(message);
+		addToServletContext(message);
 
+		return SUCCESS;
+	}
+
+	/**
+	 * 更新缓存中的数据
+	 * 
+	 * @param message
+	 */
+	public void addToServletContext(Message message) {
 		ServletContext context = ServletActionContext.getServletContext();
 		String messageListString = (String) context.getAttribute("messageList");
 		JSONArray jsonArray;
@@ -46,19 +53,8 @@ public class MessageController extends ActionSupport {
 		}
 		jsonArray.add(message.toJson());
 		context.setAttribute("messageList", jsonArray.toString());
-		return SUCCESS;
 	}
 
-	/* 查看留言信息 */
-	public String searchMessage() {
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		message_list = new MessageService().findAll();
-		session.setAttribute("message_list", message_list);
-		System.out.println("测试留言条数：" + message_list.size());
-		return SUCCESS;
-	}
-
-	/* 留言相关信息的setXXX()、getXXX()方法 */
 	public String getUserName() {
 		return userName;
 	}
