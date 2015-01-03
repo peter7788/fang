@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 import model.Guest;
 import org.hibernate.Session;
+import util.MD5;
 import dao.GuestDao;
 
 public class GuestService extends TotalService {
@@ -17,6 +18,8 @@ public class GuestService extends TotalService {
 				guest.getUser_name());
 		// 判断如果用户不存在则添加，否则什么也不做
 		if (gst == null) {
+			// MD5加密
+			guest.setUser_password(MD5.getMD5Code(guest.getUser_password()));
 			new GuestDao().addGuest(session, guest);
 		}
 		session.close();
@@ -56,7 +59,9 @@ public class GuestService extends TotalService {
 	 */
 	public boolean isExisted(String name, String password) {
 		Guest guest = findByName(name);
-		if (guest != null & guest.getUser_password().equals(password)) {
+		// MD5加密
+		password = MD5.getMD5Code(password);
+		if (guest != null && guest.getUser_password().equals(password)) {
 			return true;
 		} else {
 			return false;

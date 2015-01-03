@@ -5,13 +5,12 @@
 	<constant name="struts.multipart.parser" value="jakarta"/>
 	<constant name="struts.multipart.saveDir" value="D:\\tmp"/>
 
-	<!-- HouseInfoController相关action -->
 	<package name="HouseInfoController" extends="struts-default">
 		<action name="search" class="action.HouseInfoController" method="search">
 			<result name="success">/test.jsp</result>
 		</action>
 		<action name="addHouseInfo" class="action.HouseInfoController" method="addHouseInfo">
-			<param name="savePath">/uploadFiles</param>
+			<param name="savePath">uploadFiles</param>
 			<result name="new">/manage_newest_project.jsp</result>
 			<result name="hot">/manage_hotest_project.jsp</result>
 		</action>
@@ -23,10 +22,17 @@
 		</action>
 	</package>
 	
+	<package name="GuestController" extends="struts-default">
+		<action name="login" class="action.GuestController" method="login">
+			<result name="success">/manage_newest_project.jsp</result>
+			<result name="error">/login.html</result>
+		</action>
+	</package>
+	
 	<package name="UploadController" extends="struts-default">
 		<!-- 上传图片 -->
 		<action name="upload" class="action.UploadController" method="upload">
-			<param name="savePath">/uploadFiles</param>
+			<param name="savePath">uploadFiles</param>
 			<result name="success">/manage_hotest_project.jsp</result>
 		</action>
 	</package>

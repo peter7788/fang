@@ -14,9 +14,10 @@
 		<filter-class>filter.CharacterFilter</filter-class>
 	</filter>
 	
+	<!-- 权限检查的过滤器 -->
 	<filter>
-		<filter-name>TestFilter</filter-name>
-		<filter-class>filter.TestFilter</filter-class>
+		<filter-name>CheckAuthority</filter-name>
+		<filter-class>filter.AuthorityFilter</filter-class>
 	</filter>
 
 	<filter>
@@ -28,12 +29,12 @@
 		<filter-name>SetCharacterEncoding</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+	<!--
 	<filter-mapping>
-		<filter-name>TestFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<filter-name>CheckAuthority</filter-name>
+		<url-pattern>/manage_hotest_project.jsp</url-pattern>
 	</filter-mapping>
-   
+	-->
   	<filter-mapping>
     <filter-name>struts2</filter-name>
     	<url-pattern>*.action</url-pattern>
