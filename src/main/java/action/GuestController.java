@@ -7,7 +7,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
 public class GuestController extends ActionSupport {
-
 	// 用户名称
 	private String user_name;
 	// 用户密码
@@ -25,6 +24,22 @@ public class GuestController extends ActionSupport {
 			HttpSession session = ServletActionContext.getRequest()
 					.getSession();
 			session.setAttribute("user_name", user_name);
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+	}
+
+	/**
+	 * 注销
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String logout() throws Exception {
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		if (session.getAttribute("user_name") != null) {
+			session.removeAttribute("user_name");
 			return SUCCESS;
 		} else {
 			return ERROR;

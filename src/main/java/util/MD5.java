@@ -77,6 +77,6 @@ public class MD5 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(MD5.getMD5Code("000000"));
+		System.out.println(MD5.getMD5Code("helen@helen"));
 	}
 }

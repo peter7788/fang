@@ -59,7 +59,7 @@ public class GuestDao {
 	 * @param session
 	 * @param guest
 	 */
-	public void changGuestInfo(Session session, Guest guest) {
+	public void update(Session session, Guest guest) {
 		Transaction tx = session.beginTransaction();
 		session.update(guest);
 		tx.commit();

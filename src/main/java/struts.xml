@@ -27,6 +27,17 @@
 			<result name="success">/manage_newest_project.jsp</result>
 			<result name="error">/login.html</result>
 		</action>
+		<action name="logout" class="action.GuestController" method="logout">
+			<result name="success">/login.html</result>
+			<result name="error">/login.html</result>
+		</action>
+	</package>
+	
+	<package name="ChangePasswordController" extends="struts-default">
+		<action name="changePassword" class="action.ChangePasswordController" method="changePassword">
+			<result name="success">/manage_newest_project.jsp</result>
+			<result name="error">/manage_hotest_project.jsp</result>
+		</action>
 	</package>
 	
 	<package name="UploadController" extends="struts-default">

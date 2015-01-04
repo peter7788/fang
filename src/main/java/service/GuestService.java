@@ -58,6 +58,7 @@ public class GuestService extends TotalService {
 	 * @return
 	 */
 	public boolean isExisted(String name, String password) {
+
 		Guest guest = findByName(name);
 		// MD5加密
 		password = MD5.getMD5Code(password);
@@ -69,17 +70,28 @@ public class GuestService extends TotalService {
 	}
 
 	/**
-	 * 修改个人信息
+	 * 修改个人密码
 	 * 
-	 * @param guest
+	 * @param name
+	 * @param old_password
+	 * @param new_password
+	 * @return
 	 */
-	public void changeGuestInfo(Guest guest) {
-		Session session = sessionFactory.openSession();
-		// 判断用户修改信息时的用户名，避免与其他用户名冲突
-		if (new GuestDao().findGuestByName(session, guest.getUser_name()) != null) {
-			new GuestDao().changGuestInfo(session, guest);
+	public boolean changePassword(String name, String old_password,
+			String new_password) {
+		if (isExisted(name, old_password)) {
+			Session session = sessionFactory.openSession();
+			Guest guest = findByName(name);
+			if (guest != null) {
+				// MD5加密
+				guest.setUser_password(MD5.getMD5Code(new_password));
+				new GuestDao().update(session, guest);
+			}
+			session.close();
+			return true;
+		} else {
+			return false;
 		}
-		session.close();
 	}
 
 	/**
