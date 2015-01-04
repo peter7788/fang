@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page pageEncoding="utf-8"%>
-<%@taglib prefix="s" uri="/struts-tags"%>
+<%
+	String jsonArray = (String) application.getAttribute("advertisementList");
+%>
+<!--<%@taglib prefix="s" uri="/struts-tags"%>-->
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -13,23 +16,33 @@
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="js/jquery.lightbox.js"></script>
         <script type="text/javascript">
-			$(function() {
+			$(document).ready(function(){
 				$('.light a').lightBox();
+				var htmlString='';
+				var advertisementList=eval('('+$('#jsonArray').val()+')');
+				htmlString+="<table id='hotest_project_table'><tr><th>URL</th><th>图片标题</th><th>操作</th></tr>";
+				for(var i=0; i<advertisementList.length; i++){
+					var tempHtmlString='<tr><td>' + advertisementList[i].img_src + '</td> <td>' + advertisementList[i].title + '</td><td><form method="post" id="deleteForm" action="deleteAdvertisement.action"><span>&nbsp;<a href="'+advertisementList[i].img_src+'"><input type="button" value="预览图片" /></a>&nbsp;</span><span><input type="submit" class="submitClass" value="删除" /></span><input type="hidden" name="id" value="' + advertisementList[i].id + '" /></form></td></tr>';
+					htmlString += tempHtmlString;
+				}
+				htmlString+="</table>";
+				$('.ad_management_properties').html(htmlString);
 			});
 		</script>
 	</head>
 	<body>
+    	<input type="hidden" id="jsonArray" value='<%=jsonArray%>' />
     	<div class="main">
 		<!----start-header---->
 			<div class="header">
 				<div class="wrap">
 				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" title="logo" /></a>
+					<a href="index.jsp"><img src="images/logo.png" title="logo" /></a>
 				</div>
 				<div class="top-nav">
 					<ul>
-						<li><a href="index.html">首页</a></li>
-                        <li><a href="message.html">留言板</a></li>
+						<li><a href="index.jsp">首页</a></li>
+                        <li><a href="message.jsp">留言板</a></li>
                         <li><a href="house.html">房屋信息</a></li>
 						<li><a href="about.html">关于我们</a></li>
 						<li><a href="contact.html">联系我们</a></li>
@@ -47,10 +60,10 @@
        		<div class="wrap">
             	<div class="menu_div">
         			<ul>
-						<li><a href="manage_scroll.html" class="active">滚动页面</a></li>
-               	 		<li><a href="manage_newest_project.html">最新楼盘</a></li>
-                		<li><a href="manage_hotest_project.html">热门楼盘</a></li>
-						<li><a href="manage_news.html">最新消息</a></li>
+						<li><a href="manage_scroll.jsp" class="active">滚动页面</a></li>
+               	 		<li><a href="manage_newest_project.jsp">最新楼盘</a></li>
+                		<li><a href="manage_hotest_project.jsp">热门楼盘</a></li>
+						<li><a href="manage_news.jsp">最新消息</a></li>
 						<li></li>
                			<li></li>
                 		<li></li>
@@ -58,7 +71,7 @@
                 	<div class="clear"> </div>
         		</div>	
                 <div class="ad_management_properties light">
-                <table>
+                <table id='hotest_project_table'>
                 	<tr>
                     	<th>URL</th>
                         <th>图片描述</th>
@@ -75,11 +88,11 @@
                 </table>
                 </div>
                 <div class="add">
-                <form method="post" id="uploadForm" action="upload.action" enctype="multipart/form-data">
+                <form method="post" id="uploadForm" action="addAdvertisement.action" enctype="multipart/form-data">
                		<table>
                     	<tr><td>选择图片</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
-                        <tr><td>描述</td><td><input type="text" id="description" name="description" class="tableCss" value="" /></td></tr>
-                        <tr><td><input type="submit" id="comfirm" value="上传" /></td><td><input type="reset" value="重置" /></td></tr>
+                        <tr><td>标题</td><td><input type="text" id="title" name="title" class="tableCss" value="" /></td></tr>
+                        <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>
                 </form>
                 </div>

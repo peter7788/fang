@@ -20,10 +20,5 @@
 				<comment>广告图片地址</comment>
 			</column>
 		</property>
-		<property name="link" type="java.lang.String">
-			<column name="link" length="50" not-null="true">
-				<comment>广告图片的跳转链接</comment>
-			</column>
-		</property>
 	</class>
 </hibernate-mapping>

@@ -1,3 +1,8 @@
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8"%>
+<%
+	String jsonArray = (String) application.getAttribute("advertisementList");
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -11,7 +16,15 @@
 		  <script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
 		  <script type="text/javascript" src="js/camera.min.js"></script>
 		  <script type="text/javascript">
-			jQuery(function(){
+			$(document).ready(function(){
+				var htmlString='';
+				var advertisementList=eval('('+$('#jsonArray').val()+')');
+				for(var i=0; i<advertisementList.length; i++){
+					var tempHtmlString='<div data-src="' + advertisementList[i].img_src + '"></div>';
+					htmlString += tempHtmlString;
+				}
+				$('.camera_wrap').html(htmlString);
+				//设置滚动页面
 				jQuery('#camera_wrap_1').camera({
 					height: '400px',
 					pagination: false,
@@ -22,22 +35,20 @@
 					time: 1000,
 				});
 			});
-			$(document).ready(function(){
-				
-			});
 		  </script>
 	</head>
 	<body>
+    	<input type="hidden" id="jsonArray" value='<%=jsonArray%>' />
    		<div class="main">
 		<!----start-header---->
 			<div class="header">
 				<div class="wrap">
 				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" title="logo" /></a>
+					<a href="index.jsp"><img src="images/logo.png" title="logo" /></a>
 				</div>
 				<div class="top-nav">
 					<ul>
-						<li class="active"><a href="index.html">首页</a></li>
+						<li class="active"><a href="index.jsp">首页</a></li>
                         <li><a href="message.jsp">留言板</a></li>
                         <li><a href="house.html">房屋信息</a></li>
 						<li><a href="about.html">关于我们</a></li>
@@ -73,8 +84,8 @@
                 </div>
          	</div>
 			<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">									        		<div data-src="images/image1.jpg">  </div> 
-				<div data-src="images/image2.jpg">  </div>
-				<div data-src="images/image3.jpg">  </div>
+				<div data-src="images/image2.jpg"></div>
+				<div data-src="images/image3.jpg"></div>
 			</div>
             <!--End-image-slider---->	
             <div class="clear"> </div>     

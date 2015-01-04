@@ -20,14 +20,14 @@
 				$('.light a').lightBox();
 				var htmlString='';
 				var houseInfoList=eval('('+$('#jsonArray').val()+')');
-				htmlString+="<table id='hotest_project_table'><tr><th>序号</th><th>区域</th><th>面积</th><th>价格</th><th>发布时间</th><th>操作</th></tr>";
+				htmlString+='<table id="hotest_project_table"><tr><th>序号</th><th>区域</th><th>面积</th><th>价格</th><th>发布时间</th><th>操作</th></tr>';
 				for(var i=0; i<houseInfoList.length; i++){
 					if(houseInfoList[i].mark=="new"){
-						var tempHtmlString="<tr><td>"+houseInfoList[i].id+"</td><td>"+houseInfoList[i].zone+"</td><td>"+houseInfoList[i].area+"</td><td>"+houseInfoList[i].price+"</td><td>"+houseInfoList[i].publish_time+"</td><td><form method='post' id='deleteForm' action='deleteHouseInfo.action'><span>&nbsp;<a href='"+houseInfoList[i].image_url+"'><input type='button' value='预览图片' /></a>&nbsp;</span><span><input type='submit' class='submitClass' value='删除' /></span><input type='hidden' name='id' value='" + houseInfoList[i].id + "' /></form></td></tr>";
+						var tempHtmlString='<tr><td>'+houseInfoList[i].id+'</td><td>'+houseInfoList[i].zone+'</td><td>'+houseInfoList[i].area+'</td><td>'+houseInfoList[i].price+'</td><td>'+houseInfoList[i].publish_time+'</td><td><form method="post" id="deleteForm" action="deleteHouseInfo.action"><span>&nbsp;<a href="'+houseInfoList[i].image_url+'"><input type="button" value="预览图片" /></a>&nbsp;</span><span><input type="submit" class="submitClass" value="删除" /></span><input type="hidden" name="id" value="' + houseInfoList[i].id + '" /></form></td></tr>';
 						htmlString += tempHtmlString;
 					}
 				}
-				htmlString+="</table>";
+				htmlString+='</table>';
 				$('.ad_management_properties').html(htmlString);
 			});
 		 </script>
@@ -39,12 +39,12 @@
 			<div class="header">
 				<div class="wrap">
 				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" title="logo" /></a>
+					<a href="index.jsp"><img src="images/logo.png" title="logo" /></a>
 				</div>
 				<div class="top-nav">
 					<ul>
-						<li><a href="index.html">首页</a></li>
-                        <li><a href="message.html">留言板</a></li>
+						<li><a href="index.jsp">首页</a></li>
+                        <li><a href="message.jsp">留言板</a></li>
                         <li><a href="house.html">房屋信息</a></li>
 						<li><a href="about.html">关于我们</a></li>
 						<li><a href="contact.html">联系我们</a></li>
@@ -63,10 +63,10 @@
        		<div class="wrap">
             	<div class="menu_div">
         			<ul>
-						<li><a href="manage_scroll.html">滚动页面</a></li>
+						<li><a href="manage_scroll.jsp">滚动页面</a></li>
                	 		<li><a href="manage_newest_project.jsp" class="active">最新楼盘</a></li>
                 		<li><a href="manage_hotest_project.jsp">热门楼盘</a></li>
-						<li><a href="manage_news.html">最新消息</a></li>
+						<li><a href="manage_news.jsp">最新消息</a></li>
 						<li></li>
                			<li></li>
                 		<li></li>

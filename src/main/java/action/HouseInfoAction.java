@@ -16,7 +16,8 @@ import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
 public class HouseInfoAction extends ActionSupport {
-	
+
+	private int id;// 主键id
 	private String zone;// 所在区域
 	private String address;// 房屋地址
 	private String area;// 房屋面积
@@ -67,6 +68,21 @@ public class HouseInfoAction extends ActionSupport {
 	}
 
 	/**
+	 * 删除房屋信息
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String deleteHouseInfo() throws Exception {
+		HouseInfo houseInfo = new HouseInfoService().findById(id);
+		if (houseInfo != null) {
+			new HouseInfoService().deleteHouseInfo(houseInfo);
+		}
+		deleteFromServletContext(houseInfo);
+		return SUCCESS;
+	}
+
+	/**
 	 * 更新缓存中的数据
 	 * 
 	 * @param houseInfo
@@ -82,6 +98,21 @@ public class HouseInfoAction extends ActionSupport {
 			jsonArray = new JSONArray();
 		}
 		jsonArray.add(houseInfo.toJson());
+		context.setAttribute("houseInfoList", jsonArray.toString());
+	}
+
+	/**
+	 * 删除缓存中的数据
+	 * 
+	 * @param houseInfo
+	 */
+	public void deleteFromServletContext(HouseInfo houseInfo) {
+		ServletContext context = ServletActionContext.getServletContext();
+		String houseInfoListString = (String) context
+				.getAttribute("houseInfoList");
+		JSONArray jsonArray = (JSONArray) JSONSerializer
+				.toJSON(houseInfoListString);
+		jsonArray.remove(houseInfo.toJson());
 		context.setAttribute("houseInfoList", jsonArray.toString());
 	}
 
@@ -345,6 +376,14 @@ public class HouseInfoAction extends ActionSupport {
 		System.out.println(houseInfo_list.size());
 
 		return SUCCESS;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getZone() {

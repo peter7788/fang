@@ -12,8 +12,6 @@ public class Advertisement implements Serializable {
 	private String title;
 	// 广告图片地址
 	private String img_src;
-	// 广告图片的跳转链接
-	private String link;
 
 	public int getId() {
 		return id;
@@ -39,20 +37,11 @@ public class Advertisement implements Serializable {
 		this.img_src = img_src;
 	}
 
-	public String getLink() {
-		return link;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
-	}
-
 	public JSONObject toJson() {
 		JSONObject temp = new JSONObject();
 		temp.put("id", id);
 		temp.put("title", title);
 		temp.put("img_src", img_src);
-		temp.put("link", link);
 		return temp;
 	}
 }

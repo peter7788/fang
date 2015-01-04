@@ -14,10 +14,7 @@
 			<result name="new">/manage_newest_project.jsp</result>
 			<result name="hot">/manage_hotest_project.jsp</result>
 		</action>
-	</package>
-	
-	<package name="DeleteHouseInfoAction" extends="struts-default">
-		<action name="deleteHouseInfo" class="action.DeleteHouseInfoAction" method="deleteHouseInfo">
+		<action name="deleteHouseInfo" class="action.HouseInfoAction" method="deleteHouseInfo">
 			<result name="success">/manage_hotest_project.jsp</result>
 		</action>
 	</package>
@@ -46,6 +43,16 @@
 		<action name="logout" class="action.LogoutAction" method="logout">
 			<result name="success">/login.html</result>
 			<result name="error">/login.html</result>
+		</action>
+	</package>
+	
+	<package name="AdvertisementAction" extends="struts-default">
+		<action name="addAdvertisement" class="action.AdvertisementAction" method="addAdvertisement">
+			<param name="savePath">uploadFiles</param>
+			<result name="success">/manage_scroll.jsp</result>
+		</action>
+		<action name="deleteAdvertisement" class="action.AdvertisementAction" method="deleteAdvertisement">
+			<result name="success">/manage_scroll.jsp</result>
 		</action>
 	</package>
 	

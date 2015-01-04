@@ -24,12 +24,12 @@
 			<div class="header">
 				<div class="wrap">
 				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" title="logo" /></a>
+					<a href="index.jsp"><img src="images/logo.png" title="logo" /></a>
 				</div>
 				<div class="top-nav">
 					<ul>
-						<li><a href="index.html">首页</a></li>
-                        <li><a href="message.html">留言板</a></li>
+						<li><a href="index.jsp">首页</a></li>
+                        <li><a href="message.jsp">留言板</a></li>
                         <li><a href="house.html">房屋信息</a></li>
 						<li><a href="about.html">关于我们</a></li>
 						<li><a href="contact.html">联系我们</a></li>
@@ -47,10 +47,10 @@
        		<div class="wrap">
             	<div class="menu_div">
         			<ul>
-						<li><a href="manage_scroll.html">滚动页面</a></li>
-               	 		<li><a href="manage_newest_project.html">最新楼盘</a></li>
-                		<li><a href="manage_hotest_project.html">热门楼盘</a></li>
-						<li><a href="manage_news.html" class="active">最新消息</a></li>
+						<li><a href="manage_scroll.jsp">滚动页面</a></li>
+               	 		<li><a href="manage_newest_project.jsp">最新楼盘</a></li>
+                		<li><a href="manage_hotest_project.jsp">热门楼盘</a></li>
+						<li><a href="manage_news.jsp" class="active">最新消息</a></li>
 						<li></li>
                			<li></li>
                 		<li></li>

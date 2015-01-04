@@ -6,13 +6,14 @@ import org.hibernate.Transaction;
 import model.Advertisement;
 
 public class AdvertisementDao {
+
 	/**
 	 * 添加广告
 	 * 
 	 * @param session
 	 * @param ad
 	 */
-	public void addAd(Session session, Advertisement ad) {
+	public void addAdvertisement(Session session, Advertisement ad) {
 		Transaction tx = session.beginTransaction();
 		session.save(ad);
 		tx.commit();
@@ -33,18 +34,22 @@ public class AdvertisementDao {
 	}
 
 	/**
-	 * 根据id查询广告
+	 * 查看某个广告信息
 	 * 
 	 * @param session
 	 * @param id
 	 * @return
 	 */
-	public List<Advertisement> findById(Session session, int id) {
+	public Advertisement findById(Session session, int id) {
 		Transaction tx = session.beginTransaction();
-		List<Advertisement> list = (List<Advertisement>) session.createQuery(
-				"from Advertisement where id=" + id + "").list();
+		List<Advertisement> advertisementList = (List<Advertisement>) session
+				.createQuery("from Advertisement where id=" + id).list();
 		tx.commit();
-		return list;
+		if (advertisementList != null) {
+			return advertisementList.get(0);
+		} else {
+			return null;
+		}
 	}
 
 	/**

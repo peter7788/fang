@@ -11,9 +11,9 @@ public class AdvertisementService extends TotalService {
 	 * 
 	 * @param ad
 	 */
-	public void addAd(Advertisement ad) {
+	public void addAdvertisement(Advertisement ad) {
 		Session session = sessionFactory.openSession();
-		new AdvertisementDao().addAd(session, ad);
+		new AdvertisementDao().addAdvertisement(session, ad);
 		session.close();
 	}
 
@@ -30,16 +30,29 @@ public class AdvertisementService extends TotalService {
 	}
 
 	/**
+	 * 根据id查找广告信息
+	 * 
+	 * @return
+	 */
+	public Advertisement findById(int id) {
+		Session session = sessionFactory.openSession();
+		Advertisement advertisement = new AdvertisementDao().findById(session,
+				id);
+		session.close();
+		return advertisement;
+	}
+
+	/**
 	 * 更新广告
 	 * 
 	 * @param ad
 	 */
 	public void updateAdvertisement(Advertisement ad) {
 		Session session = sessionFactory.openSession();
-		List<Advertisement> list = new AdvertisementDao().findById(session,
+		Advertisement advertisement = new AdvertisementDao().findById(session,
 				ad.getId());
 		// 判断，如果更新后的广告原先不存在，则更新
-		if (list != null && list.size() > 0) {
+		if (advertisement != null) {
 			new AdvertisementDao().updateAdvertisement(session, ad);
 		}
 		session.close();
