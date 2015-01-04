@@ -7,7 +7,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public class UploadController extends ActionSupport {
+public class UploadAction extends ActionSupport {
 
 	private String savePath;// 上传文件的保存路径
 	private String description;// 图片描述

@@ -6,7 +6,7 @@ import service.GuestService;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public class ChangePasswordController extends ActionSupport {
+public class ChangePasswordAction extends ActionSupport {
 	// 旧密码
 	private String old_password;
 	// 新密码

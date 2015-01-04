@@ -11,7 +11,7 @@ import service.MessageService;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public class MessageController extends ActionSupport {
+public class MessageAction extends ActionSupport {
 	private String userName;// 留言者姓名
 	private String userEmail;// 留言者邮箱
 	private String userPhone;// 留言者移动电话

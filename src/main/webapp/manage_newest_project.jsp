@@ -23,7 +23,7 @@
 				htmlString+="<table id='hotest_project_table'><tr><th>序号</th><th>区域</th><th>面积</th><th>价格</th><th>发布时间</th><th>操作</th></tr>";
 				for(var i=0; i<houseInfoList.length; i++){
 					if(houseInfoList[i].mark=="new"){
-						var tempHtmlString="<tr><td>"+houseInfoList[i].id+"</td><td>"+houseInfoList[i].zone+"</td><td>"+houseInfoList[i].area+"</td><td>"+houseInfoList[i].price+"</td><td>"+houseInfoList[i].publish_time+"</td><td><a href='"+houseInfoList[i].image_url+"'><input type='button' value='预览图片' /></a><input type='button' value='删除' /></td></tr>";
+						var tempHtmlString="<tr><td>"+houseInfoList[i].id+"</td><td>"+houseInfoList[i].zone+"</td><td>"+houseInfoList[i].area+"</td><td>"+houseInfoList[i].price+"</td><td>"+houseInfoList[i].publish_time+"</td><td><form method='post' id='deleteForm' action='deleteHouseInfo.action'><span>&nbsp;<a href='"+houseInfoList[i].image_url+"'><input type='button' value='预览图片' /></a>&nbsp;</span><span><input type='submit' class='submitClass' value='删除' /></span><input type='hidden' name='id' value='" + houseInfoList[i].id + "' /></form></td></tr>";
 						htmlString += tempHtmlString;
 					}
 				}
@@ -55,7 +55,8 @@
 			</div>
 		</div>
         <!---End-header---->
-        <div class="language"><span>&nbsp;<a href="changePassword.html">修改密码</a>&nbsp;</span><span>&nbsp;<a href="logout.action">退出</a>&nbsp;</span></div>
+        <div class="language">
+        <form method="post" id="logoutForm" action="logout.action"><span>&nbsp;<a href="changePassword.html">修改密码</a>&nbsp;</span><span><input type="submit" class="submitClass" value="退出" /></span></form></div>
         <div class="clear"> </div>
 		<!--start-second-block---->
         <div class="second_block">

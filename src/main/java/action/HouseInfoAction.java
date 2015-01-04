@@ -15,7 +15,8 @@ import service.HouseInfoService;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public class HouseInfoController extends ActionSupport {
+public class HouseInfoAction extends ActionSupport {
+	
 	private String zone;// 所在区域
 	private String address;// 房屋地址
 	private String area;// 房屋面积
@@ -57,10 +58,10 @@ public class HouseInfoController extends ActionSupport {
 		addToServletContext(houseInfo);
 		upload();
 
-		if(houseInfo.getMark().equals("new")){
+		if (houseInfo.getMark().equals("new")) {
 			System.out.println("1");
 			return "new";
-		}else{
+		} else {
 			return "hot";
 		}
 	}

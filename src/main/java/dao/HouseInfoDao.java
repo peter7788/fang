@@ -38,14 +38,19 @@ public class HouseInfoDao {
 	 * 查看某个房产信息
 	 * 
 	 * @param session
+	 * @param id
 	 * @return
 	 */
-	public List<HouseInfo> findById(Session session, int id) {
+	public HouseInfo findById(Session session, int id) {
 		Transaction tx = session.beginTransaction();
-		List<HouseInfo> list = (List<HouseInfo>) session.createQuery(
+		List<HouseInfo> houseInfoList = (List<HouseInfo>) session.createQuery(
 				"from HouseInfo where id=" + id).list();
 		tx.commit();
-		return list;
+		if (houseInfoList != null) {
+			return houseInfoList.get(0);
+		} else {
+			return null;
+		}
 	}
 
 	/**

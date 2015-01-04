@@ -31,6 +31,18 @@ public class HouseInfoService extends TotalService {
 	}
 
 	/**
+	 * 根据id查找房产信息
+	 * 
+	 * @return
+	 */
+	public HouseInfo findById(int id) {
+		Session session = sessionFactory.openSession();
+		HouseInfo houseInfo = new HouseInfoDao().findById(session, id);
+		session.close();
+		return houseInfo;
+	}
+
+	/**
 	 * 根据条件查询房产信息
 	 * 
 	 * @param str
@@ -52,7 +64,7 @@ public class HouseInfoService extends TotalService {
 	public void updateHouseInfo(HouseInfo houseInfo) {
 		Session session = sessionFactory.openSession();
 		// 原则上使用条件查找更优，有待改进
-		if (new HouseInfoDao().findById(session, houseInfo.getId()) != null) {
+		if (findById(houseInfo.getId()) != null) {
 			new HouseInfoDao().updateHouseInfo(session, houseInfo);
 		}
 		session.close();

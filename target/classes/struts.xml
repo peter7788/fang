@@ -5,44 +5,53 @@
 	<constant name="struts.multipart.parser" value="jakarta"/>
 	<constant name="struts.multipart.saveDir" value="D:\\tmp"/>
 
-	<package name="HouseInfoController" extends="struts-default">
-		<action name="search" class="action.HouseInfoController" method="search">
+	<package name="HouseInfoAction" extends="struts-default">
+		<action name="search" class="action.HouseInfoAction" method="search">
 			<result name="success">/test.jsp</result>
 		</action>
-		<action name="addHouseInfo" class="action.HouseInfoController" method="addHouseInfo">
+		<action name="addHouseInfo" class="action.HouseInfoAction" method="addHouseInfo">
 			<param name="savePath">uploadFiles</param>
 			<result name="new">/manage_newest_project.jsp</result>
 			<result name="hot">/manage_hotest_project.jsp</result>
 		</action>
 	</package>
 	
-	<package name="MessageController" extends="struts-default">
-		<action name="addMessage" class="action.MessageController" method="addMessage">
+	<package name="DeleteHouseInfoAction" extends="struts-default">
+		<action name="deleteHouseInfo" class="action.DeleteHouseInfoAction" method="deleteHouseInfo">
+			<result name="success">/manage_hotest_project.jsp</result>
+		</action>
+	</package>
+	
+	<package name="MessageAction" extends="struts-default">
+		<action name="addMessage" class="action.MessageAction" method="addMessage">
 			<result name="success">/index.html</result>
 		</action>
 	</package>
 	
-	<package name="GuestController" extends="struts-default">
-		<action name="login" class="action.GuestController" method="login">
+	<package name="GuestAction" extends="struts-default">
+		<action name="login" class="action.GuestAction" method="login">
 			<result name="success">/manage_newest_project.jsp</result>
-			<result name="error">/login.html</result>
-		</action>
-		<action name="logout" class="action.GuestController" method="logout">
-			<result name="success">/login.html</result>
 			<result name="error">/login.html</result>
 		</action>
 	</package>
 	
-	<package name="ChangePasswordController" extends="struts-default">
-		<action name="changePassword" class="action.ChangePasswordController" method="changePassword">
+	<package name="ChangePasswordAction" extends="struts-default">
+		<action name="changePassword" class="action.ChangePasswordAction" method="changePassword">
 			<result name="success">/manage_newest_project.jsp</result>
 			<result name="error">/manage_hotest_project.jsp</result>
 		</action>
 	</package>
 	
-	<package name="UploadController" extends="struts-default">
+	<package name="LogoutAction" extends="struts-default">
+		<action name="logout" class="action.LogoutAction" method="logout">
+			<result name="success">/login.html</result>
+			<result name="error">/login.html</result>
+		</action>
+	</package>
+	
+	<package name="UploadAction" extends="struts-default">
 		<!-- 上传图片 -->
-		<action name="upload" class="action.UploadController" method="upload">
+		<action name="upload" class="action.UploadAction" method="upload">
 			<param name="savePath">uploadFiles</param>
 			<result name="success">/manage_hotest_project.jsp</result>
 		</action>
