@@ -1,7 +1,11 @@
 package service;
 
 import java.util.List;
+import javax.servlet.ServletContext;
 import model.Message;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONSerializer;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import dao.MessageDao;
 
@@ -16,6 +20,7 @@ public class MessageService extends TotalService {
 		Session session = sessionFactory.openSession();
 		new MessageDao().addMessage(session, message);
 		session.close();
+		addToServletContext(message);
 	}
 
 	/**
@@ -39,5 +44,23 @@ public class MessageService extends TotalService {
 		Session session = sessionFactory.openSession();
 		new MessageDao().deleteMessage(session, message);
 		session.close();
+	}
+
+	/**
+	 * 更新缓存中的数据
+	 * 
+	 * @param message
+	 */
+	public void addToServletContext(Message message) {
+		ServletContext context = ServletActionContext.getServletContext();
+		String messageListString = (String) context.getAttribute("messageList");
+		JSONArray jsonArray;
+		if (messageListString != null) {
+			jsonArray = (JSONArray) JSONSerializer.toJSON(messageListString);
+		} else {
+			jsonArray = new JSONArray();
+		}
+		jsonArray.add(message.toJson());
+		context.setAttribute("messageList", jsonArray.toString());
 	}
 }

@@ -1,6 +1,10 @@
 package service;
 
 import java.util.List;
+import javax.servlet.ServletContext;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONSerializer;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import dao.HouseInfoDao;
 import model.HouseInfo;
@@ -16,6 +20,7 @@ public class HouseInfoService extends TotalService {
 		new HouseInfoDao().addHouseInfo(session, houseInfo);
 		System.out.println("sevice中插入房屋信息测试！");
 		session.close();
+		addToServletContext(houseInfo);
 	}
 
 	/**
@@ -79,5 +84,40 @@ public class HouseInfoService extends TotalService {
 		Session session = sessionFactory.openSession();
 		new HouseInfoDao().deleteHouseInfo(session, houseInfo);
 		session.close();
+		deleteFromServletContext(houseInfo);
+	}
+
+	/**
+	 * 更新缓存中的数据
+	 * 
+	 * @param houseInfo
+	 */
+	public void addToServletContext(HouseInfo houseInfo) {
+		ServletContext context = ServletActionContext.getServletContext();
+		String houseInfoListString = (String) context
+				.getAttribute("houseInfoList");
+		JSONArray jsonArray;
+		if (houseInfoListString != null) {
+			jsonArray = (JSONArray) JSONSerializer.toJSON(houseInfoListString);
+		} else {
+			jsonArray = new JSONArray();
+		}
+		jsonArray.add(houseInfo.toJson());
+		context.setAttribute("houseInfoList", jsonArray.toString());
+	}
+
+	/**
+	 * 删除缓存中的数据
+	 * 
+	 * @param houseInfo
+	 */
+	public void deleteFromServletContext(HouseInfo houseInfo) {
+		ServletContext context = ServletActionContext.getServletContext();
+		String houseInfoListString = (String) context
+				.getAttribute("houseInfoList");
+		JSONArray jsonArray = (JSONArray) JSONSerializer
+				.toJSON(houseInfoListString);
+		jsonArray.remove(houseInfo.toJson());
+		context.setAttribute("houseInfoList", jsonArray.toString());
 	}
 }

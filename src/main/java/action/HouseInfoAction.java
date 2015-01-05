@@ -5,10 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.List;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
 import model.HouseInfo;
 import service.HouseInfoService;
@@ -56,11 +53,9 @@ public class HouseInfoAction extends ActionSupport {
 		houseInfo.setPublish_time(new Date());
 		houseInfo.setImage_url(savePath + "/" + getUploadFileName());
 		new HouseInfoService().addHouseInfo(houseInfo);
-		addToServletContext(houseInfo);
 		upload();
 
 		if (houseInfo.getMark().equals("new")) {
-			System.out.println("1");
 			return "new";
 		} else {
 			return "hot";
@@ -78,42 +73,8 @@ public class HouseInfoAction extends ActionSupport {
 		if (houseInfo != null) {
 			new HouseInfoService().deleteHouseInfo(houseInfo);
 		}
-		deleteFromServletContext(houseInfo);
+
 		return SUCCESS;
-	}
-
-	/**
-	 * 更新缓存中的数据
-	 * 
-	 * @param houseInfo
-	 */
-	public void addToServletContext(HouseInfo houseInfo) {
-		ServletContext context = ServletActionContext.getServletContext();
-		String houseInfoListString = (String) context
-				.getAttribute("houseInfoList");
-		JSONArray jsonArray;
-		if (houseInfoListString != null) {
-			jsonArray = (JSONArray) JSONSerializer.toJSON(houseInfoListString);
-		} else {
-			jsonArray = new JSONArray();
-		}
-		jsonArray.add(houseInfo.toJson());
-		context.setAttribute("houseInfoList", jsonArray.toString());
-	}
-
-	/**
-	 * 删除缓存中的数据
-	 * 
-	 * @param houseInfo
-	 */
-	public void deleteFromServletContext(HouseInfo houseInfo) {
-		ServletContext context = ServletActionContext.getServletContext();
-		String houseInfoListString = (String) context
-				.getAttribute("houseInfoList");
-		JSONArray jsonArray = (JSONArray) JSONSerializer
-				.toJSON(houseInfoListString);
-		jsonArray.remove(houseInfo.toJson());
-		context.setAttribute("houseInfoList", jsonArray.toString());
 	}
 
 	/**

@@ -2,10 +2,6 @@ package action;
 
 import java.util.Date;
 import java.util.List;
-import javax.servlet.ServletContext;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONSerializer;
-import org.apache.struts2.ServletActionContext;
 import model.Message;
 import service.MessageService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -23,7 +19,7 @@ public class MessageAction extends ActionSupport {
 	 * 
 	 * @return
 	 */
-	public String addMessage() throws Exception{
+	public String addMessage() throws Exception {
 		// System.out.println("进入留言添加页面！");
 		Message message = new Message();
 		message.setUser_name(userName);
@@ -32,27 +28,8 @@ public class MessageAction extends ActionSupport {
 		message.setContent(userMsg);
 		message.setMessage_time(new Date());
 		new MessageService().addMessage(message);
-		addToServletContext(message);
 
 		return SUCCESS;
-	}
-
-	/**
-	 * 更新缓存中的数据
-	 * 
-	 * @param message
-	 */
-	public void addToServletContext(Message message) {
-		ServletContext context = ServletActionContext.getServletContext();
-		String messageListString = (String) context.getAttribute("messageList");
-		JSONArray jsonArray;
-		if (messageListString != null) {
-			jsonArray = (JSONArray) JSONSerializer.toJSON(messageListString);
-		} else {
-			jsonArray = new JSONArray();
-		}
-		jsonArray.add(message.toJson());
-		context.setAttribute("messageList", jsonArray.toString());
 	}
 
 	public String getUserName() {

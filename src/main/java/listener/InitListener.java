@@ -6,9 +6,11 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import net.sf.json.JSONArray;
 import model.Advertisement;
+import model.Guest;
 import model.HouseInfo;
 import model.Message;
 import service.AdvertisementService;
+import service.GuestService;
 import service.HouseInfoService;
 import service.MessageService;
 
@@ -20,6 +22,7 @@ public class InitListener implements ServletContextListener {
 	 */
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
+		initData();// initData()一定要放在initAdvertisement(sce)前面
 		initMessage(sce);
 		initHouseInfo(sce);
 		initAdvertisement(sce);
@@ -29,6 +32,35 @@ public class InitListener implements ServletContextListener {
 	public void contextDestroyed(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
 
+	}
+
+	/**
+	 * 初始化部分数据库信息
+	 */
+	public void initData() {
+		// 增加默认的管理员账户
+		Guest guest = new Guest();
+		guest.setUser_email("helen_xu_sg@163.com");
+		guest.setUser_name("Helen_Xu");
+		guest.setUser_password("helen@helen");
+		guest.setUser_level(0);
+		new GuestService().addGuest(guest);
+		// 增加默认广告
+		List<Advertisement> adList = new AdvertisementService().findAll();
+		if (adList == null || adList.size() == 0) {
+			Advertisement ad1 = new Advertisement();
+			ad1.setTitle("图一");
+			ad1.setImg_src("images/image1.jpg");
+			Advertisement ad2 = new Advertisement();
+			ad2.setTitle("图二");
+			ad2.setImg_src("images/image2.jpg");
+			Advertisement ad3 = new Advertisement();
+			ad3.setTitle("图三");
+			ad3.setImg_src("images/image3.jpg");
+			new AdvertisementService().addAdvertisement(ad1);
+			new AdvertisementService().addAdvertisement(ad2);
+			new AdvertisementService().addAdvertisement(ad3);
+		}
 	}
 
 	/**

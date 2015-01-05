@@ -3,9 +3,6 @@ package action;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import javax.servlet.ServletContext;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
 import model.Advertisement;
 import service.AdvertisementService;
@@ -32,7 +29,7 @@ public class AdvertisementAction extends ActionSupport {
 		advertisement.setTitle(title);
 		advertisement.setImg_src(savePath + "/" + getUploadFileName());
 		new AdvertisementService().addAdvertisement(advertisement);
-		addToServletContext(advertisement);
+		new AdvertisementService().addToServletContext(advertisement);
 		upload();
 
 		return SUCCESS;
@@ -49,43 +46,8 @@ public class AdvertisementAction extends ActionSupport {
 		if (advertisement != null) {
 			new AdvertisementService().deleteAdvertisement(advertisement);
 		}
-		deleteFromServletContext(advertisement);
+
 		return SUCCESS;
-	}
-
-	/**
-	 * 更新缓存中的数据
-	 * 
-	 * @param advertisement
-	 */
-	public void addToServletContext(Advertisement advertisement) {
-		ServletContext context = ServletActionContext.getServletContext();
-		String advertisementListString = (String) context
-				.getAttribute("advertisementList");
-		JSONArray jsonArray;
-		if (advertisementListString != null) {
-			jsonArray = (JSONArray) JSONSerializer
-					.toJSON(advertisementListString);
-		} else {
-			jsonArray = new JSONArray();
-		}
-		jsonArray.add(advertisement.toJson());
-		context.setAttribute("advertisementList", jsonArray.toString());
-	}
-
-	/**
-	 * 删除缓存中的数据
-	 * 
-	 * @param advertisement
-	 */
-	public void deleteFromServletContext(Advertisement advertisement) {
-		ServletContext context = ServletActionContext.getServletContext();
-		String advertisementListString = (String) context
-				.getAttribute("advertisementList");
-		JSONArray jsonArray = (JSONArray) JSONSerializer
-				.toJSON(advertisementListString);
-		jsonArray.remove(advertisement.toJson());
-		context.setAttribute("advertisementList", jsonArray.toString());
 	}
 
 	/**

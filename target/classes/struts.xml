@@ -21,7 +21,7 @@
 	
 	<package name="MessageAction" extends="struts-default">
 		<action name="addMessage" class="action.MessageAction" method="addMessage">
-			<result name="success">/index.html</result>
+			<result name="success">/index.jsp</result>
 		</action>
 	</package>
 	

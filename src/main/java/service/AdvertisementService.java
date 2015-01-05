@@ -1,11 +1,16 @@
 package service;
 
 import java.util.List;
+import javax.servlet.ServletContext;
 import model.Advertisement;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONSerializer;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import dao.AdvertisementDao;
 
 public class AdvertisementService extends TotalService {
+	
 	/**
 	 * 添加广告
 	 * 
@@ -15,6 +20,7 @@ public class AdvertisementService extends TotalService {
 		Session session = sessionFactory.openSession();
 		new AdvertisementDao().addAdvertisement(session, ad);
 		session.close();
+		// addToServletContext(ad);
 	}
 
 	/**
@@ -67,5 +73,41 @@ public class AdvertisementService extends TotalService {
 		Session session = sessionFactory.openSession();
 		new AdvertisementDao().deleteAdvertisement(session, ad);
 		session.close();
+		deleteFromServletContext(ad);
+	}
+
+	/**
+	 * 更新缓存中的数据
+	 * 
+	 * @param advertisement
+	 */
+	public void addToServletContext(Advertisement advertisement) {
+		ServletContext context = ServletActionContext.getServletContext();
+		String advertisementListString = (String) context
+				.getAttribute("advertisementList");
+		JSONArray jsonArray;
+		if (advertisementListString != null) {
+			jsonArray = (JSONArray) JSONSerializer
+					.toJSON(advertisementListString);
+		} else {
+			jsonArray = new JSONArray();
+		}
+		jsonArray.add(advertisement.toJson());
+		context.setAttribute("advertisementList", jsonArray.toString());
+	}
+
+	/**
+	 * 删除缓存中的数据
+	 * 
+	 * @param advertisement
+	 */
+	public void deleteFromServletContext(Advertisement advertisement) {
+		ServletContext context = ServletActionContext.getServletContext();
+		String advertisementListString = (String) context
+				.getAttribute("advertisementList");
+		JSONArray jsonArray = (JSONArray) JSONSerializer
+				.toJSON(advertisementListString);
+		jsonArray.remove(advertisement.toJson());
+		context.setAttribute("advertisementList", jsonArray.toString());
 	}
 }
