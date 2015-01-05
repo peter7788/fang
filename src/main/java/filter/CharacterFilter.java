@@ -14,7 +14,7 @@ public class CharacterFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("字符转换过滤");
+		// System.out.println("字符类型转换过滤");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		chain.doFilter(request, response);

@@ -1,11 +1,10 @@
 package action;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import org.apache.struts2.ServletActionContext;
 import model.Advertisement;
 import service.AdvertisementService;
+import util.Upload;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
@@ -30,7 +29,7 @@ public class AdvertisementAction extends ActionSupport {
 		advertisement.setImg_src(savePath + "/" + getUploadFileName());
 		new AdvertisementService().addAdvertisement(advertisement);
 		new AdvertisementService().addToServletContext(advertisement);
-		upload();
+		Upload.upload(getSavePath(), getUploadFileName(), getUpload());
 
 		return SUCCESS;
 	}
@@ -48,24 +47,6 @@ public class AdvertisementAction extends ActionSupport {
 		}
 
 		return SUCCESS;
-	}
-
-	/**
-	 * 上传文件
-	 * 
-	 * @throws Exception
-	 */
-	@SuppressWarnings("resource")
-	public void upload() throws Exception {
-		// TODO Auto-generated method stub
-		FileOutputStream fos = new FileOutputStream(getSavePath() + "\\"
-				+ getUploadFileName());
-		FileInputStream fis = new FileInputStream(getUpload());
-		byte[] buffer = new byte[1024];
-		int len = 0;
-		while ((len = fis.read(buffer)) > 0) {
-			fos.write(buffer, 0, len);
-		}
 	}
 
 	public int getId() {

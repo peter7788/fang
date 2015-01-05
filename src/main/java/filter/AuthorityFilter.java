@@ -17,13 +17,13 @@ public class AuthorityFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("权限过滤");
+		// System.out.println("权限过滤");
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		if (session.getAttribute("user_name") != null) {
-			System.out.println("权限通过");
+			// System.out.println("权限通过");
 			chain.doFilter(request, response);
 		} else {
-			System.out.println("权限不通过");
+			// System.out.println("权限不通过");
 			((HttpServletResponse) response)
 					.sendRedirect(((HttpServletRequest) request)
 							.getContextPath() + "/login.html");

@@ -1,14 +1,13 @@
 package action;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import model.HouseInfo;
 import service.HouseInfoService;
+import util.Upload;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
@@ -53,7 +52,7 @@ public class HouseInfoAction extends ActionSupport {
 		houseInfo.setPublish_time(new Date());
 		houseInfo.setImage_url(savePath + "/" + getUploadFileName());
 		new HouseInfoService().addHouseInfo(houseInfo);
-		upload();
+		Upload.upload(getSavePath(), getUploadFileName(), getUpload());
 
 		if (houseInfo.getMark().equals("new")) {
 			return "new";
@@ -75,24 +74,6 @@ public class HouseInfoAction extends ActionSupport {
 		}
 
 		return SUCCESS;
-	}
-
-	/**
-	 * 上传文件
-	 * 
-	 * @throws Exception
-	 */
-	@SuppressWarnings("resource")
-	public void upload() throws Exception {
-		// TODO Auto-generated method stub
-		FileOutputStream fos = new FileOutputStream(getSavePath() + "\\"
-				+ getUploadFileName());
-		FileInputStream fis = new FileInputStream(getUpload());
-		byte[] buffer = new byte[1024];
-		int len = 0;
-		while ((len = fis.read(buffer)) > 0) {
-			fos.write(buffer, 0, len);
-		}
 	}
 
 	/**
