@@ -11,48 +11,48 @@
 		</action>
 		<action name="addHouseInfo" class="action.HouseInfoAction" method="addHouseInfo">
 			<param name="savePath">uploadFiles</param>
-			<result name="new">/manage_newest_project.jsp</result>
-			<result name="hot">/manage_hotest_project.jsp</result>
+			<result name="new" type="redirect">/manage_newest_project.jsp</result>
+			<result name="hot" type="redirect">/manage_hotest_project.jsp</result>
 		</action>
 		<action name="deleteHouseInfo" class="action.HouseInfoAction" method="deleteHouseInfo">
-			<result name="success">/manage_hotest_project.jsp</result>
+			<result name="success" type="redirect">/manage_hotest_project.jsp</result>
 		</action>
 	</package>
 	
 	<package name="MessageAction" extends="struts-default">
 		<action name="addMessage" class="action.MessageAction" method="addMessage">
-			<result name="success">/index.jsp</result>
+			<result name="success" type="redirect">/index.jsp</result>
 		</action>
 	</package>
 	
 	<package name="GuestAction" extends="struts-default">
 		<action name="login" class="action.GuestAction" method="login">
-			<result name="success">/manage_newest_project.jsp</result>
-			<result name="error">/login.html</result>
+			<result name="success" type="redirect">/manage_newest_project.jsp</result>
+			<result name="error" type="redirect">/login.html</result>
 		</action>
 	</package>
 	
 	<package name="ChangePasswordAction" extends="struts-default">
 		<action name="changePassword" class="action.ChangePasswordAction" method="changePassword">
-			<result name="success">/manage_newest_project.jsp</result>
-			<result name="error">/manage_hotest_project.jsp</result>
+			<result name="success" type="redirect">/manage_newest_project.jsp</result>
+			<result name="error" type="redirect">/manage_hotest_project.jsp</result>
 		</action>
 	</package>
 	
 	<package name="LogoutAction" extends="struts-default">
 		<action name="logout" class="action.LogoutAction" method="logout">
-			<result name="success">/login.html</result>
-			<result name="error">/login.html</result>
+			<result name="success" type="redirect">/login.html</result>
+			<result name="error" type="redirect">/login.html</result>
 		</action>
 	</package>
 	
 	<package name="AdvertisementAction" extends="struts-default">
 		<action name="addAdvertisement" class="action.AdvertisementAction" method="addAdvertisement">
 			<param name="savePath">uploadFiles</param>
-			<result name="success">/manage_scroll.jsp</result>
+			<result name="success" type="redirect">/manage_scroll.jsp</result>
 		</action>
 		<action name="deleteAdvertisement" class="action.AdvertisementAction" method="deleteAdvertisement">
-			<result name="success">/manage_scroll.jsp</result>
+			<result name="success" type="redirect">/manage_scroll.jsp</result>
 		</action>
 	</package>
 	

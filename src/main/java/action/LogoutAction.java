@@ -14,7 +14,6 @@ public class LogoutAction extends ActionSupport {
 	 */
 	public String logout() throws Exception {
 		HttpSession session = ServletActionContext.getRequest().getSession();
-		System.out.println(session.getAttribute("user_name"));
 		if (session.getAttribute("user_name") != null) {
 			session.setAttribute("user_name", null);
 			return SUCCESS;
