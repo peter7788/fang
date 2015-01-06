@@ -311,9 +311,13 @@ img {
 	background-color: #EEE;
 }
 .manager_introduction {
-	float: left;
-	width: 60%;
 	height: 200px;
+	width: 60%;
+	float: left;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
 	text-align: left;
 }
 .manager_name {
@@ -325,11 +329,12 @@ img {
 .language {
 	float: right;
 }
-.news {
+.message_block {
 	height: 50%;
 	width: 100%;
+	margin-top: 20%;
 }
-.newest {
+.title {
 	font-size: 18px;
 	font-weight: bolder;
 	margin-bottom: 5%;
@@ -377,7 +382,7 @@ img {
 .menu_div ul li {
 	display: inline-block;
 	float: left;
-	width: 14.28%;
+	width: 16.66%;
 	text-align: center;
 	background-color: #666;
 	height: 50px;

@@ -50,7 +50,7 @@
 					<ul>
 						<li class="active"><a href="index.jsp">首页</a></li>
                         <li><a href="message.jsp">留言板</a></li>
-                        <li><a href="house.html">房屋信息</a></li>
+                        <li><a href="join_us.html">加入我们</a></li>
 						<li><a href="about.html">关于我们</a></li>
 						<li><a href="contact.html">联系我们</a></li>
 						<div class="clear"> </div>
@@ -65,6 +65,9 @@
 					<option value ="zh_TW">繁體中文</option>
 					<option value ="en">English</option>
 					</select></div>
+         <div class="language">
+         	<input type="text" name="search_text" value="" /><input type="submit" value="搜索" />
+         </div>
         <div class="clear"> </div>
 		<!--start-second-block---->
         <div class="second_block">
@@ -72,21 +75,23 @@
          	<div class="manager">
             	<div class="manager_introduction_block">
             		<div class="manager_image"><img src="images/xu.jpg" /></div>
-                	<div class="manager_introduction"><br><br>
-                    	<p><span class="manager_name">许卉菁</span>&nbsp;&nbsp;&nbsp;<span>销售总监</span></p><br><br>
+                	<div class="manager_introduction"><br>
+                	  <span class="manager_name">许卉菁</span>&nbsp;&nbsp;&nbsp;<span>销售总监</span><br>
+                      <p><span class="manager_name">Xu Huijing</span>&nbsp;&nbsp;&nbsp;<span>Sale director</span></p><br>
                     	<p></p>
                         <p>手机：+65 8128 9908</p>
 				   		<p>电话：+65 6725 3888</p>
                     	<p>传真：+65 6822 1128</p>
-				 		<p>电子邮箱: huijing99@gmail.com</p>
+				 		<p>电子邮箱: huijing2014@yahoo.com</p>
                     </div>
                     <div class="clear"> </div>
                 </div>
          	</div>
-			<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">									        		<div data-src="images/image1.jpg">  </div> 
+			<a href="join_us.html"><div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
+            	<div data-src="images/image1.jpg"></div> 
 				<div data-src="images/image2.jpg"></div>
 				<div data-src="images/image3.jpg"></div>
-			</div>
+			</div></a>
             <!--End-image-slider---->	
             <div class="clear"> </div>     
 		</div>
@@ -95,13 +100,12 @@
          	<div class="wrap">
             <div class="menu_div">
         		<ul>
-					<li><a href="about.html">我们的服务</a></li>
-               	 	<li><a href="http://www.mfa.gov.sg/content/mfa/overseasmission/beijing/ch/visa_information/bizSocialPRC.html">投资新加坡</a></li>
-                	<li><a href="http://www.mfa.gov.sg/content/mfa/overseasmission/beijing/ch/visa_information/bizSocialPRC.html">移民新加坡</a></li>
-					<li><a href="house_blank.html">房源信息</a></li>
-					<li><a href="contact.html">资源中心</a></li>
-               		<li><a href="">下载中心</a></li>
-                	<li><a href="contact.html">联系我们</a></li>
+					<li><a href="about.html" title="Our service">我们的服务</a></li>
+               	 	<li><a href="http://baike.baidu.com/link?url=rZ3OSfZLrjH1guhgU-NAhFVQT3cUo2vBKu4ZtaCK06Srd22TwoFc-Ceh3Cu7xEfCVd47duHRcCjqAS8HIdojrK" title="Introduction">新加坡简介</a></li>
+                	<li><a href="http://www.mfa.gov.sg/content/mfa/overseasmission/beijing/ch/visa_information/bizSocialPRC.html" title="Policy">购房政策</a></li>
+					<li><a href="house_blank.html" title="Houses Infomation">房源信息</a></li>
+               		<li><a href="" title="Download">下载中心</a></li>
+                	<li><a href="contact.html" title="Contact us">联系我们</a></li>
 				</ul>
                 <div class="clear"> </div>
         	</div>	
@@ -162,12 +166,30 @@
 				</table>
                 </form>
             </div>
-            <div class="news">
-            	<p class="newest">最新消息</h2>
+            <div class="message_block">
+            	<p class="title">最新消息</h2>
                 <ul>
   					<li><a href="">内环内二手豪宅市场成交大爆发</a></li>
   					<li><a href="">央行降息利好，100万房贷30年可节省9.43万</a></li>
   					<li><a href="">单价5万元以上的高端市场或将持续走高</a></li>
+				</ul>
+            </div>
+             <div class="message_block">
+            	<p class="title">邮箱登记</h2>
+                <form method="post" id="registerGuest" action="registerGuest.action">
+                	<table>
+                		<tr><td>用户名称</td><td><input type="text" value="" /></td></tr>
+                		<tr><td>用户邮箱</td><td><input type="text" value="" /></td></tr>
+                		<tr><td><input type="submit" value="登记" /></td><td><input type="reset" value="重置" /></td></tr>
+                	</table>
+               	</form>
+            </div>
+            <div class="message_block">
+            	<p class="title">友情链接</h2>
+                <ul>
+  					<li><a href="">总经理的网站</a></li>
+  					<li><a href="">公司网站</a></li>
+  					<li><a href="">其他网站</a></li>
 				</ul>
             </div>
             </div>

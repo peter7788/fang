@@ -11,12 +11,12 @@
 			<generator class="native"/>
 		</id>
 		<property name="title" type="java.lang.String">
-			<column name="title" length="50" not-null="true">
+			<column name="title" length="255" not-null="true">
 				<comment>广告主题</comment>
 			</column>
 		</property>
 		<property name="img_src" type="java.lang.String">
-			<column name="img_src" length="50" not-null="true">
+			<column name="img_src" length="255" not-null="true">
 				<comment>广告图片地址</comment>
 			</column>
 		</property>

@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page pageEncoding="utf-8"%>
-<%@taglib prefix="s" uri="/struts-tags"%>
+<%
+	String jsonArray = (String) application.getAttribute("newsList");
+%>
+<!--<%@taglib prefix="s" uri="/struts-tags"%>-->
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -8,17 +11,43 @@
 		<title>管理（最新消息）</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
 		<link href="css/slider.css" rel="stylesheet" type="text/css"  media="all" />
-        <link rel="stylesheet" type="text/css" href="css/lightbox.css" media="screen">
-        <script src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-        <script type="text/javascript" src="js/jquery.lightbox.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
         <script type="text/javascript">
-			$(function() {
-				$('.light a').lightBox();
+			$(document).ready(function(){
+				var htmlString='';
+				var newsList=eval('('+$('#jsonArray').val()+')');
+				htmlString+="<table id='hotest_project_table'><tr><th>新闻标题</th><th>新闻链接</th><th>操作</th></tr>";
+				for(var i=0; i<newsList.length; i++){
+					var tempHtmlString='<tr><td>' + newsList[i].title + '</td> <td>' + newsList[i].link + '</td><td><form method="post" id="deleteForm" action="deleteNews.action"><span><input type="submit" class="submitClass" value="删除" /></span><input type="hidden" name="id" value="' + newsList[i].id + '" /></form></td></tr>';
+					htmlString += tempHtmlString;
+				}
+				htmlString+="</table>";
+				$('.ad_management_properties').html(htmlString);
+				//验证表单
+				$('#addNewsForm').validate({
+					rules:{
+						title:{
+							required:true
+						},
+						link:{
+							required:true
+						}
+					},
+					messages:{
+						title:{
+							required:"请输入新闻标题"
+						},
+						link:{
+							required:"请输入新闻链接"
+						}
+					}
+				});
 			});
 		</script>
 	</head>
 	<body>
+    	<input type="hidden" id="jsonArray" value='<%=jsonArray%>' />
     	<div class="main">
 		<!----start-header---->
 			<div class="header">
@@ -30,13 +59,13 @@
 					<ul>
 						<li><a href="index.jsp">首页</a></li>
                         <li><a href="message.jsp">留言板</a></li>
-                        <li><a href="house.html">房屋信息</a></li>
+                        <li><a href="join_us.html">加入我们</a></li>
 						<li><a href="about.html">关于我们</a></li>
 						<li><a href="contact.html">联系我们</a></li>
-						<div class="clear"> </div>
+						<div class="clear"></div>
 					</ul>
 				</div>
-				<div class="clear"> </div>
+				<div class="clear"></div>
 			</div>
 		</div>
         <!---End-header---->
@@ -53,33 +82,31 @@
 						<li><a href="manage_news.jsp" class="active">最新消息</a></li>
 						<li></li>
                			<li></li>
-                		<li></li>
 					</ul>
                 	<div class="clear"> </div>
         		</div>	
-                <div class="ad_management_properties light">
+                <div class="ad_management_properties">
                 <table>
                 	<tr>
-                    	<th>URL</th>
-                        <th>图片描述</th>
+                    	<th>新闻标题</th>
+                        <th>新闻链接</th>
                         <th>操作</th>
                     </tr>
                     <tr>
-                    	<td>例子一属性一</td>
-                        <td>例子一属性二</td>
+                    	<td>标题一</td>
+                        <td>链接一</td>
                         <td>
-                        	<a href="images/example1.jpg"><input type="button" value="预览图片" /></a>
                         	<input type="button" value="删除" />
                         </td>
                     </tr>
                 </table>
                 </div>
                 <div class="add">
-                <form method="post" id="uploadForm" action="upload.action" enctype="multipart/form-data">
+                <form method="post" id="addNewsForm" action="addNews.action" enctype="multipart/form-data">
                		<table>
-                    	<tr><td>选择图片</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
-                        <tr><td>描述</td><td><input type="text" id="description" name="description" class="tableCss" value="" /></td></tr>
-                        <tr><td><input type="submit" id="comfirm" value="上传" /></td><td><input type="reset" value="重置" /></td></tr>
+                    	<tr><td>新闻标题</td><td><input type="text" id="title" name="title" class="tableCss" value="" /></td></tr>
+                        <tr><td>新闻链接</td><td><input type="text" id="link" name="link" class="tableCss" value="" /></td></tr>
+                        <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>
                 </form>
                 </div>

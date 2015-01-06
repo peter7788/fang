@@ -7,17 +7,17 @@
 		<comment>客户账户</comment>
 		<!-- id必须放在第一位 -->
 		<id name="user_name" type="java.lang.String">
-			<column name="user_name" length="50">
+			<column name="user_name" length="255">
 				<comment>用户名称</comment>
 			</column>
 		</id>
 		<property name="user_email" type="java.lang.String">
-			<column name="user_email" length="50" not-null="true">
+			<column name="user_email" length="255" not-null="true">
 				<comment>电子邮箱</comment>
 			</column>
 		</property>
 		<property name="user_password" type="java.lang.String">
-			<column name="user_password" length="50" not-null="true">
+			<column name="user_password" length="255" not-null="true">
 				<comment>用户密码</comment>
 			</column>
 		</property>

@@ -12,7 +12,8 @@
 		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
 		<link href="css/slider.css" rel="stylesheet" type="text/css"  media="all" />
         <link rel="stylesheet" type="text/css" href="css/lightbox.css" media="screen">
-        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="js/jquery.lightbox.js"></script>
         <script type="text/javascript">
@@ -29,6 +30,79 @@
 				}
 				htmlString+='</table>';
 				$('.ad_management_properties').html(htmlString);
+				//验证表单
+				$('#uploadForm').validate({
+					rules:{
+						zone:{
+							required:true
+						},
+						address:{
+							required:true
+						},
+						area:{
+							required:true
+						},
+						price:{
+							required:true
+						},
+						type:{
+							required:true
+						},
+						direction:{
+							required:true
+						},
+						floor:{
+							required:true
+						},
+						age:{
+							required:true
+						},
+						decoration:{
+							required:true
+						},
+						upload:{
+							required:true
+						},
+						description:{
+							required:true
+						}
+					},
+					messages:{
+						zone:{
+							required:"请输入区域"
+						},
+						address:{
+							required:"请输入地址"
+						},
+						area:{
+							required:"请输入面积"
+						},
+						price:{
+							required:"请输入价格"
+						},
+						type:{
+							required:"请输入房屋类型"
+						},
+						direction:{
+							required:"请输入房屋朝向"
+						},
+						floor:{
+							required:"请输入楼层"
+						},
+						age:{
+							required:"请输入楼龄"
+						},
+						decoration:{
+							required:"请输入装修类型"
+						},
+						upload:{
+							required:"请选择一幅图片"
+						},
+						description:{
+							required:"请输入房屋描述"
+						}
+					}
+				});
 			});
 		 </script>
 	</head>
@@ -45,7 +119,7 @@
 					<ul>
 						<li><a href="index.jsp">首页</a></li>
                         <li><a href="message.jsp">留言板</a></li>
-                        <li><a href="house.html">房屋信息</a></li>
+                        <li><a href="join_us.html">加入我们</a></li>
 						<li><a href="about.html">关于我们</a></li>
 						<li><a href="contact.html">联系我们</a></li>
 						<div class="clear"> </div>
@@ -57,7 +131,6 @@
         <!---End-header---->
         <div class="language">
         <form method="post" id="logoutForm" action="logout.action"><span>&nbsp;<a href="changePassword.html">修改密码</a>&nbsp;</span><span><input type="submit" class="submitClass" value="退出" /></span></form></div>
-        <div class="clear"> </div>
 		<!--start-second-block---->
         <div class="second_block">
        		<div class="wrap">
@@ -69,7 +142,6 @@
 						<li><a href="manage_news.jsp">最新消息</a></li>
 						<li></li>
                			<li></li>
-                		<li></li>
 					</ul>
                 	<div class="clear"> </div>
         		</div>	
@@ -99,17 +171,17 @@
                 <div class="add">
                 <form method="post" id="uploadForm" action="addHouseInfo.action" enctype="multipart/form-data">
                		<table>
-                    	<tr><td>区域</td><td><input type="text" name="zone" class="tableCss" value="" /></td></tr>
-                        <tr><td>地址</td><td><input type="text" name="address" class="tableCss" value="" /></td></tr>
-                        <tr><td>面积</td><td><input type="text" name="area" class="tableCss" value="" /></td></tr>
-                        <tr><td>价格</td><td><input type="text" name="price" class="tableCss" value="" /></td></tr>
-                        <tr><td>房型</td><td><input type="text" name="type" class="tableCss" value="" /></td></tr>
-                        <tr><td>朝向</td><td><input type="text" name="direction" class="tableCss" value="" /></td></tr>
-                        <tr><td>楼层</td><td><input type="text" name="floor" class="tableCss" value="" /></td></tr>
-                        <tr><td>楼龄</td><td><input type="text" name="age" class="tableCss" value="" /></td></tr>
-                        <tr><td>装修类型</td><td><input type="text" name="decoration" class="tableCss" value="" /><input type="hidden" name="mark" value="new" /></td></tr>
-                    	<tr><td>选择图片</td><td><input type="file" name="upload" class="tableCss" value="" /></td></tr>
-                        <tr><td>描述</td><td><input type="text" name="description" class="tableCss" value="" /></td></tr>
+                    	<tr><td>区域</td><td><input type="text" id="zone" name="zone" class="tableCss" value="" /></td></tr>
+                        <tr><td>地址</td><td><input type="text" id="address" name="address" class="tableCss" value="" /></td></tr>
+                        <tr><td>面积</td><td><input type="text" id="area" name="area" class="tableCss" value="" /></td></tr>
+                        <tr><td>价格</td><td><input type="text" id="price" name="price" class="tableCss" value="" /></td></tr>
+                        <tr><td>房型</td><td><input type="text" id="type" name="type" class="tableCss" value="" /></td></tr>
+                        <tr><td>朝向</td><td><input type="text" id="direction" name="direction" class="tableCss" value="" /></td></tr>
+                        <tr><td>楼层</td><td><input type="text" id="floor" name="floor" class="tableCss" value="" /></td></tr>
+                        <tr><td>楼龄</td><td><input type="text" id="age" name="age" class="tableCss" value="" /></td></tr>
+                        <tr><td>装修类型</td><td><input type="text" id="decoration" name="decoration" class="tableCss" value="" /><input type="hidden" name="mark" value="new" /></td></tr>
+                    	<tr><td>选择图片</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
+                        <tr><td>房屋描述</td><td><input type="text" id="description" name="description" class="tableCss" value="" /></td></tr>
                         <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>
                 </form>

@@ -11,52 +11,52 @@
 			<generator class="native"/>
 		</id>
 		<property name="zone" type="java.lang.String">
-			<column name="zone" length="50" not-null="true">
+			<column name="zone" length="255" not-null="true">
 				<comment>所在区域</comment>
 			</column>
 		</property>
 		<property name="address" type="java.lang.String">
-			<column name="address" length="50" not-null="true">
+			<column name="address" length="255" not-null="true">
 				<comment>所在地址</comment>
 			</column>
 		</property>
 		<property name="area" type="java.lang.String">
-			<column name="area" not-null="true">
+			<column name="area" length="255" not-null="true">
 				<comment>面积</comment>
 			</column>
 		</property>
 		<property name="price" type="java.lang.String">
-			<column name="price" not-null="true">
+			<column name="price" length="255" not-null="true">
 				<comment>价格</comment>
 			</column>
 		</property>
 		<property name="type" type="java.lang.String">
-			<column name="type" length="50" not-null="true">
+			<column name="type" length="255" not-null="true">
 				<comment>房型</comment>
 			</column>
 		</property>
 		<property name="direction" type="java.lang.String">
-			<column name="direction" length="50" not-null="true">
+			<column name="direction" length="255" not-null="true">
 				<comment>朝向</comment>
 			</column>
 		</property>
 		<property name="floor" type="java.lang.String">
-			<column name="floor" not-null="true">
+			<column name="floor" length="255" not-null="true">
 				<comment>楼层</comment>
 			</column>
 		</property>
 		<property name="age" type="java.lang.String">
-			<column name="age" not-null="true">
+			<column name="age" length="255" not-null="true">
 				<comment>房龄</comment>
 			</column>
 		</property>
 		<property name="decoration" type="java.lang.String">
-			<column name="decoration" not-null="true">
+			<column name="decoration" length="255" not-null="true">
 				<comment>装修类型</comment>
 			</column>
 		</property>
 		<property name="mark" type="java.lang.String">
-			<column name="mark" length="50" not-null="true">
+			<column name="mark" length="255" not-null="true">
 				<comment>标签</comment>
 			</column>
 		</property>
@@ -66,7 +66,7 @@
 			</column>
 		</property>
 		<property name="image_url" type="java.lang.String">
-			<column name="image_url" length="250" not-null="true">
+			<column name="image_url" length="255" not-null="true">
 				<comment>图片的url</comment>
 			</column>
 		</property>

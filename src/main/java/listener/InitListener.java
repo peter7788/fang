@@ -9,10 +9,12 @@ import model.Advertisement;
 import model.Guest;
 import model.HouseInfo;
 import model.Message;
+import model.News;
 import service.AdvertisementService;
 import service.GuestService;
 import service.HouseInfoService;
 import service.MessageService;
+import service.NewsService;
 
 public class InitListener implements ServletContextListener {
 
@@ -26,6 +28,7 @@ public class InitListener implements ServletContextListener {
 		initMessage(sce);
 		initHouseInfo(sce);
 		initAdvertisement(sce);
+		initNews(sce);
 	}
 
 	@Override
@@ -112,6 +115,23 @@ public class InitListener implements ServletContextListener {
 			}
 			ServletContext context = sce.getServletContext();
 			context.setAttribute("advertisementList", jsonArray.toString());
+		}
+	}
+
+	/**
+	 * 初始化所有的新闻信息
+	 * 
+	 * @param sce
+	 */
+	public void initNews(ServletContextEvent sce) {
+		List<News> newsList = new NewsService().findAll();
+		if (newsList != null) {
+			JSONArray jsonArray = new JSONArray();
+			for (News news : newsList) {
+				jsonArray.add(news.toJson());
+			}
+			ServletContext context = sce.getServletContext();
+			context.setAttribute("newsList", jsonArray.toString());
 		}
 	}
 }

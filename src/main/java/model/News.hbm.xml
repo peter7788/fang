@@ -3,8 +3,8 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="model.Advertisement" table="Advertisement">
-		<comment>广告</comment>
+	<class name="model.News" table="News">
+		<comment>新闻</comment>
 		<!-- id必须放在第一位 -->
 		<id name="id" type="java.lang.Integer">
 			<column name="id"/>
@@ -12,12 +12,12 @@
 		</id>
 		<property name="title" type="java.lang.String">
 			<column name="title" length="255" not-null="true">
-				<comment>广告主题</comment>
+				<comment>新闻标题</comment>
 			</column>
 		</property>
-		<property name="img_src" type="java.lang.String">
-			<column name="img_src" length="255" not-null="true">
-				<comment>广告图片地址</comment>
+		<property name="link" type="java.lang.String">
+			<column name="link" length="255" not-null="true">
+				<comment>新闻链接</comment>
 			</column>
 		</property>
 	</class>

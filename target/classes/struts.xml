@@ -56,6 +56,15 @@
 		</action>
 	</package>
 	
+	<package name="NewsAction" extends="struts-default">
+		<action name="addNews" class="action.NewsAction" method="addNews">
+			<result name="success" type="redirect">/manage_news.jsp</result>
+		</action>
+		<action name="deleteNews" class="action.NewsAction" method="deleteNews">
+			<result name="success" type="redirect">/manage_news.jsp</result>
+		</action>
+	</package>
+	
 	<package name="UploadAction" extends="struts-default">
 		<!-- 上传图片 -->
 		<action name="upload" class="action.UploadAction" method="upload">

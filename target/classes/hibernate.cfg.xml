@@ -49,5 +49,6 @@
 		<mapping resource="model/Message.hbm.xml" />
 		<mapping resource="model/HouseInfo.hbm.xml"/>
 		<mapping resource="model/Advertisement.hbm.xml"/>
+		<mapping resource="model/News.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>
