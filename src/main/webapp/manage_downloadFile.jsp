@@ -29,17 +29,11 @@
 					rules:{
 						upload:{
 							required:true
-						},
-						title:{
-							required:true
 						}
 					},
 					messages:{
 						upload:{
 							required:"请选择一个文件"
-						},
-						title:{
-							required:"请输入文件标题"
 						}
 					}
 				});
@@ -105,7 +99,6 @@
                 <form method="post" id="uploadForm" action="addDownloadFile.action" enctype="multipart/form-data">
                		<table>
                     	<tr><td>选择文件</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
-                        <tr><td>文件名</td><td><input type="text" id="title" name="title" class="tableCss" value="" /></td></tr>
                         <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>
                 </form>

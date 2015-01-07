@@ -73,6 +73,15 @@
 		<action name="deleteDownloadFile" class="action.DownloadFileAction" method="deleteDownloadFile">
 			<result name="success" type="redirect">/manage_downloadFile.jsp</result>
 		</action>
+		<action name="downloadFile" class="action.DownloadFileAction">
+			<param name="savePath">downloadFiles</param>
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">targetFile</param>
+				<param name="contentDisposition">filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="UploadAction" extends="struts-default">

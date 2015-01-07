@@ -409,3 +409,14 @@ img {
 	padding-left: 40%;
 	width: 30%;
 }
+.download_title {
+	font-size: xx-large;
+	margin-bottom: 2%;
+}
+.main .content .downloadFile .wrap div ul {
+	list-style-type: disc;
+	margin-left: 5%;
+}
+.main .content .downloadFile .wrap div ul li {
+	margin-bottom: 20px;
+}

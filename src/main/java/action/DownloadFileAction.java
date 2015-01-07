@@ -1,6 +1,8 @@
 package action;
 
 import java.io.File;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import org.apache.struts2.ServletActionContext;
 import model.DownloadFile;
 import service.DownloadFileService;
@@ -17,6 +19,7 @@ public class DownloadFileAction extends ActionSupport {
 	private File upload;// 上传文件
 	private String uploadContentType;// 上传文件类型
 	private String uploadFileName;// 上传文件的文件名
+	private String downloadFileName;// 下载文件的文件名
 
 	/**
 	 * 添加下载文件
@@ -26,7 +29,7 @@ public class DownloadFileAction extends ActionSupport {
 	 */
 	public String addDownloadFile() throws Exception {
 		DownloadFile downloadFile = new DownloadFile();
-		downloadFile.setTitle(title);
+		downloadFile.setTitle(getUploadFileName());
 		downloadFile.setFile_url(savePath + "/" + getUploadFileName());
 		new DownloadFileService().addDownloadFile(downloadFile);
 		Upload.upload(getSavePath(), getUploadFileName(), getUpload());
@@ -47,6 +50,41 @@ public class DownloadFileAction extends ActionSupport {
 		}
 
 		return SUCCESS;
+	}
+
+	/**
+	 * 下载文件
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public InputStream getTargetFile() throws Exception {
+		DownloadFile downloadFile = new DownloadFileService().findById(id);
+		if (downloadFile != null) {
+			downloadFileName = downloadFile.getTitle();
+			return ServletActionContext.getServletContext()
+					.getResourceAsStream(
+							"/" + savePath + "/" + downloadFileName);
+		} else {
+			downloadFileName = "";
+			return ServletActionContext.getServletContext()
+					.getResourceAsStream("");
+		}
+	}
+
+	/**
+	 * 获取下载文件的名称
+	 * 
+	 * @return
+	 */
+	public String getDownloadFileName() {
+		String downFileName = downloadFileName;
+		try {
+			downFileName = new String(downFileName.getBytes(), "ISO8859-1");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return downFileName;
 	}
 
 	public int getId() {
