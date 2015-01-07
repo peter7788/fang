@@ -98,7 +98,7 @@
                 <div class="add">
                 <form method="post" id="uploadForm" action="addDownloadFile.action" enctype="multipart/form-data">
                		<table>
-                    	<tr><td>选择文件</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
+                    	<tr><td>选择文件（50M内）</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
                         <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>
                 </form>

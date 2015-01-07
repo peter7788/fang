@@ -4,6 +4,8 @@
 
 	<constant name="struts.multipart.parser" value="jakarta"/>
 	<constant name="struts.multipart.saveDir" value="D:\\tmp"/>
+	<!-- 上传文件的大小不超过50M -->
+	<constant name="struts.multipart.maxSize" value="52428800"/>
 
 	<package name="HouseInfoAction" extends="struts-default">
 		<action name="search" class="action.HouseInfoAction" method="search">
@@ -11,8 +13,10 @@
 		</action>
 		<action name="addHouseInfo" class="action.HouseInfoAction" method="addHouseInfo">
 			<param name="savePath">uploadFiles</param>
+			<param name="sizeLimit">10485760</param><!-- 限制上传文件的大小为10M -->
 			<result name="new" type="redirect">/manage_newest_project.jsp</result>
 			<result name="hot" type="redirect">/manage_hotest_project.jsp</result>
+			<result name="error" type="redirect">/manage_newest_project.jsp</result>
 		</action>
 		<action name="deleteHouseInfo" class="action.HouseInfoAction" method="deleteHouseInfo">
 			<result name="success" type="redirect">/manage_hotest_project.jsp</result>
@@ -27,7 +31,7 @@
 	
 	<package name="GuestAction" extends="struts-default">
 		<action name="login" class="action.GuestAction" method="login">
-			<result name="success" type="redirect">/manage_newest_project.jsp</result>
+			<result name="success" type="redirect">/manage_scroll.jsp</result>
 			<result name="error" type="redirect">/login.html</result>
 		</action>
 	</package>
@@ -49,7 +53,9 @@
 	<package name="AdvertisementAction" extends="struts-default">
 		<action name="addAdvertisement" class="action.AdvertisementAction" method="addAdvertisement">
 			<param name="savePath">uploadFiles</param>
+			<param name="sizeLimit">10485760</param><!-- 限制上传文件的大小为10M -->
 			<result name="success" type="redirect">/manage_scroll.jsp</result>
+			<result name="error" type="redirect">/manage_scroll.jsp</result>
 		</action>
 		<action name="deleteAdvertisement" class="action.AdvertisementAction" method="deleteAdvertisement">
 			<result name="success" type="redirect">/manage_scroll.jsp</result>
@@ -68,7 +74,9 @@
 	<package name="DownloadFileAction" extends="struts-default">
 		<action name="addDownloadFile" class="action.DownloadFileAction" method="addDownloadFile">
 			<param name="savePath">downloadFiles</param>
+			<param name="sizeLimit">52428800</param><!-- 限制上传文件的大小为50M -->
 			<result name="success" type="redirect">/manage_downloadFile.jsp</result>
+			<result name="error" type="redirect">/manage_downloadFile.jsp</result>
 		</action>
 		<action name="deleteDownloadFile" class="action.DownloadFileAction" method="deleteDownloadFile">
 			<result name="success" type="redirect">/manage_downloadFile.jsp</result>
@@ -88,6 +96,7 @@
 		<!-- 上传图片 -->
 		<action name="upload" class="action.UploadAction" method="upload">
 			<param name="savePath">uploadFiles</param>
+			<param name="sizeLimit">52428800</param><!-- 限制上传文件的大小为50M -->
 			<result name="success">/manage_hotest_project.jsp</result>
 		</action>
 	</package>

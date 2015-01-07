@@ -109,7 +109,7 @@
                 <div class="add">
                 <form method="post" id="uploadForm" action="addAdvertisement.action" enctype="multipart/form-data">
                		<table>
-                    	<tr><td>选择图片</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
+                    	<tr><td>选择图片（10M内）</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
                         <tr><td>广告标题</td><td><input type="text" id="title" name="title" class="tableCss" value="" /></td></tr>
                         <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>

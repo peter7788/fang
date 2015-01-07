@@ -16,6 +16,7 @@ public class DownloadFileAction extends ActionSupport {
 	private String title;// 文件名
 	private String file_url;// 文件url
 	private String savePath;// 上传文件的保存路径
+	private String sizeLimit;// 上传文件的大小限制
 	private File upload;// 上传文件
 	private String uploadContentType;// 上传文件类型
 	private String uploadFileName;// 上传文件的文件名
@@ -28,13 +29,17 @@ public class DownloadFileAction extends ActionSupport {
 	 * @throws Exception
 	 */
 	public String addDownloadFile() throws Exception {
-		DownloadFile downloadFile = new DownloadFile();
-		downloadFile.setTitle(getUploadFileName());
-		downloadFile.setFile_url(savePath + "/" + getUploadFileName());
-		new DownloadFileService().addDownloadFile(downloadFile);
-		Upload.upload(getSavePath(), getUploadFileName(), getUpload());
+		if (getUpload().length() > Long.parseLong(sizeLimit)) {
+			return ERROR;
+		} else {
+			DownloadFile downloadFile = new DownloadFile();
+			downloadFile.setTitle(getUploadFileName());
+			downloadFile.setFile_url(savePath + "/" + getUploadFileName());
+			new DownloadFileService().addDownloadFile(downloadFile);
+			Upload.upload(getSavePath(), getUploadFileName(), getUpload());
 
-		return SUCCESS;
+			return SUCCESS;
+		}
 	}
 
 	/**
@@ -117,6 +122,14 @@ public class DownloadFileAction extends ActionSupport {
 
 	public void setSavePath(String value) {
 		this.savePath = value;
+	}
+
+	public String getSizeLimit() {
+		return sizeLimit;
+	}
+
+	public void setSizeLimit(String value) {
+		this.sizeLimit = value;
 	}
 
 	public File getUpload() {

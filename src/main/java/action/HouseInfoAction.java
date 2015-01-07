@@ -27,6 +27,7 @@ public class HouseInfoAction extends ActionSupport {
 	private String image_url;// 图片的url
 	private String description;// 图片描述
 	private String savePath;// 上传文件的保存路径
+	private String sizeLimit;// 上传文件的大小限制
 	private File upload;// 上传文件
 	private String uploadContentType;// 上传文件类型
 	private String uploadFileName;// 上传文件的文件名
@@ -38,26 +39,30 @@ public class HouseInfoAction extends ActionSupport {
 	 * @throws Exception
 	 */
 	public String addHouseInfo() throws Exception {
-		HouseInfo houseInfo = new HouseInfo();
-		houseInfo.setZone(zone);
-		houseInfo.setAddress(address);
-		houseInfo.setArea(area);
-		houseInfo.setPrice(price);
-		houseInfo.setType(type);
-		houseInfo.setDirection(direction);
-		houseInfo.setFloor(floor);
-		houseInfo.setAge(age);
-		houseInfo.setDecoration(decoration);
-		houseInfo.setMark(mark);
-		houseInfo.setPublish_time(new Date());
-		houseInfo.setImage_url(savePath + "/" + getUploadFileName());
-		new HouseInfoService().addHouseInfo(houseInfo);
-		Upload.upload(getSavePath(), getUploadFileName(), getUpload());
-
-		if (houseInfo.getMark().equals("new")) {
-			return "new";
+		if (getUpload().length() > Long.parseLong(sizeLimit)) {
+			return ERROR;
 		} else {
-			return "hot";
+			HouseInfo houseInfo = new HouseInfo();
+			houseInfo.setZone(zone);
+			houseInfo.setAddress(address);
+			houseInfo.setArea(area);
+			houseInfo.setPrice(price);
+			houseInfo.setType(type);
+			houseInfo.setDirection(direction);
+			houseInfo.setFloor(floor);
+			houseInfo.setAge(age);
+			houseInfo.setDecoration(decoration);
+			houseInfo.setMark(mark);
+			houseInfo.setPublish_time(new Date());
+			houseInfo.setImage_url(savePath + "/" + getUploadFileName());
+			new HouseInfoService().addHouseInfo(houseInfo);
+			Upload.upload(getSavePath(), getUploadFileName(), getUpload());
+
+			if (houseInfo.getMark().equals("new")) {
+				return "new";
+			} else {
+				return "hot";
+			}
 		}
 	}
 
@@ -430,6 +435,14 @@ public class HouseInfoAction extends ActionSupport {
 
 	public void setSavePath(String value) {
 		this.savePath = value;
+	}
+
+	public String getSizeLimit() {
+		return sizeLimit;
+	}
+
+	public void setSizeLimit(String value) {
+		this.sizeLimit = value;
 	}
 
 	public File getUpload() {

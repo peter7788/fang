@@ -180,7 +180,7 @@
                         <tr><td>楼层</td><td><input type="text" id="floor" name="floor" class="tableCss" value="" /></td></tr>
                         <tr><td>楼龄</td><td><input type="text" id="age" name="age" class="tableCss" value="" /></td></tr>
                         <tr><td>装修类型</td><td><input type="text" id="decoration" name="decoration" class="tableCss" value="" /><input type="hidden" name="mark" value="new" /></td></tr>
-                    	<tr><td>选择图片</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
+                    	<tr><td>选择图片（10M内）</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
                         <tr><td>房屋描述</td><td><input type="text" id="description" name="description" class="tableCss" value="" /></td></tr>
                         <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>

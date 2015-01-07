@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class UploadAction extends ActionSupport {
 
 	private String savePath;// 上传文件的保存路径
+	private String sizeLimit;// 上传文件的大小限制
 	private String description;// 图片描述
 	private File upload;// 上传文件
 	private String uploadContentType;// 上传文件类型
@@ -17,16 +18,19 @@ public class UploadAction extends ActionSupport {
 
 	@SuppressWarnings("resource")
 	public String upload() throws Exception {
-		// TODO Auto-generated method stub
-		FileOutputStream fos = new FileOutputStream(getSavePath() + "\\"
-				+ getUploadFileName());
-		FileInputStream fis = new FileInputStream(getUpload());
-		byte[] buffer = new byte[1024];
-		int len = 0;
-		while ((len = fis.read(buffer)) > 0) {
-			fos.write(buffer, 0, len);
+		if (getUpload().length() > Long.parseLong(sizeLimit)) {
+			return ERROR;
+		} else {
+			FileOutputStream fos = new FileOutputStream(getSavePath() + "\\"
+					+ getUploadFileName());
+			FileInputStream fis = new FileInputStream(getUpload());
+			byte[] buffer = new byte[1024];
+			int len = 0;
+			while ((len = fis.read(buffer)) > 0) {
+				fos.write(buffer, 0, len);
+			}
+			return SUCCESS;
 		}
-		return SUCCESS;
 	}
 
 	public String getSavePath() {
@@ -35,6 +39,14 @@ public class UploadAction extends ActionSupport {
 
 	public void setSavePath(String value) {
 		this.savePath = value;
+	}
+
+	public String getSizeLimit() {
+		return sizeLimit;
+	}
+
+	public void setSizeLimit(String value) {
+		this.sizeLimit = value;
 	}
 
 	public String getDescription() {

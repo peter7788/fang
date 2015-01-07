@@ -13,6 +13,7 @@ public class AdvertisementAction extends ActionSupport {
 	private int id;// 主键id
 	private String title;// 广告标题
 	private String savePath;// 上传文件的保存路径
+	private String sizeLimit;// 上传文件的大小限制
 	private File upload;// 上传文件
 	private String uploadContentType;// 上传文件类型
 	private String uploadFileName;// 上传文件的文件名
@@ -24,14 +25,18 @@ public class AdvertisementAction extends ActionSupport {
 	 * @throws Exception
 	 */
 	public String addAdvertisement() throws Exception {
-		Advertisement advertisement = new Advertisement();
-		advertisement.setTitle(title);
-		advertisement.setImg_src(savePath + "/" + getUploadFileName());
-		new AdvertisementService().addAdvertisement(advertisement);
-		new AdvertisementService().addToServletContext(advertisement);
-		Upload.upload(getSavePath(), getUploadFileName(), getUpload());
+		if (getUpload().length() > Long.parseLong(sizeLimit)) {
+			return ERROR;
+		} else {
+			Advertisement advertisement = new Advertisement();
+			advertisement.setTitle(title);
+			advertisement.setImg_src(savePath + "/" + getUploadFileName());
+			new AdvertisementService().addAdvertisement(advertisement);
+			new AdvertisementService().addToServletContext(advertisement);
+			Upload.upload(getSavePath(), getUploadFileName(), getUpload());
 
-		return SUCCESS;
+			return SUCCESS;
+		}
 	}
 
 	/**
@@ -71,6 +76,14 @@ public class AdvertisementAction extends ActionSupport {
 
 	public void setSavePath(String value) {
 		this.savePath = value;
+	}
+
+	public String getSizeLimit() {
+		return sizeLimit;
+	}
+
+	public void setSizeLimit(String value) {
+		this.sizeLimit = value;
 	}
 
 	public File getUpload() {
