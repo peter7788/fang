@@ -24,8 +24,6 @@ public class NewsAction extends ActionSupport {
 		News news = new News();
 		news.setTitle(title);
 		news.setLink(link);
-		System.out.println(title);
-		System.out.println(link);
 		new NewsService().addNews(news);
 
 		return SUCCESS;

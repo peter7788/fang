@@ -103,8 +103,8 @@
 					<li><a href="about.html" title="Our service">我们的服务</a></li>
                	 	<li><a href="http://baike.baidu.com/link?url=rZ3OSfZLrjH1guhgU-NAhFVQT3cUo2vBKu4ZtaCK06Srd22TwoFc-Ceh3Cu7xEfCVd47duHRcCjqAS8HIdojrK" title="Introduction">新加坡简介</a></li>
                 	<li><a href="http://www.mfa.gov.sg/content/mfa/overseasmission/beijing/ch/visa_information/bizSocialPRC.html" title="Policy">购房政策</a></li>
-					<li><a href="house_blank.html" title="Houses Infomation">房源信息</a></li>
-               		<li><a href="" title="Download">下载中心</a></li>
+					<li><a href="house_blank.jsp" title="Houses Infomation">房源信息</a></li>
+               		<li><a href="downloadFile.html" title="Download">下载中心</a></li>
                 	<li><a href="contact.html" title="Contact us">联系我们</a></li>
 				</ul>
                 <div class="clear"> </div>

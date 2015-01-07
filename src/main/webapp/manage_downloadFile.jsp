@@ -1,29 +1,25 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page pageEncoding="utf-8"%>
 <%
-	String jsonArray = (String) application.getAttribute("advertisementList");
+	String jsonArray = (String) application.getAttribute("downloadFileList");
 %>
 <!--<%@taglib prefix="s" uri="/struts-tags"%>-->
 <!DOCTYPE HTML>
 <html>
 	<head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>管理（滚动页面）</title>
+		<title>管理（下载文件）</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
 		<link href="css/slider.css" rel="stylesheet" type="text/css"  media="all" />
-        <link rel="stylesheet" type="text/css" href="css/lightbox.css" media="screen">
         <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-        <script type="text/javascript" src="js/jquery.lightbox.js"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
-				$('.light a').lightBox();
 				var htmlString='';
-				var advertisementList=eval('('+$('#jsonArray').val()+')');
-				htmlString+="<table id='hotest_project_table'><tr><th>URL</th><th>图片标题</th><th>操作</th></tr>";
-				for(var i=0; i<advertisementList.length; i++){
-					var tempHtmlString='<tr><td>' + advertisementList[i].img_src + '</td> <td>' + advertisementList[i].title + '</td><td><form method="post" id="deleteForm" action="deleteAdvertisement.action"><span>&nbsp;<a href="'+advertisementList[i].img_src+'"><input type="button" value="预览图片" /></a>&nbsp;</span><span><input type="submit" class="submitClass" value="删除" /></span><input type="hidden" name="id" value="' + advertisementList[i].id + '" /></form></td></tr>';
+				var downloadFileList=eval('('+$('#jsonArray').val()+')');
+				htmlString+="<table id='hotest_project_table'><tr><th>URL</th><th>文件名</th><th>操作</th></tr>";
+				for(var i=0; i<downloadFileList.length; i++){
+					var tempHtmlString='<tr><td>' + downloadFileList[i].file_url + '</td> <td>' + downloadFileList[i].title + '</td><td><form method="post" id="deleteForm" action="deleteDownloadFile.action"><span><input type="submit" class="submitClass" value="删除" /></span><input type="hidden" name="id" value="' + downloadFileList[i].id + '" /></form></td></tr>';
 					htmlString += tempHtmlString;
 				}
 				htmlString+="</table>";
@@ -40,10 +36,10 @@
 					},
 					messages:{
 						upload:{
-							required:"请选择一张图片"
+							required:"请选择一个文件"
 						},
 						title:{
-							required:"请输入广告标题"
+							required:"请输入文件标题"
 						}
 					}
 				});
@@ -80,11 +76,11 @@
        		<div class="wrap">
             	<div class="menu_div">
         			<ul>
-						<li><a href="manage_scroll.jsp" class="active">滚动页面</a></li>
+						<li><a href="manage_scroll.jsp">滚动页面</a></li>
                	 		<li><a href="manage_newest_project.jsp">最新楼盘</a></li>
                 		<li><a href="manage_hotest_project.jsp">热门楼盘</a></li>
 						<li><a href="manage_news.jsp">最新消息</a></li>
-						<li><a href="manage_downloadFile.jsp">下载文件</a></li>
+						<li><a href="manage_downloadFile.jsp" class="active">下载文件</a></li>
                			<li></li>
 					</ul>
                 	<div class="clear"> </div>
@@ -93,24 +89,23 @@
                 <table id='hotest_project_table'>
                 	<tr>
                     	<th>URL</th>
-                        <th>图片描述</th>
+                        <th>文件名</th>
                         <th>操作</th>
                     </tr>
                     <tr>
                     	<td>例子一属性一</td>
                         <td>例子一属性二</td>
                         <td>
-                        	<a href="images/example1.jpg"><input type="button" value="预览图片" /></a>
                         	<input type="button" value="删除" />
                         </td>
                     </tr>
                 </table>
                 </div>
                 <div class="add">
-                <form method="post" id="uploadForm" action="addAdvertisement.action" enctype="multipart/form-data">
+                <form method="post" id="uploadForm" action="addDownloadFile.action" enctype="multipart/form-data">
                		<table>
-                    	<tr><td>选择图片</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
-                        <tr><td>广告标题</td><td><input type="text" id="title" name="title" class="tableCss" value="" /></td></tr>
+                    	<tr><td>选择文件</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
+                        <tr><td>文件名</td><td><input type="text" id="title" name="title" class="tableCss" value="" /></td></tr>
                         <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>
                 </form>

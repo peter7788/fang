@@ -6,11 +6,13 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import net.sf.json.JSONArray;
 import model.Advertisement;
+import model.DownloadFile;
 import model.Guest;
 import model.HouseInfo;
 import model.Message;
 import model.News;
 import service.AdvertisementService;
+import service.DownloadFileService;
 import service.GuestService;
 import service.HouseInfoService;
 import service.MessageService;
@@ -29,6 +31,7 @@ public class InitListener implements ServletContextListener {
 		initHouseInfo(sce);
 		initAdvertisement(sce);
 		initNews(sce);
+		initDownloadFile(sce);
 	}
 
 	@Override
@@ -132,6 +135,24 @@ public class InitListener implements ServletContextListener {
 			}
 			ServletContext context = sce.getServletContext();
 			context.setAttribute("newsList", jsonArray.toString());
+		}
+	}
+
+	/**
+	 * 初始化所有的下载文件
+	 * 
+	 * @param sce
+	 */
+	public void initDownloadFile(ServletContextEvent sce) {
+		List<DownloadFile> downloadFileList = new DownloadFileService()
+				.findAll();
+		if (downloadFileList != null) {
+			JSONArray jsonArray = new JSONArray();
+			for (DownloadFile downloadFile : downloadFileList) {
+				jsonArray.add(downloadFile.toJson());
+			}
+			ServletContext context = sce.getServletContext();
+			context.setAttribute("downloadFileList", jsonArray.toString());
 		}
 	}
 }

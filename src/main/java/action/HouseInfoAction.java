@@ -25,8 +25,8 @@ public class HouseInfoAction extends ActionSupport {
 	private String decoration;// 房屋装修情况
 	private String mark;// 标签
 	private String image_url;// 图片的url
-	private String savePath;// 上传文件的保存路径
 	private String description;// 图片描述
+	private String savePath;// 上传文件的保存路径
 	private File upload;// 上传文件
 	private String uploadContentType;// 上传文件类型
 	private String uploadFileName;// 上传文件的文件名
@@ -416,20 +416,20 @@ public class HouseInfoAction extends ActionSupport {
 		this.image_url = image_url;
 	}
 
-	public String getSavePath() {
-		return ServletActionContext.getServletContext().getRealPath(savePath);
-	}
-
-	public void setSavePath(String value) {
-		this.savePath = value;
-	}
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getSavePath() {
+		return ServletActionContext.getServletContext().getRealPath(savePath);
+	}
+
+	public void setSavePath(String value) {
+		this.savePath = value;
 	}
 
 	public File getUpload() {

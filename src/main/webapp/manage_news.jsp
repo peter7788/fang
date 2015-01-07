@@ -80,7 +80,7 @@
                	 		<li><a href="manage_newest_project.jsp">最新楼盘</a></li>
                 		<li><a href="manage_hotest_project.jsp">热门楼盘</a></li>
 						<li><a href="manage_news.jsp" class="active">最新消息</a></li>
-						<li></li>
+						<li><a href="manage_downloadFile.jsp">下载文件</a></li>
                			<li></li>
 					</ul>
                 	<div class="clear"> </div>
