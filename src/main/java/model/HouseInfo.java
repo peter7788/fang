@@ -13,6 +13,10 @@ public class HouseInfo implements Serializable {
 	private String zone;
 	// 房屋地址
 	private String address;
+	// 种类
+	private String sort;
+	// 地段
+	private String location;
 	// 面积
 	private String area;
 	// 价格
@@ -56,6 +60,22 @@ public class HouseInfo implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public String getArea() {
@@ -143,6 +163,8 @@ public class HouseInfo implements Serializable {
 		temp.put("id", id);
 		temp.put("zone", zone);
 		temp.put("address", address);
+		temp.put("sort", sort);
+		temp.put("location", location);
 		temp.put("area", area);
 		temp.put("price", price);
 		temp.put("type", type);

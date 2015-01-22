@@ -35,7 +35,7 @@
 				var count=8;
 				var htmlString='';
 				for(var i=(pageNum-1)*8; i<houseInfoList.length; i++){
-						var tempHtmlString="<div class='mid-grid'><a href='house.html'><img src='" + houseInfoList[i].image_url +"' title='" + houseInfoList[i].type + "' /></a><h3>" + houseInfoList[i].zone + " " + houseInfoList[i].type + "</h3><p>" + houseInfoList[i].area + " " + houseInfoList[i].price + "</p><a class='mid-button' href='house.html'>更多</a></div>";
+						var tempHtmlString="<div class='mid-grid'><a href='house.jsp?id=" + houseInfoList[i].id + "'><img src='" + houseInfoList[i].image_url +"' title='" + houseInfoList[i].type + "' /></a><h3>" + houseInfoList[i].zone + " " + houseInfoList[i].type + "</h3><p>" + houseInfoList[i].area + " " + houseInfoList[i].price + "</p><a class='mid-button' href='house.html'>更多</a></div>";
 						htmlString += tempHtmlString;
 						count--;
 						if(count == 0){

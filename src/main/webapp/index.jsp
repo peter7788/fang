@@ -114,20 +114,20 @@
             	<form method="post" id="searchForm" action="search.action">
                 	<table>
                     <tr><td>种类<label></label></td>
-   					<td><select name="Species">
+   					<td><select name="sort">
    					<option value ="">不限</option>
-					<option value ="1">公寓</option>
-					<option value ="2">政府组屋</option>
-					<option value="3">有地住宅</option>
-					<option value="4">商用楼盘</option>
+					<option value ="apartment">公寓</option>
+					<option value ="government_rent">政府组屋</option>
+					<option value="residence_with_land">有地住宅</option>
+					<option value="commercial_property">商用楼盘</option>
 					</select></td></tr>
                     <tr><td>地段<label></label></td>
-   					<td><select name="type">
+   					<td><select name="location">
    					<option value ="">不限</option>
-					<option value ="1">靠近学校</option>
-					<option value ="2">靠近地铁</option>
-					<option value="3">医院附近</option>
-					<option value="4">交通方便</option>
+					<option value ="school">靠近学校</option>
+					<option value ="metro">靠近地铁</option>
+					<option value="hospital">医院附近</option>
+					<option value="convenient">交通方便</option>
 					</select></td></tr>
 					<tr><td>房型<label></label></td>
    					<td><select name="type">
@@ -141,24 +141,24 @@
 					<tr><td>面积<label></label></td>
    					<td><select name="area">
    					<option value ="">不限</option>
-					<option value ="50平米以下">50平米以下</option>
-					<option value ="50-70平米">50-70平米</option>
-					<option value="70-90平米">70-90平米</option>
-					<option value="90-110平米">90-110平米</option>
-					<option value="110-130平米">110-130平米</option>
-					<option value="130-150平米">130-150平米</option>
-					<option value="150-200平米">150-200平米</option>
-					<option value="200-300平米">200-300平米</option>
-					<option value="300-500平米">300-500平米</option>
-					<option value="500平米以上">500平米以上</option>
+					<option value ="lower50">50平米以下</option>
+					<option value ="50to70">50-70平米</option>
+					<option value="70to90">70-90平米</option>
+					<option value="90to110">90-110平米</option>
+					<option value="110to130">110-130平米</option>
+					<option value="130to150">130-150平米</option>
+					<option value="150to200">150-200平米</option>
+					<option value="200to300">200-300平米</option>
+					<option value="300to500">300-500平米</option>
+					<option value="over500">500平米以上</option>
 					</select></td></tr>
              		<tr><td>房龄<label></label></td>
    					<td><select name="age">
    					<option value ="">不限</option>
-					<option value ="5年以下">5年以下</option>
-					<option value ="5-10年">5-10年</option>
-					<option value="10-20年">10-20年</option>
-					<option value="20年以上">20年以上</option>
+					<option value ="lower5">5年以下</option>
+					<option value ="5to10">5-10年</option>
+					<option value="10to20">10-20年</option>
+					<option value="over20">20年以上</option>
 					</select></td></tr>
                 <tr><td><input type="submit" id="comfirm" value="检索" /></td>
                 <td><input type="reset" id="reset" value="重置" /></td>
@@ -194,8 +194,8 @@
             </div>
             </div>
             <div class="result">
-            <div class="newest_project">
-            	<div class="picture_specify">最新楼盘</div>
+            <div class="hotest_project">
+            	<div class="picture_specify">热门推荐</div>
             	<div class="mid-grid"><a href="house.html"><img src="images/example1.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
@@ -240,8 +240,8 @@
                 <span><a href="">&nbsp;1&nbsp;</a></span><span><a href="">&nbsp;2&nbsp;</a></span><span><a href="">&nbsp;下一页&nbsp;</a></span>
             </div>
             <br><br>
-            <div class="hotest_project">
-            	<div class="picture_specify">热门推荐</div>
+            <div class="newest_project">
+            	<div class="picture_specify">最新楼盘</div>
             	<div class="mid-grid"><a href="house.html"><img src="images/example1.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>

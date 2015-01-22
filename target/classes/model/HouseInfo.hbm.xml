@@ -20,6 +20,16 @@
 				<comment>所在地址</comment>
 			</column>
 		</property>
+		<property name="sort" type="java.lang.String">
+			<column name="sort" length="255" not-null="true">
+				<comment>种类</comment>
+			</column>
+		</property>
+		<property name="location" type="java.lang.String">
+			<column name="location" length="255" not-null="true">
+				<comment>地段</comment>
+			</column>
+		</property>
 		<property name="area" type="java.lang.String">
 			<column name="area" length="255" not-null="true">
 				<comment>面积</comment>

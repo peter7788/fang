@@ -1,3 +1,15 @@
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8"%>
+<%
+	String jsonArray = (String) application.getAttribute("houseInfoList");
+	String id;
+	if(request.getParameter("id") != null){
+		id = (String) request.getParameter("id");
+	}else{
+		id = "1";
+	}
+%>
+<!--<%@taglib prefix="s" uri="/struts-tags"%>-->
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -11,6 +23,20 @@
         <script type="text/javascript" src="js/jquery.lightbox.js"></script>
         <script type="text/javascript" src="js/map.js"></script>
 		<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyASlIihgkxQwX1KCbGcuUJzAn2cuZtdkW8&sensor=FALSE&language=zh-CN"></script>
+        <script type="text/javascript">
+			$(document).ready(function(){
+				var houseInfoList=eval('('+$('#jsonArray').val()+')');
+				var id=eval('('+$('#id').val()+')');
+				var htmlString='';
+				for(var i=0; i<houseInfoList.length; i++){
+					if(houseInfoList[i].id==id){
+						var tempHtmlString='<div class="single_image light"><a href="'+ houseInfoList[i].image_url + '"><img src="'+ houseInfoList[i].image_url + '" /></a></div><div class="house_properties"><table><tr><td>城市</td><td>北京</td><td>区域</td><td>海淀区</td></tr><tr><td>地址</td><td>五环东路36号</td><td>房型</td><td>三房一厅</td></tr><tr><td>面积</td><td>420平方米</td><td>价格</td><td>1316万</td></tr><tr><td>楼龄</td><td>6年</td><td>装修情况</td><td>豪装</td></tr><tr><td>楼层</td><td>5</td><td>朝向</td><td>坐北向南</td></tr></table></div><div class="clear"></div>';
+						htmlString += tempHtmlString;
+					}
+				}
+				$('.level1').html(htmlString);
+			});
+		</script>
 		</script>
         <script type="text/javascript">
 			$(function() {
@@ -19,6 +45,8 @@
 		</script>
 	</head>
 	<body onload="map_initialize(1.3318916, 103.8493879, '北京市\n海淀区\n五环东路36号')">
+    	<input type="hidden" id="jsonArray" value='<%=jsonArray%>' />
+        <input type="hidden" id="id" value='<%=id%>' />
     	<div class="main">
 		<!----start-header---->
 			<div class="header">

@@ -16,6 +16,8 @@ public class HouseInfoAction extends ActionSupport {
 	private int id;// 主键id
 	private String zone;// 所在区域
 	private String address;// 房屋地址
+	private String sort;// 种类
+	private String location;// 地段
 	private String area;// 房屋面积
 	private String price;// 房屋价格
 	private String type;// 房屋类型
@@ -45,6 +47,8 @@ public class HouseInfoAction extends ActionSupport {
 			HouseInfo houseInfo = new HouseInfo();
 			houseInfo.setZone(zone);
 			houseInfo.setAddress(address);
+			houseInfo.setSort(sort);
+			houseInfo.setLocation(location);
 			houseInfo.setArea(area);
 			houseInfo.setPrice(price);
 			houseInfo.setType(type);
@@ -91,52 +95,52 @@ public class HouseInfoAction extends ActionSupport {
 		String hql = "";
 		boolean flag = false;// 用于标记条件语句hql中是否有"where"
 
-		/* 添加房屋方位检索条件 */
-		if (direction != null && !direction.equals("")) {
+		/* 添加种类检索条件 */
+		if (sort != null && !sort.equals("")) {
 			if (!flag) {
 				flag = true;
 				hql += " where";
 			} else {
 				hql += " and";
 			}
-			switch (direction) {
-			case "E":
-				hql += " h.direction='E'";
+			switch (sort) {
+			case "apartment":
+				hql += " h.sort='公寓'";
 				break;
-			case "W":
-				hql += " h.direction='W'";
+			case "government_rent":
+				hql += " h.sort='政府组屋'";
 				break;
-			case "S":
-				hql += " h.direction='S'";
+			case "residence_with_land":
+				hql += " h.sort='有地住宅'";
 				break;
-			case "N":
-				hql += " h.direction='N'";
+			case "commercial_property":
+				hql += " h.sort='商业楼盘'";
 				break;
 			default:
 				break;
 			}
 		}
 
-		/* 添加楼层层数检索条件 */
-		if (floor != null && !floor.equals("")) {
+		/* 添加地段检索条件 */
+		if (location != null && !location.equals("")) {
 			if (!flag) {
 				flag = true;
 				hql += " where";
 			} else {
 				hql += " and";
 			}
-			switch (floor) {
-			case "3楼以下":
-				hql += " h.floor between '0' and '3'";
+			switch (location) {
+			case "school":
+				hql += " h.location='school'";
 				break;
-			case "3-5楼":
-				hql += " h.floor between '3' and '5'";
+			case "metro":
+				hql += " h.location='metro'";
 				break;
-			case "5-7楼":
-				hql += " h.floor between '5' and '7'";
+			case "hospital":
+				hql += " h.location='hospital'";
 				break;
-			case "7楼以上":
-				hql += " h.floor>'7'";
+			case "convenient":
+				hql += " h.location='convenient'";
 				break;
 			default:
 				break;
@@ -152,17 +156,20 @@ public class HouseInfoAction extends ActionSupport {
 				hql += " and";
 			}
 			switch (type) {
-			case "单间":
-				hql += " h.type='单间'";
+			case "1":
+				hql += " h.type='一室'";
 				break;
-			case "一厅一房":
-				hql += " h.type='一厅一房'";
+			case "2":
+				hql += " h.type='二室'";
 				break;
-			case "一厅两房":
-				hql += " h.type='一厅两房'";
+			case "3":
+				hql += " h.type='三室'";
 				break;
-			case "一厅三房":
-				hql += " h.type='一厅三房'";
+			case "4":
+				hql += " h.type='四室'";
+				break;
+			case "5":
+				hql += " h.type='四室以上'";
 				break;
 			default:
 				break;
@@ -179,78 +186,35 @@ public class HouseInfoAction extends ActionSupport {
 				hql += " and";
 			}
 			switch (area) {
-			case "50平米以下":
+			case "lower50":
 				hql += " h.area<'50'";
 				break;
-			case "50-70平米":
+			case "50to70":
 				hql += " h.area between '50' and '70'";
 				break;
-			case "70-90平米":
+			case "70to90":
 				hql += " h.area between '70' and '90'";
 				break;
-			case "90-110平米":
+			case "90to110":
 				hql += " h.area between '90' and '110'";
 				break;
-			case "110-130平米":
+			case "110to130":
 				hql += " h.area between '110' and '130'";
 				break;
-			case "130-150平米":
+			case "130to150":
 				hql += " h.area between '130' and '150'";
 				break;
-			case "150-200平米":
+			case "150to200":
 				hql += " h.area between '150' and '200'";
 				break;
-			case "200-300平米":
+			case "200to300":
 				hql += " h.area between '200' and '300'";
 				break;
-			case "300-500平米":
+			case "300to500":
 				hql += " h.area between '300' and '500'";
 				break;
-			case "500平米以上":
+			case "over500":
 				hql += " h.area>'500'";
-				break;
-			default:
-				break;
-			}
-
-		}
-
-		/* 添加房屋价格检索条件 */
-		if (price != null && !price.equals("")) {
-			if (!flag) {
-				flag = true;
-				hql += " where";
-			} else {
-				hql += " and";
-			}
-
-			switch (price) {
-			case "50万以下":
-				hql += " h.price<'50'";
-				break;
-			case "50-100万":
-				hql += " h.price between '50' and '100'";
-				break;
-			case "100-150万":
-				hql += " h.price between '100' and '150'";
-				break;
-			case "150-200万":
-				hql += " h.price between '150' and '200'";
-				break;
-			case "200-250万":
-				hql += " h.price between '200' and '250'";
-				break;
-			case "250-300万":
-				hql += " h.price between '250' and '300'";
-				break;
-			case "300-500万":
-				hql += " h.price between '300' and '500'";
-				break;
-			case "500-1000万":
-				hql += " h.price between '500' and '1000'";
-				break;
-			case "1000万以上":
-				hql += " h.price>'1000'";
 				break;
 			default:
 				break;
@@ -267,43 +231,17 @@ public class HouseInfoAction extends ActionSupport {
 				hql += " and";
 			}
 			switch (age) {
-			case "5年以下":
+			case "lower5":
 				hql += " h.age<'5'";
 				break;
-			case "5-10年":
+			case "5to10":
 				hql += " h.age between '5' and '10'";
 				break;
-			case "10-20年":
+			case "10to20":
 				hql += " h.age between '10' and '20'";
 				break;
-			case "20年以上":
+			case "over20":
 				hql += " h.age>'20'";
-				break;
-			default:
-				break;
-			}
-		}
-
-		/* 添加房屋装修年数检索条件 */
-		if (decoration != null && !decoration.equals("")) {
-			if (!flag) {
-				flag = true;
-				hql += " where";
-			} else {
-				hql += " and";
-			}
-			switch (decoration) {
-			case "毛坯":
-				hql += " h.decoration='毛坯'";
-				break;
-			case "普通装修":
-				hql += " h.decoration='普通装修'";
-				break;
-			case "精装修":
-				hql += " h.decoration='精装修'";
-				break;
-			case "豪华装修":
-				hql += " h.decoration='豪华装修'";
 				break;
 			default:
 				break;
@@ -347,6 +285,22 @@ public class HouseInfoAction extends ActionSupport {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public String getArea() {
