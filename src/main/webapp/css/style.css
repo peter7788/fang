@@ -94,7 +94,7 @@ img {
 }
 .manager_image {
 	height: 200px;
-	width: 40%;
+	width: 35%;
 	float: left;
 	margin-top: 0;
 	margin-right: auto;
@@ -312,7 +312,7 @@ img {
 }
 .manager_introduction {
 	height: 200px;
-	width: 60%;
+	width: 65%;
 	float: left;
 	margin-top: 0;
 	margin-right: auto;
@@ -419,4 +419,24 @@ img {
 }
 .main .content .downloadFile .wrap div ul li {
 	margin-bottom: 20px;
+}
+#registerGuest {
+	text-align: center;
+}
+.join_us_introduction {
+	float: left;
+	width: 39%;
+	padding-right: 1%;
+}
+.join_us_title {
+	font-size: 1.5em;
+	margin-bottom: 20px;
+}
+.join_us_content {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.QRCode {
+	float: left;
+	text-align: center;
 }

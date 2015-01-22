@@ -77,11 +77,11 @@
             		<div class="manager_image"><img src="images/xu.jpg" /></div>
                 	<div class="manager_introduction"><br>
                 	  <span class="manager_name">许卉菁</span>&nbsp;&nbsp;&nbsp;<span>销售总监</span><br>
-                      <p><span class="manager_name">Xu Huijing</span>&nbsp;&nbsp;&nbsp;<span>Sale director</span></p><br>
+                      <p><span class="manager_name">Helen Xu Huijing</span>&nbsp;&nbsp;<span>Sales Director</span></p><br>
                     	<p></p>
+                        <p>CEA Reg. No. R020201D</p>
                         <p>手机：+65 8128 9908</p>
 				   		<p>电话：+65 6725 3888</p>
-                    	<p>传真：+65 6822 1128</p>
 				 		<p>电子邮箱: huijing2014@yahoo.com</p>
                     </div>
                     <div class="clear"> </div>
@@ -178,8 +178,8 @@
             	<p class="title">邮箱登记</h2>
                 <form method="post" id="registerGuest" action="registerGuest.action">
                 	<table>
-                		<tr><td>用户名称</td><td><input type="text" value="" /></td></tr>
-                		<tr><td>用户邮箱</td><td><input type="text" value="" /></td></tr>
+                		<tr><td>用户名称</td><td>&nbsp;&nbsp;<input type="text" value="" /></td></tr>
+                		<tr><td>用户邮箱</td><td>&nbsp;&nbsp;<input type="text" value="" /></td></tr>
                 		<tr><td><input type="submit" value="登记" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>
                	</form>
@@ -187,9 +187,9 @@
             <div class="message_block">
             	<p class="title">友情链接</h2>
                 <ul>
-  					<li><a href="">总经理的网站</a></li>
-  					<li><a href="">公司网站</a></li>
-  					<li><a href="">其他网站</a></li>
+                	<li><a href="http://www.dtz-ugl.com/">戴德梁行总公司网站</a></li>
+  					<li><a href="http://www.thebanner-realestate.com/">总经理 Brenda Zee 团队网站</a></li>
+  					<li><a href="http://www.helenxu.myweb.sg/">Helen Xu 个人网站</a></li>
 				</ul>
             </div>
             </div>
