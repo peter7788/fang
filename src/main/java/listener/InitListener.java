@@ -11,12 +11,14 @@ import model.Guest;
 import model.HouseInfo;
 import model.Message;
 import model.News;
+import model.Subscriber;
 import service.AdvertisementService;
 import service.DownloadFileService;
 import service.GuestService;
 import service.HouseInfoService;
 import service.MessageService;
 import service.NewsService;
+import service.SubscriberService;
 
 public class InitListener implements ServletContextListener {
 
@@ -32,6 +34,7 @@ public class InitListener implements ServletContextListener {
 		initAdvertisement(sce);
 		initNews(sce);
 		initDownloadFile(sce);
+		initSubscriber(sce);
 	}
 
 	@Override
@@ -153,6 +156,23 @@ public class InitListener implements ServletContextListener {
 			}
 			ServletContext context = sce.getServletContext();
 			context.setAttribute("downloadFileList", jsonArray.toString());
+		}
+	}
+
+	/**
+	 * 初始化所有的订阅邮箱
+	 * 
+	 * @param sce
+	 */
+	public void initSubscriber(ServletContextEvent sce) {
+		List<Subscriber> subscriberList = new SubscriberService().findAll();
+		if (subscriberList != null) {
+			JSONArray jsonArray = new JSONArray();
+			for (Subscriber subscriber : subscriberList) {
+				jsonArray.add(subscriber.toJson());
+			}
+			ServletContext context = sce.getServletContext();
+			context.setAttribute("subscriberList", jsonArray.toString());
 		}
 	}
 }

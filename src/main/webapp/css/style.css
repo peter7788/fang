@@ -87,7 +87,7 @@ img {
 }
 #camera_wrap_1 {
 	float: left;
-	width: 60%;
+	width: 58%;
 }
 .second_block {
 	margin-top: 50px;
@@ -294,6 +294,8 @@ img {
 }
 .message_time {
 	float: right;
+	text-align: center;
+	vertical-align: middle;
 }
 .email_phone {
 	height: 20px;
@@ -382,7 +384,7 @@ img {
 .menu_div ul li {
 	display: inline-block;
 	float: left;
-	width: 16.66%;
+	width: 14.28%;
 	text-align: center;
 	background-color: #666;
 	height: 50px;
@@ -399,6 +401,29 @@ img {
 	text-transform: uppercase;
 }
 .menu_div li> a:hover {
+	background: #D63B37;
+	color:#FFF;
+}
+.main_menu_div ul li {
+	display: inline-block;
+	float: left;
+	width: 16.66%;
+	text-align: center;
+	background-color: #666;
+	height: 50px;
+}
+.main_menu_div {
+	vertical-align: middle;
+	height: 50px;
+}
+.main_menu_div ul li a{
+	font-size: 18px;
+	color: #FFF;
+	padding: 13px;
+	display: block;
+	text-transform: uppercase;
+}
+.main_menu_div li> a:hover {
 	background: #D63B37;
 	color:#FFF;
 }
@@ -425,7 +450,7 @@ img {
 }
 .join_us_introduction {
 	float: left;
-	width: 39%;
+	width: 41%;
 	padding-right: 1%;
 }
 .join_us_title {

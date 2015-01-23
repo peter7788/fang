@@ -98,7 +98,7 @@
 		<!---start-content---->
 		 <div class="content">
          	<div class="wrap">
-            <div class="menu_div">
+            <div class="main_menu_div">
         		<ul>
 					<li><a href="about.html" title="Our service">我们的服务</a></li>
                	 	<li><a href="http://baike.baidu.com/link?url=rZ3OSfZLrjH1guhgU-NAhFVQT3cUo2vBKu4ZtaCK06Srd22TwoFc-Ceh3Cu7xEfCVd47duHRcCjqAS8HIdojrK" title="Introduction">新加坡简介</a></li>
@@ -176,10 +176,10 @@
             </div>
              <div class="message_block">
             	<p class="title">邮箱登记</h2>
-                <form method="post" id="registerGuest" action="registerGuest.action">
+                <form method="post" id="addSubscriber" action="addSubscriber.action">
                 	<table>
-                		<tr><td>用户名称</td><td>&nbsp;&nbsp;<input type="text" value="" /></td></tr>
-                		<tr><td>用户邮箱</td><td>&nbsp;&nbsp;<input type="text" value="" /></td></tr>
+                		<tr><td>用户名称</td><td>&nbsp;&nbsp;<input type="text" name="name" value="" /></td></tr>
+                		<tr><td>用户邮箱</td><td>&nbsp;&nbsp;<input type="text" name="email" value="" /></td></tr>
                 		<tr><td><input type="submit" value="登记" /></td><td><input type="reset" value="重置" /></td></tr>
                 	</table>
                	</form>

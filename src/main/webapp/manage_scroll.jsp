@@ -85,7 +85,8 @@
                 		<li><a href="manage_hotest_project.jsp">热门楼盘</a></li>
 						<li><a href="manage_news.jsp">最新消息</a></li>
 						<li><a href="manage_downloadFile.jsp">下载文件</a></li>
-               			<li></li>
+               			<li><a href="manage_message.jsp">留言信息</a></li>
+                        <li><a href="manage_subscriber.jsp">订阅邮箱</a></li>
 					</ul>
                 	<div class="clear"> </div>
         		</div>	

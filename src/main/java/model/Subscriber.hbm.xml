@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="model.Subscriber" table="Subscriber">
+		<comment>订阅邮件</comment>
+		<!-- id必须放在第一位 -->
+		<id name="email" type="java.lang.String">
+			<column name="email" length="255">
+				<comment>电子邮箱</comment>
+			</column>
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="name" length="255" not-null="true">
+				<comment>名称</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -32,6 +32,25 @@ public class MessageDao {
 	}
 
 	/**
+	 * 查看某个留言信息
+	 * 
+	 * @param session
+	 * @param id
+	 * @return
+	 */
+	public Message findById(Session session, int id) {
+		Transaction tx = session.beginTransaction();
+		List<Message> messageList = (List<Message>) session.createQuery(
+				"from Message where id=" + id).list();
+		tx.commit();
+		if (messageList != null) {
+			return messageList.get(0);
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * 删除留言
 	 * 
 	 * @param session

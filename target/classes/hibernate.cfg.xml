@@ -51,5 +51,6 @@
 		<mapping resource="model/Advertisement.hbm.xml"/>
 		<mapping resource="model/News.hbm.xml"/>
 		<mapping resource="model/DownloadFile.hbm.xml"/>
+		<mapping resource="model/Subscriber.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

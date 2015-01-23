@@ -11,7 +11,7 @@ public class Guest implements Serializable {
 	private String user_email;
 	// 用户密码
 	private String user_password;
-	// 用户等级（0为管理员，1为客户）
+	// 用户等级（0为管理员，1为普通客户）
 	private int user_level;
 
 	public String getUser_name() {

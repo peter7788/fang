@@ -1,14 +1,14 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page pageEncoding="utf-8"%>
 <%
-	String jsonArray = (String) application.getAttribute("downloadFileList");
+	String jsonArray = (String) application.getAttribute("subscriberList");
 %>
 <!--<%@taglib prefix="s" uri="/struts-tags"%>-->
 <!DOCTYPE HTML>
 <html>
 	<head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>管理（下载文件）</title>
+		<title>管理（订阅邮箱）</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
 		<link href="css/slider.css" rel="stylesheet" type="text/css"  media="all" />
         <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
@@ -16,27 +16,14 @@
         <script type="text/javascript">
 			$(document).ready(function(){
 				var htmlString='';
-				var downloadFileList=eval('('+$('#jsonArray').val()+')');
-				htmlString+="<table id='hotest_project_table'><tr><th>URL</th><th>文件名</th><th>操作</th></tr>";
-				for(var i=0; i<downloadFileList.length; i++){
-					var tempHtmlString='<tr><td>' + downloadFileList[i].file_url + '</td> <td>' + downloadFileList[i].title + '</td><td><form method="post" id="deleteForm" action="deleteDownloadFile.action"><span><input type="submit" class="submitClass" value="删除" /></span><input type="hidden" name="id" value="' + downloadFileList[i].id + '" /></form></td></tr>';
+				var subscriberList=eval('('+$('#jsonArray').val()+')');
+				htmlString+="<table id='hotest_project_table'><tr><th>用户名</th><th>订阅邮箱</th><th>操作</th></tr>";
+				for(var i=0; i<subscriberList.length; i++){
+					var tempHtmlString='<tr><td>' + subscriberList[i].name + '</td> <td>' + subscriberList[i].email + '</td><td><form method="post" id="deleteForm" action="deleteSubscriber.action"><span><input type="submit" class="submitClass" value="删除" /></span><input type="hidden" name="email" value="' + subscriberList[i].email + '" /></form></td></tr>';
 					htmlString += tempHtmlString;
 				}
 				htmlString+="</table>";
 				$('.ad_management_properties').html(htmlString);
-				//验证表单
-				$('#uploadForm').validate({
-					rules:{
-						upload:{
-							required:true
-						}
-					},
-					messages:{
-						upload:{
-							required:"请选择一个文件"
-						}
-					}
-				});
 			});
 		</script>
 	</head>
@@ -56,10 +43,10 @@
                         <li><a href="join_us.html">加入我们</a></li>
 						<li><a href="about.html">关于我们</a></li>
 						<li><a href="contact.html">联系我们</a></li>
-						<div class="clear"> </div>
+						<div class="clear"></div>
 					</ul>
 				</div>
-				<div class="clear"> </div>
+				<div class="clear"></div>
 			</div>
 		</div>
         <!---End-header---->
@@ -74,35 +61,27 @@
                	 		<li><a href="manage_newest_project.jsp">最新楼盘</a></li>
                 		<li><a href="manage_hotest_project.jsp">热门楼盘</a></li>
 						<li><a href="manage_news.jsp">最新消息</a></li>
-						<li><a href="manage_downloadFile.jsp" class="active">下载文件</a></li>
+						<li><a href="manage_downloadFile.jsp">下载文件</a></li>
                			<li><a href="manage_message.jsp">留言信息</a></li>
-                        <li><a href="manage_subscriber.jsp">订阅邮箱</a></li>
+                        <li><a href="manage_subscriber.jsp" class="active">订阅邮箱</a></li>
 					</ul>
                 	<div class="clear"> </div>
         		</div>	
-                <div class="ad_management_properties light">
-                <table id='hotest_project_table'>
+                <div class="ad_management_properties">
+                <table>
                 	<tr>
-                    	<th>URL</th>
-                        <th>文件名</th>
+                    	<th>用户名</th>
+                        <th>订阅邮箱</th>
                         <th>操作</th>
                     </tr>
                     <tr>
-                    	<td>例子一属性一</td>
-                        <td>例子一属性二</td>
+                    	<td>用户名一</td>
+                        <td>订阅邮箱一</td>
                         <td>
                         	<input type="button" value="删除" />
                         </td>
                     </tr>
                 </table>
-                </div>
-                <div class="add">
-                <form method="post" id="uploadForm" action="addDownloadFile.action" enctype="multipart/form-data">
-               		<table>
-                    	<tr><td>选择文件（50M内）</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
-                        <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
-                	</table>
-                </form>
                 </div>
         	</div>
 		</div>				

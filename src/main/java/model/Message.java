@@ -70,6 +70,7 @@ public class Message implements Serializable {
 
 	public JSONObject toJson() {
 		JSONObject temp = new JSONObject();
+		temp.put("id", id);
 		temp.put("user_name", user_name);
 		temp.put("message_time", message_time.toString());
 		temp.put("user_email", user_email);

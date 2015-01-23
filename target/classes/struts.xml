@@ -25,7 +25,10 @@
 	
 	<package name="MessageAction" extends="struts-default">
 		<action name="addMessage" class="action.MessageAction" method="addMessage">
-			<result name="success" type="redirect">/index.jsp</result>
+			<result name="success" type="redirect">/message.jsp</result>
+		</action>
+		<action name="deleteMessage" class="action.MessageAction" method="deleteMessage">
+			<result name="success" type="redirect">/manage_message.jsp</result>
 		</action>
 	</package>
 	
@@ -33,6 +36,15 @@
 		<action name="login" class="action.GuestAction" method="login">
 			<result name="success" type="redirect">/manage_scroll.jsp</result>
 			<result name="error" type="redirect">/login.html</result>
+		</action>
+	</package>
+	
+	<package name="SubscriberAction" extends="struts-default">
+		<action name="addSubscriber" class="action.SubscriberAction" method="addSubscriber">
+			<result name="success" type="redirect">/index.jsp</result>
+		</action>
+		<action name="deleteSubscriber" class="action.SubscriberAction" method="deleteSubscriber">
+			<result name="success" type="redirect">/manage_subscriber.jsp</result>
 		</action>
 	</package>
 	

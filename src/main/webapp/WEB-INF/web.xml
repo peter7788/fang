@@ -52,6 +52,14 @@
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>CheckAuthority</filter-name>
+		<url-pattern>/manage_message.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CheckAuthority</filter-name>
+		<url-pattern>/manage_subscriber.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CheckAuthority</filter-name>
 		<url-pattern>/changePassword.html</url-pattern>
 	</filter-mapping>
 	<!--end 管理页面权限的过滤-->

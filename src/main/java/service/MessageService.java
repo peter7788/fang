@@ -36,6 +36,18 @@ public class MessageService extends TotalService {
 	}
 
 	/**
+	 * 根据id查找留言信息
+	 * 
+	 * @return
+	 */
+	public Message findById(int id) {
+		Session session = sessionFactory.openSession();
+		Message message = new MessageDao().findById(session, id);
+		session.close();
+		return message;
+	}
+
+	/**
 	 * 删除留言信息
 	 * 
 	 * @param message
@@ -44,6 +56,7 @@ public class MessageService extends TotalService {
 		Session session = sessionFactory.openSession();
 		new MessageDao().deleteMessage(session, message);
 		session.close();
+		deleteFromServletContext(message);
 	}
 
 	/**
@@ -61,6 +74,20 @@ public class MessageService extends TotalService {
 			jsonArray = new JSONArray();
 		}
 		jsonArray.add(message.toJson());
+		context.setAttribute("messageList", jsonArray.toString());
+	}
+
+	/**
+	 * 删除缓存中的数据
+	 * 
+	 * @param message
+	 */
+	public void deleteFromServletContext(Message message) {
+		ServletContext context = ServletActionContext.getServletContext();
+		String messageListString = (String) context.getAttribute("messageList");
+		JSONArray jsonArray = (JSONArray) JSONSerializer
+				.toJSON(messageListString);
+		jsonArray.remove(message.toJson());
 		context.setAttribute("messageList", jsonArray.toString());
 	}
 }

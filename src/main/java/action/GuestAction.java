@@ -7,6 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
 public class GuestAction extends ActionSupport {
+
 	// 用户名称
 	private String user_name;
 	// 用户密码
