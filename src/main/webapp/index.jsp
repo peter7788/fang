@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page pageEncoding="utf-8"%>
 <%
-	String jsonArray = (String) application.getAttribute("advertisementList");
+	String jsonArrayAdvertisement = (String) application.getAttribute("advertisementList");
+	String jsonArrayNews = (String) application.getAttribute("newsList");
 %>
 <!DOCTYPE HTML>
 <html>
@@ -17,13 +18,24 @@
 		  <script type="text/javascript" src="js/camera.min.js"></script>
 		  <script type="text/javascript">
 			$(document).ready(function(){
+				//加载滚动广告页面
 				var htmlString='';
-				var advertisementList=eval('('+$('#jsonArray').val()+')');
+				var advertisementList=eval('('+$('#jsonArrayAdvertisement').val()+')');
 				for(var i=0; i<advertisementList.length; i++){
 					var tempHtmlString='<div data-src="' + advertisementList[i].img_src + '"></div>';
 					htmlString += tempHtmlString;
 				}
 				$('.camera_wrap').html(htmlString);
+				//加载最新消息页面
+				var htmlString='';
+				htmlString += '<p class="title">最新消息</p><ul>';
+				var newsList=eval('('+$('#jsonArrayNews').val()+')');
+				for(var i=0; i<newsList.length; i++){
+					var tempHtmlString='<li><a href="' + newsList[i].link + '">' + newsList[i].title + '</a></li>';
+					htmlString += tempHtmlString;
+				}
+				htmlString += '</ul>';
+				$('#news_block').html(htmlString);
 				//设置滚动页面
 				jQuery('#camera_wrap_1').camera({
 					height: '400px',
@@ -38,7 +50,8 @@
 		  </script>
 	</head>
 	<body>
-    	<input type="hidden" id="jsonArray" value='<%=jsonArray%>' />
+    	<input type="hidden" id="jsonArrayAdvertisement" value='<%=jsonArrayAdvertisement%>' />
+        <input type="hidden" id="jsonArrayNews" value='<%=jsonArrayNews%>' />
    		<div class="main">
 		<!----start-header---->
 			<div class="header">
@@ -166,8 +179,8 @@
 				</table>
                 </form>
             </div>
-            <div class="message_block">
-            	<p class="title">最新消息</h2>
+            <div id="news_block" class="message_block">
+            	<p class="title">最新消息</p>
                 <ul>
   					<li><a href="">内环内二手豪宅市场成交大爆发</a></li>
   					<li><a href="">央行降息利好，100万房贷30年可节省9.43万</a></li>
@@ -175,7 +188,7 @@
 				</ul>
             </div>
              <div class="message_block">
-            	<p class="title">邮箱登记</h2>
+            	<p class="title">邮箱登记</p>
                 <form method="post" id="addSubscriber" action="addSubscriber.action">
                 	<table>
                 		<tr><td>用户名称</td><td>&nbsp;&nbsp;<input type="text" name="name" value="" /></td></tr>
