@@ -63,12 +63,12 @@
 				new_page(hotPageNum, newPageNum, hot_total);
 				$('#hot_page').on('change','select',function(){
 					var nowHotPageNum=parseInt($('#hotPageSelect :selected').val());
-					window.location.href = 'index.jsp?hotPageNum=' + nowHotPageNum + '&newPageNum=' + (parseInt(newPageNum));
+					window.location.href = 'index.jsp?hotPageNum=' + nowHotPageNum + '&newPageNum=' + (parseInt(newPageNum)) + '#hot';
 					return false;
 				});
 				$('#new_page').on('change','select',function(){
 					var nowNewPageNum=parseInt($('#newPageSelect :selected').val());
-					window.location.href = 'index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + nowNewPageNum;
+					window.location.href = 'index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + nowNewPageNum + '#new';
 					return false;
 				});
 				//设置滚动页面
@@ -98,7 +98,7 @@
 			function hot_page(hotPageNum, newPageNum, hot_total){
 				var htmlString='';
 				if(hotPageNum!=1){
-					htmlString+='<span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)-1) + '&newPageNum=' + (parseInt(newPageNum)) + '">&nbsp;上一页&nbsp;</a></span><span><select id="hotPageSelect" name="hotPageSelect">';
+					htmlString+='<span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)-1) + '&newPageNum=' + (parseInt(newPageNum)) + '#hot">&nbsp;上一页&nbsp;</a></span><span><select id="hotPageSelect" name="hotPageSelect">';
 				}else{
 					htmlString+='<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><select id="hotPageSelect" name="hotPageSelect">';
 				}
@@ -111,7 +111,7 @@
 					htmlString+=tempHtmlString;
 				}
 				if(hotPageNum!=hot_total){
-					htmlString+='</select></span><span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)+1) + '&newPageNum=' + (parseInt(newPageNum)) + '">&nbsp;下一页&nbsp;</a></span>';
+					htmlString+='</select></span><span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)+1) + '&newPageNum=' + (parseInt(newPageNum)) + '#hot">&nbsp;下一页&nbsp;</a></span>';
 				}else{
 					htmlString+='</select></span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>';
 				}
@@ -133,7 +133,7 @@
 			function new_page(hotPageNum, newPageNum, new_total){
 				var htmlString='';
 				if(newPageNum!=1){
-					htmlString+='<span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + (parseInt(newPageNum)-1) + '">&nbsp;上一页&nbsp;</a></span><span><select id="newPageSelect" name="newPageSelect">';
+					htmlString+='<span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + (parseInt(newPageNum)-1) + '#new">&nbsp;上一页&nbsp;</a></span><span><select id="newPageSelect" name="newPageSelect">';
 				}else{
 					htmlString+='<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><select id="newPageSelect" name="newPageSelect">';
 				}
@@ -146,7 +146,7 @@
 					htmlString+=tempHtmlString;
 				}
 				if(newPageNum!=new_total){
-					htmlString+='</select></span><span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + (parseInt(newPageNum)+1) + '">&nbsp;下一页&nbsp;</a></span>';
+					htmlString+='</select></span><span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + (parseInt(newPageNum)+1) + '#new">&nbsp;下一页&nbsp;</a></span>';
 				}else{
 					htmlString+='</select></span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>';
 				}
