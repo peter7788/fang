@@ -1,4 +1,6 @@
-<!DOCTYPE>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8"%>
+<!DOCTYPE HTML>
 <html>
 	<head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,9 +21,9 @@
 				<ul>
 					<li><a href="index.jsp">首页</a></li>
                         <li><a href="message.jsp">留言板</a></li>
-                        <li><a href="join_us.html">加入我们</a></li>
-						<li><a href="about.html">关于我们</a></li>
-						<li class="active"><a href="contact.html">联系我们</a></li>
+                        <li><a href="join_us.jsp">加入我们</a></li>
+						<li><a href="about.jsp">关于我们</a></li>
+						<li class="active"><a href="contact.jsp">联系我们</a></li>
 					<div class="clear"> </div>
 				</ul>
 			</div>
@@ -88,10 +90,7 @@
 		 <!---End-content---->
          </div>
 		 <!---start-copy-right----->
-		 <div class="copy-right">
-			<p>2014 © 华南理工大学 版权所有</p>
-            <p>地址：广州市天河区五山路381号/广州市番禺区广州大学城邮政编码：510641/510006</p>
-		</div>
+         <jsp:include page="copyright.html" />
 		 <!---End-copy-right---->
 	</body>
 </html>

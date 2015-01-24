@@ -63,9 +63,9 @@
 					<ul>
 						<li class="active"><a href="index.jsp">首页</a></li>
                         <li><a href="message.jsp">留言板</a></li>
-                        <li><a href="join_us.html">加入我们</a></li>
-						<li><a href="about.html">关于我们</a></li>
-						<li><a href="contact.html">联系我们</a></li>
+                        <li><a href="join_us.jsp">加入我们</a></li>
+						<li><a href="about.jsp">关于我们</a></li>
+						<li><a href="contact.jsp">联系我们</a></li>
 						<div class="clear"> </div>
 					</ul>
 				</div>
@@ -113,12 +113,12 @@
          	<div class="wrap">
             <div class="main_menu_div">
         		<ul>
-					<li><a href="about.html" title="Our service">我们的服务</a></li>
+					<li><a href="about.jsp" title="Our service">我们的服务</a></li>
                	 	<li><a href="http://baike.baidu.com/link?url=rZ3OSfZLrjH1guhgU-NAhFVQT3cUo2vBKu4ZtaCK06Srd22TwoFc-Ceh3Cu7xEfCVd47duHRcCjqAS8HIdojrK" title="Introduction">新加坡简介</a></li>
                 	<li><a href="http://www.mfa.gov.sg/content/mfa/overseasmission/beijing/ch/visa_information/bizSocialPRC.html" title="Policy">购房政策</a></li>
 					<li><a href="house_blank.jsp" title="Houses Infomation">房源信息</a></li>
                		<li><a href="downloadFile.jsp" title="Download">下载中心</a></li>
-                	<li><a href="contact.html" title="Contact us">联系我们</a></li>
+                	<li><a href="contact.jsp" title="Contact us">联系我们</a></li>
 				</ul>
                 <div class="clear"> </div>
         	</div>	
@@ -304,11 +304,8 @@
 		</div>
   		</div>
         <!---start-copy-right----->
-		 <div class="copy-right">
-			<p>2014 © 华南理工大学 版权所有</p>
-            <p>地址：广州市天河区五山路381号/广州市番禺区广州大学城邮政编码：510641/510006</p>
-		</div>
-		 <!---End-copy-right---->
+        <jsp:include page="copyright.html" />
+		<!---End-copy-right---->
 	</body>
 </html>
 

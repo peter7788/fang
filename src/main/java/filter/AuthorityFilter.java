@@ -26,7 +26,7 @@ public class AuthorityFilter implements Filter {
 			// System.out.println("权限不通过");
 			((HttpServletResponse) response)
 					.sendRedirect(((HttpServletRequest) request)
-							.getContextPath() + "/login.html");
+							.getContextPath() + "/login.jsp");
 		}
 	}
 

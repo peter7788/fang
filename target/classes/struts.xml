@@ -35,7 +35,7 @@
 	<package name="GuestAction" extends="struts-default">
 		<action name="login" class="action.GuestAction" method="login">
 			<result name="success" type="redirect">/manage_scroll.jsp</result>
-			<result name="error" type="redirect">/login.html</result>
+			<result name="error" type="redirect">/login.jsp</result>
 		</action>
 	</package>
 	
@@ -57,8 +57,8 @@
 	
 	<package name="LogoutAction" extends="struts-default">
 		<action name="logout" class="action.LogoutAction" method="logout">
-			<result name="success" type="redirect">/login.html</result>
-			<result name="error" type="redirect">/login.html</result>
+			<result name="success" type="redirect">/login.jsp</result>
+			<result name="error" type="redirect">/login.jsp</result>
 		</action>
 	</package>
 	
