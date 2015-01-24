@@ -30,7 +30,7 @@
 				var htmlString='';
 				for(var i=0; i<houseInfoList.length; i++){
 					if(houseInfoList[i].id==id){
-						var tempHtmlString='<div class="single_image light"><a href="'+ houseInfoList[i].image_url + '"><img src="'+ houseInfoList[i].image_url + '" /></a></div><div class="house_properties"><table><tr><td>城市</td><td>北京</td><td>区域</td><td>海淀区</td></tr><tr><td>地址</td><td>五环东路36号</td><td>房型</td><td>三房一厅</td></tr><tr><td>面积</td><td>420平方米</td><td>价格</td><td>1316万</td></tr><tr><td>楼龄</td><td>6年</td><td>装修情况</td><td>豪装</td></tr><tr><td>楼层</td><td>5</td><td>朝向</td><td>坐北向南</td></tr></table></div><div class="clear"></div>';
+						var tempHtmlString='<div class="single_image light"><a href="'+ houseInfoList[i].image_url + '"><img src="'+ houseInfoList[i].image_url + '" /></a></div> <div class="house_properties"><table><tr><td>区域</td><td>'+ houseInfoList[i].zone + '</td><td>地址</td><td>'+ houseInfoList[i].address + '</td></tr><tr><td>种类</td><td>'+ houseInfoList[i].sort + '</td><td>地段</td><td>'+ houseInfoList[i].location + '</td></tr><tr><td>面积</td><td>'+ houseInfoList[i].area + '</td><td>价格</td><td>'+ houseInfoList[i].price + '</td></tr><tr><td>房型</td><td>'+ houseInfoList[i].type + '</td><td>朝向</td><td>'+ houseInfoList[i].direction + '</td></tr><tr><td>楼层</td><td>'+ houseInfoList[i].floor + '</td><td>楼龄</td><td>'+ houseInfoList[i].age + '</td></tr><tr><td>装修类型</td><td>'+ houseInfoList[i].decoration + '</td><td>发布时间</td><td>'+ houseInfoList[i].publish_time + '</td></tr></table></div><div class="clear"></div>';
 						htmlString += tempHtmlString;
 					}
 				}
@@ -76,16 +76,16 @@
                 <div class="house_properties">
                 <table>
                 	<tr>
-                    	<td>城市</td>
-                        <td>北京</td>
-                        <td>区域</td>
-                        <td>海淀区</td>
+                    	<td>区域</td>
+                        <td>北京海淀区</td>
+                        <td>地址</td>
+                        <td>外环东路381号</td>
                     </tr>
                     <tr>
-                    	<td>地址</td>
-                        <td>五环东路36号</td>
-                        <td>房型</td>
-                        <td>三房一厅</td>
+                    	<td>种类</td>
+                        <td>政府组屋</td>
+                        <td>地段</td>
+                        <td>靠近学校</td>
                     </tr>
                     <tr>
                     	<td>面积</td>
@@ -94,16 +94,22 @@
                         <td>1316万</td>
                     </tr>
                     <tr>
-                    	<td>楼龄</td>
-                        <td>6年</td>
-                        <td>装修情况</td>
-                        <td>豪装</td>
+                    	<td>房型</td>
+                        <td>六室</td>
+                        <td>朝向</td>
+                        <td>坐北向南</td>
                     </tr>
                     <tr>
                     	<td>楼层</td>
                         <td>5</td>
-                        <td>朝向</td>
-                        <td>坐北向南</td>
+                        <td>楼龄</td>
+                        <td>6年</td>
+                    </tr>
+                    <tr>
+                    	<td>装修类型</td>
+                        <td>豪装</td>
+                        <td>发布时间</td>
+                        <td>Sat Jan 24 14:34:52 CST 2015</td>
                     </tr>
                 </table>
                 </div>

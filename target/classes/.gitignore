@@ -1,0 +1,10 @@
+/action/
+/dao/
+/filter/
+/hibernate/
+/hibernate.cfg.xml
+/listener/
+/model/
+/service/
+/struts.xml
+/util/

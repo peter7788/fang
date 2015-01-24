@@ -97,12 +97,18 @@ public class InitListener implements ServletContextListener {
 	public void initHouseInfo(ServletContextEvent sce) {
 		List<HouseInfo> houseInfoList = new HouseInfoService().findAll();
 		if (houseInfoList != null) {
-			JSONArray jsonArray = new JSONArray();
+			JSONArray jsonArrayNew = new JSONArray();
+			JSONArray jsonArrayHot = new JSONArray();
 			for (HouseInfo houseInfo : houseInfoList) {
-				jsonArray.add(houseInfo.toJson());
+				if (houseInfo.getMark().equals("new")) {
+					jsonArrayNew.add(houseInfo.toJson());
+				} else {
+					jsonArrayHot.add(houseInfo.toJson());
+				}
 			}
 			ServletContext context = sce.getServletContext();
-			context.setAttribute("houseInfoList", jsonArray.toString());
+			context.setAttribute("newHouseInfoList", jsonArrayNew.toString());
+			context.setAttribute("hotHouseInfoList", jsonArrayHot.toString());
 		}
 	}
 

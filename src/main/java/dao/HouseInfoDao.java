@@ -15,7 +15,6 @@ public class HouseInfoDao {
 	public void addHouseInfo(Session session, HouseInfo houseInfo) {
 		Transaction tx = session.beginTransaction();
 		session.save(houseInfo);
-		System.out.println("Dao插入房屋信息测试！");
 		tx.commit();
 	}
 

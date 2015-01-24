@@ -19,7 +19,9 @@
 			<result name="error" type="redirect">/manage_newest_project.jsp</result>
 		</action>
 		<action name="deleteHouseInfo" class="action.HouseInfoAction" method="deleteHouseInfo">
-			<result name="success" type="redirect">/manage_hotest_project.jsp</result>
+			<result name="new" type="redirect">/manage_newest_project.jsp</result>
+			<result name="hot" type="redirect">/manage_hotest_project.jsp</result>
+			<result name="error" type="redirect">/manage_newest_project.jsp</result>
 		</action>
 	</package>
 	

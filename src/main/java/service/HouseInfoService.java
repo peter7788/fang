@@ -18,7 +18,6 @@ public class HouseInfoService extends TotalService {
 	public void addHouseInfo(HouseInfo houseInfo) {
 		Session session = sessionFactory.openSession();
 		new HouseInfoDao().addHouseInfo(session, houseInfo);
-		System.out.println("sevice中插入房屋信息测试！");
 		session.close();
 		addToServletContext(houseInfo);
 	}
@@ -94,16 +93,31 @@ public class HouseInfoService extends TotalService {
 	 */
 	public void addToServletContext(HouseInfo houseInfo) {
 		ServletContext context = ServletActionContext.getServletContext();
-		String houseInfoListString = (String) context
-				.getAttribute("houseInfoList");
-		JSONArray jsonArray;
-		if (houseInfoListString != null) {
-			jsonArray = (JSONArray) JSONSerializer.toJSON(houseInfoListString);
+		if (houseInfo.getMark().equals("new")) {
+			String newHouseInfoListString = (String) context
+					.getAttribute("newHouseInfoList");
+			JSONArray jsonArray;
+			if (newHouseInfoListString != null) {
+				jsonArray = (JSONArray) JSONSerializer
+						.toJSON(newHouseInfoListString);
+			} else {
+				jsonArray = new JSONArray();
+			}
+			jsonArray.add(houseInfo.toJson());
+			context.setAttribute("newHouseInfoList", jsonArray.toString());
 		} else {
-			jsonArray = new JSONArray();
+			String hotHouseInfoListString = (String) context
+					.getAttribute("hotHouseInfoList");
+			JSONArray jsonArray;
+			if (hotHouseInfoListString != null) {
+				jsonArray = (JSONArray) JSONSerializer
+						.toJSON(hotHouseInfoListString);
+			} else {
+				jsonArray = new JSONArray();
+			}
+			jsonArray.add(houseInfo.toJson());
+			context.setAttribute("hotHouseInfoList", jsonArray.toString());
 		}
-		jsonArray.add(houseInfo.toJson());
-		context.setAttribute("houseInfoList", jsonArray.toString());
 	}
 
 	/**
@@ -113,11 +127,20 @@ public class HouseInfoService extends TotalService {
 	 */
 	public void deleteFromServletContext(HouseInfo houseInfo) {
 		ServletContext context = ServletActionContext.getServletContext();
-		String houseInfoListString = (String) context
-				.getAttribute("houseInfoList");
-		JSONArray jsonArray = (JSONArray) JSONSerializer
-				.toJSON(houseInfoListString);
-		jsonArray.remove(houseInfo.toJson());
-		context.setAttribute("houseInfoList", jsonArray.toString());
+		if (houseInfo.getMark().equals("new")) {
+			String newHouseInfoListString = (String) context
+					.getAttribute("newHouseInfoList");
+			JSONArray jsonArray = (JSONArray) JSONSerializer
+					.toJSON(newHouseInfoListString);
+			jsonArray.remove(houseInfo.toJson());
+			context.setAttribute("newHouseInfoList", jsonArray.toString());
+		} else {
+			String hotHouseInfoListString = (String) context
+					.getAttribute("hotHouseInfoList");
+			JSONArray jsonArray = (JSONArray) JSONSerializer
+					.toJSON(hotHouseInfoListString);
+			jsonArray.remove(houseInfo.toJson());
+			context.setAttribute("hotHouseInfoList", jsonArray.toString());
+		}
 	}
 }

@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page pageEncoding="utf-8"%>
 <%
-	String jsonArray = (String) application.getAttribute("houseInfoList");
+	String jsonArrayNew = (String) application.getAttribute("newHouseInfoList");
+	String jsonArrayHot = (String) application.getAttribute("hotHouseInfoList");
 	String pageNum;
 	if(request.getParameter("pageNum") != null){
 		pageNum = (String) request.getParameter("pageNum");
@@ -21,9 +22,10 @@
         <script type="text/javascript">
 			$(document).ready(function(){
 				var pageNum = $('#pageNum').val();
-				var houseInfoList=eval('('+$('#jsonArray').val()+')');
-				var total=Math.ceil(houseInfoList.length/8);
-				show(pageNum, houseInfoList);
+				var newHouseInfoList=eval('('+$('#jsonArrayNew').val()+')');
+				var hotHouseInfoList=eval('('+$('#jsonArrayHot').val()+')');
+				var total=Math.ceil((newHouseInfoList.length+hotHouseInfoList.length)/8);
+				show(pageNum, newHouseInfoList, hotHouseInfoList);
 				page(pageNum, total);
 				$('#page').on('change','select',function(){
 					pageNum=parseInt($('select :selected').val());
@@ -31,16 +33,29 @@
 					return false;
 				});
 			});
-			function show(pageNum, houseInfoList){
+			function show(pageNum, newHouseInfoList, hotHouseInfoList){
 				var count=8;
 				var htmlString='';
-				for(var i=(pageNum-1)*8; i<houseInfoList.length; i++){
-						var tempHtmlString="<div class='mid-grid'><a href='house.jsp?id=" + houseInfoList[i].id + "'><img src='" + houseInfoList[i].image_url +"' title='" + houseInfoList[i].type + "' /></a><h3>" + houseInfoList[i].zone + " " + houseInfoList[i].type + "</h3><p>" + houseInfoList[i].area + " " + houseInfoList[i].price + "</p><a class='mid-button' href='house.html'>更多</a></div>";
-						htmlString += tempHtmlString;
-						count--;
-						if(count == 0){
-							break;
-						}
+				for(var i=(pageNum-1)*8; i<newHouseInfoList.length; i++){
+					if(count == 0){
+						break;
+					}
+					var tempHtmlString="<div class='mid-grid'><a href='house.jsp?id=" + newHouseInfoList[i].id + "'><img src='" + newHouseInfoList[i].image_url +"' title='" + newHouseInfoList[i].type + "' /></a><h3>" + newHouseInfoList[i].zone + " " + newHouseInfoList[i].type + "</h3><p>" + newHouseInfoList[i].area + " " + newHouseInfoList[i].price + "</p><a class='mid-button' href='house.jsp?id=" + newHouseInfoList[i].id + "'>更多</a></div>";
+					htmlString += tempHtmlString;
+					count--;
+				}
+				var j=0;
+				if(count==8){
+					j=(pageNum-1)*8-newHouseInfoList.length;
+				}
+				for(var i=j; i<hotHouseInfoList.length; i++){
+					if(count == 0){
+						break;
+					}
+					var tempHtmlString="<div class='mid-grid'><a href='house.jsp?id=" + hotHouseInfoList[i].id + "'><img src='" + hotHouseInfoList[i].image_url +"' title='" + hotHouseInfoList[i].type + "' /></a><h3>" + hotHouseInfoList[i].zone + " " + hotHouseInfoList[i].type + "</h3><p>" + hotHouseInfoList[i].area + " " + hotHouseInfoList[i].price + "</p><a class='mid-button' href='house.jsp?id=" + hotHouseInfoList[i].id + "'>更多</a></div>";
+					htmlString += tempHtmlString;
+					count--;
+						
 				}
 				$('#all_projects').html(htmlString);
 			}
@@ -69,7 +84,8 @@
 		 </script>
 	</head>
 	<body>
-    	<input type="hidden" id="jsonArray" value='<%=jsonArray%>' />
+    	<input type="hidden" id="jsonArrayNew" value='<%=jsonArrayNew%>' />
+        <input type="hidden" id="jsonArrayHot" value='<%=jsonArrayHot%>' />
         <input type="hidden" id="pageNum" value='<%=pageNum%>' />
     	<div class="main">
 		<!----start-header---->

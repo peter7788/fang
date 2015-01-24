@@ -3,6 +3,20 @@
 <%
 	String jsonArrayAdvertisement = (String) application.getAttribute("advertisementList");
 	String jsonArrayNews = (String) application.getAttribute("newsList");
+	String jsonArrayNew = (String) application.getAttribute("newHouseInfoList");
+	String jsonArrayHot = (String) application.getAttribute("hotHouseInfoList");
+	String hotPageNum;
+	String newPageNum;
+	if(request.getParameter("hotPageNum") != null){
+		hotPageNum = (String) request.getParameter("hotPageNum");
+	}else{
+		hotPageNum = "1";
+	}
+	if(request.getParameter("newPageNum") != null){
+		newPageNum = (String) request.getParameter("newPageNum");
+	}else{
+		newPageNum = "1";
+	}
 %>
 <!DOCTYPE HTML>
 <html>
@@ -36,6 +50,27 @@
 				}
 				htmlString += '</ul>';
 				$('#news_block').html(htmlString);
+				//加载热门推荐房屋信息
+				var hotPageNum = $('#hotPageNum').val();
+				var newPageNum = $('#newPageNum').val();
+				var hotHouseInfoList=eval('('+$('#jsonArrayHot').val()+')');
+				var newHouseInfoList=eval('('+$('#jsonArrayNew').val()+')');
+				var hot_total=Math.ceil(hotHouseInfoList.length/8);
+				var new_total=Math.ceil(newHouseInfoList.length/8);
+				hot_show(hotPageNum, hotHouseInfoList);
+				hot_page(hotPageNum, newPageNum, hot_total);
+				new_show(newPageNum, newHouseInfoList);
+				new_page(hotPageNum, newPageNum, hot_total);
+				$('#hot_page').on('change','select',function(){
+					var nowHotPageNum=parseInt($('#hotPageSelect :selected').val());
+					window.location.href = 'index.jsp?hotPageNum=' + nowHotPageNum + '&newPageNum=' + (parseInt(newPageNum));
+					return false;
+				});
+				$('#new_page').on('change','select',function(){
+					var nowNewPageNum=parseInt($('#newPageSelect :selected').val());
+					window.location.href = 'index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + nowNewPageNum;
+					return false;
+				});
 				//设置滚动页面
 				jQuery('#camera_wrap_1').camera({
 					height: '400px',
@@ -47,11 +82,85 @@
 					time: 1000,
 				});
 			});
+			function hot_show(hotPageNum, hotHouseInfoList){
+				var count=8;
+				var htmlString='';
+				for(var i=(hotPageNum-1)*8; i<hotHouseInfoList.length; i++){
+					if(count == 0){
+						break;
+					}
+					var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + hotHouseInfoList[i].id + '"><img src="' + hotHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + hotHouseInfoList[i].zone + ' ' + hotHouseInfoList[i].type + '</h3><p>' + hotHouseInfoList[i].area + ' ' + hotHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + hotHouseInfoList[i].id + '">更多</a></div>';
+					htmlString += tempHtmlString;
+					count--;
+				}
+				$('#hot_project_items').html(htmlString);
+			}
+			function hot_page(hotPageNum, newPageNum, hot_total){
+				var htmlString='';
+				if(hotPageNum!=1){
+					htmlString+='<span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)-1) + '&newPageNum=' + (parseInt(newPageNum)) + '">&nbsp;上一页&nbsp;</a></span><span><select id="hotPageSelect" name="hotPageSelect">';
+				}else{
+					htmlString+='<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><select id="hotPageSelect" name="hotPageSelect">';
+				}
+				for(var i=1; i<=hot_total; i++){
+					var tempHtmlString='<option value="' + i + '"';
+					if(i==hotPageNum){
+						tempHtmlString+='selected';
+					}
+					tempHtmlString+='>' + i + '</option>';
+					htmlString+=tempHtmlString;
+				}
+				if(hotPageNum!=hot_total){
+					htmlString+='</select></span><span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)+1) + '&newPageNum=' + (parseInt(newPageNum)) + '">&nbsp;下一页&nbsp;</a></span>';
+				}else{
+					htmlString+='</select></span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+				}
+				$('#hot_page').html(htmlString);
+			}
+			function new_show(newPageNum, newHouseInfoList){
+				var count=8;
+				var htmlString='';
+				for(var i=(newPageNum-1)*8; i<newHouseInfoList.length; i++){
+					if(count == 0){
+						break;
+					}
+					var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + newHouseInfoList[i].id + '"><img src="' + newHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + newHouseInfoList[i].zone + ' ' + newHouseInfoList[i].type + '</h3><p>' + newHouseInfoList[i].area + ' ' + newHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + newHouseInfoList[i].id + '">更多</a></div>';
+					htmlString += tempHtmlString;
+					count--;
+				}
+				$('#new_project_items').html(htmlString);
+			}
+			function new_page(hotPageNum, newPageNum, new_total){
+				var htmlString='';
+				if(newPageNum!=1){
+					htmlString+='<span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + (parseInt(newPageNum)-1) + '">&nbsp;上一页&nbsp;</a></span><span><select id="newPageSelect" name="newPageSelect">';
+				}else{
+					htmlString+='<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><select id="newPageSelect" name="newPageSelect">';
+				}
+				for(var i=1; i<=new_total; i++){
+					var tempHtmlString='<option value="' + i + '"';
+					if(i==newPageNum){
+						tempHtmlString+='selected';
+					}
+					tempHtmlString+='>' + i + '</option>';
+					htmlString+=tempHtmlString;
+				}
+				if(newPageNum!=new_total){
+					htmlString+='</select></span><span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + (parseInt(newPageNum)+1) + '">&nbsp;下一页&nbsp;</a></span>';
+				}else{
+					htmlString+='</select></span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+				}
+				$('#new_page').html(htmlString);
+			}
 		  </script>
 	</head>
 	<body>
     	<input type="hidden" id="jsonArrayAdvertisement" value='<%=jsonArrayAdvertisement%>' />
         <input type="hidden" id="jsonArrayNews" value='<%=jsonArrayNews%>' />
+        <input type="hidden" id="jsonArrayNew" value='<%=jsonArrayNew%>' />
+        <input type="hidden" id="jsonArrayHot" value='<%=jsonArrayHot%>' />
+        <input type="hidden" id="hotPageNum" value='<%=hotPageNum%>' />
+        <input type="hidden" id="newPageNum" value='<%=newPageNum%>' />
    		<div class="main">
 		<!----start-header---->
 			<div class="header">
@@ -208,95 +317,117 @@
             </div>
             <div class="result">
             <div class="hotest_project">
+            	<a name="hot"></a>
             	<div class="picture_specify">热门推荐</div>
-            	<div class="mid-grid"><a href="house.html"><img src="images/example1.jpg" title="image-name" /></a>
+                <div id="hot_project_items">
+            	<div class="mid-grid"><a href="#hot"><img src="images/example1.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example2.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example2.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example3.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example3.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example4.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example4.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example5.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example5.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example6.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example6.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example7.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example7.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example8.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example8.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
+                </div>
                 <div class="clear"></div>
-                <span><a href="">&nbsp;1&nbsp;</a></span><span><a href="">&nbsp;2&nbsp;</a></span><span><a href="">&nbsp;下一页&nbsp;</a></span>
+                <div id="hot_page">
+                <span><a href="">&nbsp;上一页&nbsp;</a></span><span><select name="pageNum">
+   					<option value="1" selected>1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					</select></span><span><a href="">&nbsp;下一页&nbsp;</a></span>
+                </div>
             </div>
             <br><br>
             <div class="newest_project">
+            	<a name="new"></a>
             	<div class="picture_specify">最新楼盘</div>
-            	<div class="mid-grid"><a href="house.html"><img src="images/example1.jpg" title="image-name" /></a>
+                <div id="new_project_items">
+            	<div class="mid-grid"><a href="house.jsp"><img src="images/example1.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example2.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example2.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example3.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example3.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example4.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example4.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example5.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example5.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example6.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example6.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example7.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example7.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
-                <div class="mid-grid"><a href="house.html"><img src="images/example8.jpg" title="image-name" /></a>
+                <div class="mid-grid"><a href="house.jsp"><img src="images/example8.jpg" title="image-name" /></a>
 			 		<h3>北京市 海淀区 三房一厅</h3>
 			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.html">更多</a>
+			 		<a class="mid-button" href="house.jsp">更多</a>
 			 	</div>
+                </div>
                 <div class="clear"></div>
-                <span><a href="">&nbsp;1&nbsp;</a></span><span><a href="">&nbsp;2&nbsp;</a></span><span><a href="">&nbsp;下一页&nbsp;</a></span>
+                <div id="new_page">
+                <span><a href="">&nbsp;上一页&nbsp;</a></span><span><select name="pageNum">
+   					<option value="1" selected>1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					</select></span><span><a href="">&nbsp;下一页&nbsp;</a></span>
+                </div>
             </div>
             </div>
             <div class="clear"></div>

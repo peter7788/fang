@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page pageEncoding="utf-8"%>
 <%
-	String jsonArray = (String) application.getAttribute("houseInfoList");
+	String jsonArray = (String) application.getAttribute("hotHouseInfoList");
 %>
 <!--<%@taglib prefix="s" uri="/struts-tags"%>-->
 <!DOCTYPE HTML>
@@ -23,10 +23,8 @@
 				var houseInfoList=eval('('+$('#jsonArray').val()+')');
 				htmlString+='<table id="hotest_project_table"><tr><th>序号</th><th>区域</th><th>面积</th><th>价格</th><th>发布时间</th><th>操作</th></tr>';
 				for(var i=0; i<houseInfoList.length; i++){
-					if(houseInfoList[i].mark=="hot"){
-						var tempHtmlString='<tr><td>'+houseInfoList[i].id+'</td><td>'+houseInfoList[i].zone+'</td><td>'+houseInfoList[i].area+'</td><td>'+houseInfoList[i].price+'</td><td>'+houseInfoList[i].publish_time+'</td><td><form method="post" id="deleteForm" action="deleteHouseInfo.action"><span>&nbsp;<a href="'+houseInfoList[i].image_url+'"><input type="button" value="预览图片" /></a>&nbsp;</span><span><input type="submit" class="submitClass" value="删除" /></span><input type="hidden" name="id" value="' + houseInfoList[i].id + '" /></form></td></tr>';
-						htmlString += tempHtmlString;
-					}
+					var tempHtmlString='<tr><td>'+houseInfoList[i].id+'</td><td>'+houseInfoList[i].zone+'</td><td>'+houseInfoList[i].area+'</td><td>'+houseInfoList[i].price+'</td><td>'+houseInfoList[i].publish_time+'</td><td><form method="post" id="deleteForm" action="deleteHouseInfo.action"><span>&nbsp;<a href="'+houseInfoList[i].image_url+'"><input type="button" value="预览图片" /></a>&nbsp;</span><span><input type="submit" class="submitClass" value="删除" /></span><input type="hidden" name="id" value="' + houseInfoList[i].id + '" /></form></td></tr>';
+					htmlString += tempHtmlString;
 				}
 				htmlString+='</table>';
 				$('.ad_management_properties').html(htmlString);
@@ -37,6 +35,12 @@
 							required:true
 						},
 						address:{
+							required:true
+						},
+						sort:{
+							required:true
+						},
+						location:{
 							required:true
 						},
 						area:{
@@ -73,6 +77,12 @@
 						},
 						address:{
 							required:"请输入地址"
+						},
+						sort:{
+							required:"请输入种类"
+						},
+						location:{
+							required:"请输入地段"
 						},
 						area:{
 							required:"请输入面积"
@@ -174,13 +184,15 @@
                		<table>
                     	<tr><td>区域</td><td><input type="text" id="zone" name="zone" class="tableCss" value="" /></td></tr>
                         <tr><td>地址</td><td><input type="text" id="address" name="address" class="tableCss" value="" /></td></tr>
+                        <tr><td>种类</td><td><input type="text" id="sort" name="sort" class="tableCss" value="" /></td></tr>
+                        <tr><td>地段</td><td><input type="text" id="location" name="location" class="tableCss" value="" /></td></tr>
                         <tr><td>面积</td><td><input type="text" id="area" name="area" class="tableCss" value="" /></td></tr>
                         <tr><td>价格</td><td><input type="text" id="price" name="price" class="tableCss" value="" /></td></tr>
                         <tr><td>房型</td><td><input type="text" id="type" name="type" class="tableCss" value="" /></td></tr>
                         <tr><td>朝向</td><td><input type="text" id="direction" name="direction" class="tableCss" value="" /></td></tr>
                         <tr><td>楼层</td><td><input type="text" id="floor" name="floor" class="tableCss" value="" /></td></tr>
                         <tr><td>楼龄</td><td><input type="text" id="age" name="age" class="tableCss" value="" /></td></tr>
-                        <tr><td>装修类型</td><td><input type="text" id="decoration" name="decoration" class="tableCss" value="" /><input type="hidden" name="mark" value="new" /></td></tr>
+                        <tr><td>装修类型</td><td><input type="text" id="decoration" name="decoration" class="tableCss" value="" /><input type="hidden" name="mark" value="hot" /></td></tr>
                     	<tr><td>选择图片（293*200）</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
                         <tr><td>房屋描述</td><td><input type="text" id="description" name="description" class="tableCss" value="" /></td></tr>
                         <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>

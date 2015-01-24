@@ -80,9 +80,14 @@ public class HouseInfoAction extends ActionSupport {
 		HouseInfo houseInfo = new HouseInfoService().findById(id);
 		if (houseInfo != null) {
 			new HouseInfoService().deleteHouseInfo(houseInfo);
+			if (houseInfo.getMark().equals("new")) {
+				return "new";
+			} else {
+				return "hot";
+			}
+		} else {
+			return ERROR;
 		}
-
-		return SUCCESS;
 	}
 
 	/**
