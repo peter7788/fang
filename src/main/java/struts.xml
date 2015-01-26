@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-
+	<!-- 指定处理multipart/form-data的MIME类型（文件上传）请求的框架 -->
 	<constant name="struts.multipart.parser" value="jakarta"/>
+	<!-- 指定上传文件的临时保存路径 -->
 	<constant name="struts.multipart.saveDir" value="D:\\tmp"/>
 	<!-- 上传文件的大小不超过50M -->
 	<constant name="struts.multipart.maxSize" value="52428800"/>
+	<!-- 指定了加载国际化资源的文件 -->
+	<constant name="struts.custom.i18n.resources" value="mess_en_US.properties"/>
 
 	<package name="HouseInfoAction" extends="struts-default">
 		<action name="search" class="action.HouseInfoAction" method="search">
-			<result name="success">/test.jsp</result>
+			<result name="success">/house_blank.jsp</result>
 		</action>
 		<action name="addHouseInfo" class="action.HouseInfoAction" method="addHouseInfo">
 			<param name="savePath">uploadFiles</param>

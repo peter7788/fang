@@ -1,8 +1,15 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page pageEncoding="utf-8"%>
 <%
-	String jsonArrayNew = (String) application.getAttribute("newHouseInfoList");
-	String jsonArrayHot = (String) application.getAttribute("hotHouseInfoList");
+	String jsonArrayNew;
+	String jsonArrayHot;
+	if(request.getAttribute("searchHouseInfoList") == null){
+		jsonArrayNew = (String) application.getAttribute("newHouseInfoList");
+		jsonArrayHot = (String) application.getAttribute("hotHouseInfoList");
+	}else{
+		jsonArrayNew = (String) request.getAttribute("searchHouseInfoList");
+		jsonArrayHot = (String) request.getAttribute("blankList");
+	}
 	String pageNum;
 	if(request.getParameter("pageNum") != null){
 		pageNum = (String) request.getParameter("pageNum");

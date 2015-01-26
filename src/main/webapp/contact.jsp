@@ -7,7 +7,7 @@
 		<title>联系我们</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
 		<script type="text/javascript" src="js/map.js"></script>
-		<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyASlIihgkxQwX1KCbGcuUJzAn2cuZtdkW8&sensor=FALSE&language=zh-CN"></script>
+		<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyAGKhXCq1rV8H3tualauLpwBr9-YPtw34Q&sensor=FALSE&language=zh-CN"></script>
 	</head>
 	<body onLoad="map_initialize(1.3318916, 103.8493879, 'DTZ 戴德梁行\n480 大巴窖6巷\n#14-08 建屋发展局(东侧)\n新加坡')">
     	<div class="main">

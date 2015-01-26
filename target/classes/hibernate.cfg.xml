@@ -15,7 +15,7 @@
 		<!-- 连接数据库的用户名 -->
 		<property name="hibernate.connection.username">root</property>
 		<!-- 连接数据库的密码 -->
-		<property name="hibernate.connection.password">123</property>
+		<property name="hibernate.connection.password">#SCUT@2014forHelen*Qiu</property>
 		<!-- 是否在后台显示Hibernate生成的查询数据库的SQL语句，开发时设置为true，便于查询错误，运行时可以在Eclipse的控制台显示Hibernate执行的sql语句。项目部署后可以设置为false，提高运行效率 -->
 		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.format_sql">true</property>

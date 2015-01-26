@@ -22,7 +22,7 @@
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="js/jquery.lightbox.js"></script>
         <script type="text/javascript" src="js/map.js"></script>
-		<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyASlIihgkxQwX1KCbGcuUJzAn2cuZtdkW8&sensor=FALSE&language=zh-CN"></script>
+		<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyAGKhXCq1rV8H3tualauLpwBr9-YPtw34Q&sensor=FALSE&language=zh-CN"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
 				var houseInfoList=eval('('+$('#jsonArray').val()+')');

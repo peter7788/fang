@@ -166,7 +166,7 @@
 			<div class="header">
 				<div class="wrap">
 				<div class="logo">
-					<a href="index.jsp"><img src="images/logo.png" title="logo" /></a>
+					<a href="index.jsp"><img src="images/logo.jpg" title="logo" /></a>
 				</div>
 				<div class="top-nav">
 					<ul>

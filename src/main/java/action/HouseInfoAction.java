@@ -3,7 +3,8 @@ package action;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import net.sf.json.JSONArray;
 import org.apache.struts2.ServletActionContext;
 import model.HouseInfo;
 import service.HouseInfoService;
@@ -136,16 +137,16 @@ public class HouseInfoAction extends ActionSupport {
 			}
 			switch (location) {
 			case "school":
-				hql += " h.location='school'";
+				hql += " h.location='靠近学校'";
 				break;
 			case "metro":
-				hql += " h.location='metro'";
+				hql += " h.location='靠近地铁'";
 				break;
 			case "hospital":
-				hql += " h.location='hospital'";
+				hql += " h.location='医院附近'";
 				break;
 			case "convenient":
-				hql += " h.location='convenient'";
+				hql += " h.location='交通方便'";
 				break;
 			default:
 				break;
@@ -253,17 +254,24 @@ public class HouseInfoAction extends ActionSupport {
 			}
 		}
 
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		List<HouseInfo> houseInfo_list;
+		HttpServletRequest request = ServletActionContext.getRequest();
+		List<HouseInfo> searchHouseInfoList;
 		if (hql != null && !hql.equals("")) {
-			houseInfo_list = new HouseInfoService().findByCriteria(hql);
+			searchHouseInfoList = new HouseInfoService().findByCriteria(hql);
 		} else {
 			// System.out.println("不带条件查询！");
-			houseInfo_list = new HouseInfoService().findAll();
+			searchHouseInfoList = new HouseInfoService().findAll();
 		}
-		session.setAttribute("houseInfo_list", houseInfo_list);
-		System.out.println("session属性设置成功！");
-		System.out.println(houseInfo_list.size());
+		if (searchHouseInfoList != null) {
+			JSONArray jsonArray = new JSONArray();
+			for (HouseInfo houseInfo : searchHouseInfoList) {
+				jsonArray.add(houseInfo.toJson());
+			}
+			request.setAttribute("searchHouseInfoList", jsonArray.toString());
+			request.setAttribute("blankList", new JSONArray().toString());
+			System.out.println("request属性设置成功！");
+			System.out.println("检索结果个数为：" + searchHouseInfoList.size());
+		}
 
 		return SUCCESS;
 	}
