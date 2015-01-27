@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import model.News;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
@@ -97,7 +98,14 @@ public class NewsService extends TotalService {
 		ServletContext context = ServletActionContext.getServletContext();
 		String newsListString = (String) context.getAttribute("newsList");
 		JSONArray jsonArray = (JSONArray) JSONSerializer.toJSON(newsListString);
-		jsonArray.remove(news.toJson());
+		for (int i = 0; i < jsonArray.size(); i++) {
+			News temp = (News) JSONObject.toBean((JSONObject) jsonArray.get(i),
+					News.class);
+			if (temp.getId() == news.getId()) {
+				jsonArray.remove(i);
+				break;
+			}
+		}
 		context.setAttribute("newsList", jsonArray.toString());
 	}
 }

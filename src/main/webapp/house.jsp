@@ -3,10 +3,19 @@
 <%
 	String jsonArray = (String) application.getAttribute("houseInfoList");
 	String id;
+	String latitude;
+	String longitude;
 	if(request.getParameter("id") != null){
 		id = (String) request.getParameter("id");
 	}else{
 		id = "1";
+	}
+	if(request.getParameter("latitude") != null && request.getParameter("longitude") != null){
+		latitude = (String) request.getParameter("latitude");
+		longitude = (String) request.getParameter("longitude");
+	}else{
+		latitude = "0";
+		longitude = "0";
 	}
 %>
 <!--<%@taglib prefix="s" uri="/struts-tags"%>-->
@@ -44,7 +53,7 @@
 			});
 		</script>
 	</head>
-	<body onload="map_initialize(1.3318916, 103.8493879, '北京市\n海淀区\n五环东路36号')">
+	<body onLoad="map_initialize(<%=latitude%>, <%=longitude%>, 'here')">
     	<input type="hidden" id="jsonArray" value='<%=jsonArray%>' />
         <input type="hidden" id="id" value='<%=id%>' />
     	<div class="main">

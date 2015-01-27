@@ -65,6 +65,16 @@
 				<comment>装修类型</comment>
 			</column>
 		</property>
+		<property name="latitude" type="java.lang.String">
+			<column name="latitude" length="255" not-null="true">
+				<comment>纬度</comment>
+			</column>
+		</property>
+		<property name="longitude" type="java.lang.String">
+			<column name="longitude" length="255" not-null="true">
+				<comment>经度</comment>
+			</column>
+		</property>
 		<property name="mark" type="java.lang.String">
 			<column name="mark" length="255" not-null="true">
 				<comment>标签</comment>

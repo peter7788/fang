@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import model.Subscriber;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
@@ -96,7 +97,14 @@ public class SubscriberService extends TotalService {
 				.getAttribute("subscriberList");
 		JSONArray jsonArray = (JSONArray) JSONSerializer
 				.toJSON(subscriberListString);
-		jsonArray.remove(subscriber.toJson());
+		for (int i = 0; i < jsonArray.size(); i++) {
+			Subscriber temp = (Subscriber) JSONObject.toBean(
+					(JSONObject) jsonArray.get(i), Subscriber.class);
+			if (temp.getEmail().equals(subscriber.getEmail())) {
+				jsonArray.remove(i);
+				break;
+			}
+		}
 		context.setAttribute("subscriberList", jsonArray.toString());
 	}
 }

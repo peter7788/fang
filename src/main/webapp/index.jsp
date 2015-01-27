@@ -89,7 +89,7 @@
 					if(count == 0){
 						break;
 					}
-					var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + hotHouseInfoList[i].id + '"><img src="' + hotHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + hotHouseInfoList[i].zone + ' ' + hotHouseInfoList[i].type + '</h3><p>' + hotHouseInfoList[i].area + ' ' + hotHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + hotHouseInfoList[i].id + '">更多</a></div>';
+					var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + hotHouseInfoList[i].id + '&latitude=' + newHouseInfoList[i].latitude + '&longitude=' + newHouseInfoList[i].longitude + '"><img src="' + hotHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + hotHouseInfoList[i].zone + ' ' + hotHouseInfoList[i].type + '</h3><p>' + hotHouseInfoList[i].area + ' ' + hotHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + hotHouseInfoList[i].id + '&latitude=' + newHouseInfoList[i].latitude + '&longitude=' + newHouseInfoList[i].longitude + '">更多</a></div>';
 					htmlString += tempHtmlString;
 					count--;
 				}
@@ -124,7 +124,7 @@
 					if(count == 0){
 						break;
 					}
-					var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + newHouseInfoList[i].id + '"><img src="' + newHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + newHouseInfoList[i].zone + ' ' + newHouseInfoList[i].type + '</h3><p>' + newHouseInfoList[i].area + ' ' + newHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + newHouseInfoList[i].id + '">更多</a></div>';
+					var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + newHouseInfoList[i].id + '&latitude=' + newHouseInfoList[i].latitude + '&longitude=' + newHouseInfoList[i].longitude + '"><img src="' + newHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + newHouseInfoList[i].zone + ' ' + newHouseInfoList[i].type + '</h3><p>' + newHouseInfoList[i].area + ' ' + newHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + newHouseInfoList[i].id + '&latitude=' + newHouseInfoList[i].latitude + '&longitude=' + newHouseInfoList[i].longitude + '">更多</a></div>';
 					htmlString += tempHtmlString;
 					count--;
 				}
@@ -209,7 +209,7 @@
                     <div class="clear"> </div>
                 </div>
          	</div>
-			<a href="join_us.html"><div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
+			<a href="join_us.jsp"><div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
             	<div data-src="images/image1.jpg"></div> 
 				<div data-src="images/image2.jpg"></div>
 				<div data-src="images/image3.jpg"></div>
@@ -223,8 +223,8 @@
             <div class="main_menu_div">
         		<ul>
 					<li><a href="about.jsp" title="Our service">我们的服务</a></li>
-               	 	<li><a href="http://baike.baidu.com/link?url=rZ3OSfZLrjH1guhgU-NAhFVQT3cUo2vBKu4ZtaCK06Srd22TwoFc-Ceh3Cu7xEfCVd47duHRcCjqAS8HIdojrK" title="Introduction">新加坡简介</a></li>
-                	<li><a href="http://www.mfa.gov.sg/content/mfa/overseasmission/beijing/ch/visa_information/bizSocialPRC.html" title="Policy">购房政策</a></li>
+               	 	<li><a href="singapore_introduction.jsp" title="Introduction">新加坡简介</a></li>
+                	<li><a href="house_policy.jsp" title="Policy">购房政策</a></li>
 					<li><a href="house_blank.jsp" title="Houses Infomation">房源信息</a></li>
                		<li><a href="downloadFile.jsp" title="Download">下载中心</a></li>
                 	<li><a href="contact.jsp" title="Contact us">联系我们</a></li>

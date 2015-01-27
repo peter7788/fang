@@ -26,6 +26,8 @@ public class HouseInfoAction extends ActionSupport {
 	private String floor;// 房屋楼层信息
 	private String age;// 房屋使用年数
 	private String decoration;// 房屋装修情况
+	private String latitude;// 纬度
+	private String longitude;// 经度
 	private String mark;// 标签
 	private String image_url;// 图片的url
 	private String description;// 图片描述
@@ -57,6 +59,8 @@ public class HouseInfoAction extends ActionSupport {
 			houseInfo.setFloor(floor);
 			houseInfo.setAge(age);
 			houseInfo.setDecoration(decoration);
+			houseInfo.setLatitude(latitude);
+			houseInfo.setLongitude(longitude);
 			houseInfo.setMark(mark);
 			houseInfo.setPublish_time(new Date());
 			houseInfo.setImage_url(savePath + "/" + getUploadFileName());
@@ -370,6 +374,22 @@ public class HouseInfoAction extends ActionSupport {
 
 	public void setDecoration(String decoration) {
 		this.decoration = decoration;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 
 	public String getMark() {

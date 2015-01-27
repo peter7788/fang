@@ -31,6 +31,10 @@ public class HouseInfo implements Serializable {
 	private String age;
 	// 装修类型
 	private String decoration;
+	// 纬度
+	private String latitude;
+	// 经度
+	private String longitude;
 	// 标签
 	private String mark;
 	// 发布时间
@@ -134,6 +138,22 @@ public class HouseInfo implements Serializable {
 		this.decoration = decoration;
 	}
 
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
 	public String getMark() {
 		return mark;
 	}
@@ -172,6 +192,8 @@ public class HouseInfo implements Serializable {
 		temp.put("floor", floor);
 		temp.put("age", age);
 		temp.put("decoration", decoration);
+		temp.put("latitude", latitude);
+		temp.put("longitude", longitude);
 		temp.put("mark", mark);
 		temp.put("publish_time", publish_time.toString());
 		temp.put("image_url", image_url);

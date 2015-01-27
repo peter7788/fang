@@ -4,13 +4,14 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import model.Advertisement;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import dao.AdvertisementDao;
 
 public class AdvertisementService extends TotalService {
-	
+
 	/**
 	 * 添加广告
 	 * 
@@ -107,7 +108,14 @@ public class AdvertisementService extends TotalService {
 				.getAttribute("advertisementList");
 		JSONArray jsonArray = (JSONArray) JSONSerializer
 				.toJSON(advertisementListString);
-		jsonArray.remove(advertisement.toJson());
+		for (int i = 0; i < jsonArray.size(); i++) {
+			Advertisement temp = (Advertisement) JSONObject.toBean(
+					(JSONObject) jsonArray.get(i), Advertisement.class);
+			if (temp.getId() == advertisement.getId()) {
+				jsonArray.remove(i);
+				break;
+			}
+		}
 		context.setAttribute("advertisementList", jsonArray.toString());
 	}
 }

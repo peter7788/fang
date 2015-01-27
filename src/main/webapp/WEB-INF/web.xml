@@ -71,7 +71,7 @@
 	<!-- 初始化message数据 -->  
 	<listener>  
     	<listener-class>listener.InitListener</listener-class>  
-	</listener>  
+	</listener>
   	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

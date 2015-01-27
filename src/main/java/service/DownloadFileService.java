@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import model.DownloadFile;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
@@ -101,7 +102,14 @@ public class DownloadFileService extends TotalService {
 				.getAttribute("downloadFileList");
 		JSONArray jsonArray = (JSONArray) JSONSerializer
 				.toJSON(downloadFileListString);
-		jsonArray.remove(downloadFile.toJson());
+		for (int i = 0; i < jsonArray.size(); i++) {
+			DownloadFile temp = (DownloadFile) JSONObject.toBean(
+					(JSONObject) jsonArray.get(i), DownloadFile.class);
+			if (temp.getId() == downloadFile.getId()) {
+				jsonArray.remove(i);
+				break;
+			}
+		}
 		context.setAttribute("downloadFileList", jsonArray.toString());
 	}
 }

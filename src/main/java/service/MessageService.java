@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import model.Message;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
@@ -87,7 +88,14 @@ public class MessageService extends TotalService {
 		String messageListString = (String) context.getAttribute("messageList");
 		JSONArray jsonArray = (JSONArray) JSONSerializer
 				.toJSON(messageListString);
-		jsonArray.remove(message.toJson());
+		for (int i = 0; i < jsonArray.size(); i++) {
+			Message temp = (Message) JSONObject.toBean(
+					(JSONObject) jsonArray.get(i), Message.class);
+			if (temp.getId() == message.getId()) {
+				jsonArray.remove(i);
+				break;
+			}
+		}
 		context.setAttribute("messageList", jsonArray.toString());
 	}
 }

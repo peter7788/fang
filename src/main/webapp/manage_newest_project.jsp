@@ -64,6 +64,12 @@
 						decoration:{
 							required:true
 						},
+						latitude:{
+							required:true
+						},
+						longitude:{
+							required:true
+						},
 						upload:{
 							required:true
 						},
@@ -104,6 +110,12 @@
 						},
 						decoration:{
 							required:"请输入装修类型"
+						},
+						latitude:{
+							required:"请输入纬度"
+						},
+						longitude:{
+							required:"请输入经度"
 						},
 						upload:{
 							required:"请选择一幅图片"
@@ -193,6 +205,8 @@
                         <tr><td>楼层</td><td><input type="text" id="floor" name="floor" class="tableCss" value="" /></td></tr>
                         <tr><td>楼龄</td><td><input type="text" id="age" name="age" class="tableCss" value="" /></td></tr>
                         <tr><td>装修类型</td><td><input type="text" id="decoration" name="decoration" class="tableCss" value="" /><input type="hidden" name="mark" value="new" /></td></tr>
+                        <tr><td>纬度</td><td><input type="text" id="latitude" name="latitude" class="tableCss" value="" /></td></tr>
+                        <tr><td>经度</td><td><input type="text" id="longitude" name="longitude" class="tableCss" value="" /></td></tr>
                     	<tr><td>选择图片（293*200）</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
                         <tr><td>房屋描述</td><td><input type="text" id="description" name="description" class="tableCss" value="" /></td></tr>
                         <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>

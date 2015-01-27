@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 import javax.servlet.ServletContext;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
@@ -132,14 +133,28 @@ public class HouseInfoService extends TotalService {
 					.getAttribute("newHouseInfoList");
 			JSONArray jsonArray = (JSONArray) JSONSerializer
 					.toJSON(newHouseInfoListString);
-			jsonArray.remove(houseInfo.toJson());
+			for (int i = 0; i < jsonArray.size(); i++) {
+				HouseInfo temp = (HouseInfo) JSONObject.toBean(
+						(JSONObject) jsonArray.get(i), HouseInfo.class);
+				if (temp.getId() == houseInfo.getId()) {
+					jsonArray.remove(i);
+					break;
+				}
+			}
 			context.setAttribute("newHouseInfoList", jsonArray.toString());
 		} else {
 			String hotHouseInfoListString = (String) context
 					.getAttribute("hotHouseInfoList");
 			JSONArray jsonArray = (JSONArray) JSONSerializer
 					.toJSON(hotHouseInfoListString);
-			jsonArray.remove(houseInfo.toJson());
+			for (int i = 0; i < jsonArray.size(); i++) {
+				HouseInfo temp = (HouseInfo) JSONObject.toBean(
+						(JSONObject) jsonArray.get(i), HouseInfo.class);
+				if (temp.getId() == houseInfo.getId()) {
+					jsonArray.remove(i);
+					break;
+				}
+			}
 			context.setAttribute("hotHouseInfoList", jsonArray.toString());
 		}
 	}
