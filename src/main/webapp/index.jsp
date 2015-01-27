@@ -89,7 +89,7 @@
 					if(count == 0){
 						break;
 					}
-					var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + hotHouseInfoList[i].id + '&latitude=' + newHouseInfoList[i].latitude + '&longitude=' + newHouseInfoList[i].longitude + '"><img src="' + hotHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + hotHouseInfoList[i].zone + ' ' + hotHouseInfoList[i].type + '</h3><p>' + hotHouseInfoList[i].area + ' ' + hotHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + hotHouseInfoList[i].id + '&latitude=' + newHouseInfoList[i].latitude + '&longitude=' + newHouseInfoList[i].longitude + '">更多</a></div>';
+					var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + hotHouseInfoList[i].id + '&latitude=' + hotHouseInfoList[i].latitude + '&longitude=' + hotHouseInfoList[i].longitude + '"><img src="' + hotHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + hotHouseInfoList[i].zone + ' ' + hotHouseInfoList[i].type + '</h3><p>' + hotHouseInfoList[i].area + ' ' + hotHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + hotHouseInfoList[i].id + '&latitude=' + hotHouseInfoList[i].latitude + '&longitude=' + hotHouseInfoList[i].longitude + '">更多</a></div>';
 					htmlString += tempHtmlString;
 					count--;
 				}

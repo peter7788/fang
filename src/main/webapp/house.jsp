@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page pageEncoding="utf-8"%>
 <%
-	String jsonArray = (String) application.getAttribute("houseInfoList");
+	String jsonArrayNew = (String) application.getAttribute("newHouseInfoList");
+	String jsonArrayHot = (String) application.getAttribute("hotHouseInfoList");
 	String id;
 	String latitude;
 	String longitude;
@@ -34,13 +35,29 @@
 		<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyAGKhXCq1rV8H3tualauLpwBr9-YPtw34Q&sensor=FALSE&language=zh-CN"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
-				var houseInfoList=eval('('+$('#jsonArray').val()+')');
+				var hotHouseInfoList=eval('('+$('#jsonArrayHot').val()+')');
+				var newHouseInfoList=eval('('+$('#jsonArrayNew').val()+')');
+				var houseInfoList;
 				var id=eval('('+$('#id').val()+')');
+				var mark=0;
 				var htmlString='';
-				for(var i=0; i<houseInfoList.length; i++){
-					if(houseInfoList[i].id==id){
-						var tempHtmlString='<div class="single_image light"><a href="'+ houseInfoList[i].image_url + '"><img src="'+ houseInfoList[i].image_url + '" /></a></div> <div class="house_properties"><table><tr><td>区域</td><td>'+ houseInfoList[i].zone + '</td><td>地址</td><td>'+ houseInfoList[i].address + '</td></tr><tr><td>种类</td><td>'+ houseInfoList[i].sort + '</td><td>地段</td><td>'+ houseInfoList[i].location + '</td></tr><tr><td>面积</td><td>'+ houseInfoList[i].area + '</td><td>价格</td><td>'+ houseInfoList[i].price + '</td></tr><tr><td>房型</td><td>'+ houseInfoList[i].type + '</td><td>朝向</td><td>'+ houseInfoList[i].direction + '</td></tr><tr><td>楼层</td><td>'+ houseInfoList[i].floor + '</td><td>楼龄</td><td>'+ houseInfoList[i].age + '</td></tr><tr><td>装修类型</td><td>'+ houseInfoList[i].decoration + '</td><td>发布时间</td><td>'+ houseInfoList[i].publish_time + '</td></tr></table></div><div class="clear"></div>';
-						htmlString += tempHtmlString;
+				while(true){
+					if(mark==0){
+						houseInfoList=hotHouseInfoList;
+						mark++;
+					}else if(mark==1){
+						houseInfoList=newHouseInfoList;
+						mark++;
+					}else{
+						break;
+					}
+					for(var i=0; i<houseInfoList.length; i++){
+						if(houseInfoList[i].id==id){
+							var tempHtmlString='<div class="single_image light"><a href="'+ houseInfoList[i].image_url + '"><img src="'+ houseInfoList[i].image_url + '" /></a></div> <div class="house_properties"><table><tr><td>区域</td><td>'+ houseInfoList[i].zone + '</td><td>地址</td><td>'+ houseInfoList[i].address + '</td></tr><tr><td>种类</td><td>'+ houseInfoList[i].sort + '</td><td>地段</td><td>'+ houseInfoList[i].location + '</td></tr><tr><td>面积</td><td>'+ houseInfoList[i].area + '</td><td>价格</td><td>'+ houseInfoList[i].price + '</td></tr><tr><td>房型</td><td>'+ houseInfoList[i].type + '</td><td>朝向</td><td>'+ houseInfoList[i].direction + '</td></tr><tr><td>楼层</td><td>'+ houseInfoList[i].floor + '</td><td>楼龄</td><td>'+ houseInfoList[i].age + '</td></tr><tr><td>装修类型</td><td>'+ houseInfoList[i].decoration + '</td><td>发布时间</td><td>'+ houseInfoList[i].publish_time + '</td></tr></table></div><div class="clear"></div>';
+							htmlString += tempHtmlString;
+							mark=2;
+							break;
+						}
 					}
 				}
 				$('.level1').html(htmlString);
@@ -54,7 +71,8 @@
 		</script>
 	</head>
 	<body onLoad="map_initialize(<%=latitude%>, <%=longitude%>, 'here')">
-    	<input type="hidden" id="jsonArray" value='<%=jsonArray%>' />
+    	<input type="hidden" id="jsonArrayNew" value='<%=jsonArrayNew%>' />
+        <input type="hidden" id="jsonArrayHot" value='<%=jsonArrayHot%>' />
         <input type="hidden" id="id" value='<%=id%>' />
     	<div class="main">
 		<!----start-header---->
