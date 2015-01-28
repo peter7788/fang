@@ -44,7 +44,8 @@
 							required:true
 						},
 						area:{
-							required:true
+							required:true,
+							number:true
 						},
 						price:{
 							required:true
@@ -56,10 +57,12 @@
 							required:true
 						},
 						floor:{
-							required:true
+							required:true,
+							number:true
 						},
 						age:{
-							required:true
+							required:true,
+							number:true
 						},
 						decoration:{
 							required:true
@@ -91,7 +94,8 @@
 							required:"请输入地段"
 						},
 						area:{
-							required:"请输入面积"
+							required:"请输入面积",
+							number:"仅限输入数字"
 						},
 						price:{
 							required:"请输入价格"
@@ -103,10 +107,12 @@
 							required:"请输入房屋朝向"
 						},
 						floor:{
-							required:"请输入楼层"
+							required:"请输入楼层",
+							number:"仅限输入数字"
 						},
 						age:{
-							required:"请输入楼龄"
+							required:"请输入房龄",
+							number:"仅限输入数字"
 						},
 						decoration:{
 							required:"请输入装修类型"

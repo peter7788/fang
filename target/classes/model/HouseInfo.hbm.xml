@@ -30,8 +30,8 @@
 				<comment>地段</comment>
 			</column>
 		</property>
-		<property name="area" type="java.lang.String">
-			<column name="area" length="255" not-null="true">
+		<property name="area" type="java.lang.Integer">
+			<column name="area" not-null="true">
 				<comment>面积</comment>
 			</column>
 		</property>
@@ -50,13 +50,13 @@
 				<comment>朝向</comment>
 			</column>
 		</property>
-		<property name="floor" type="java.lang.String">
-			<column name="floor" length="255" not-null="true">
+		<property name="floor" type="java.lang.Integer">
+			<column name="floor" not-null="true">
 				<comment>楼层</comment>
 			</column>
 		</property>
-		<property name="age" type="java.lang.String">
-			<column name="age" length="255" not-null="true">
+		<property name="age" type="java.lang.Integer">
+			<column name="age" not-null="true">
 				<comment>房龄</comment>
 			</column>
 		</property>

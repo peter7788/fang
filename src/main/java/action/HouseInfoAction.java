@@ -19,12 +19,12 @@ public class HouseInfoAction extends ActionSupport {
 	private String address;// 房屋地址
 	private String sort;// 种类
 	private String location;// 地段
-	private String area;// 房屋面积
+	private int area;// 房屋面积
 	private String price;// 房屋价格
 	private String type;// 房屋类型
 	private String direction;// 房屋朝向
-	private String floor;// 房屋楼层信息
-	private String age;// 房屋使用年数
+	private int floor;// 房屋楼层信息
+	private int age;// 房屋使用年数
 	private String decoration;// 房屋装修情况
 	private String latitude;// 纬度
 	private String longitude;// 经度
@@ -188,7 +188,7 @@ public class HouseInfoAction extends ActionSupport {
 		}
 
 		/* 添加房屋面积检索条件 */
-		if (area != null && !area.equals("")) {
+		if (area != 0) {
 			if (!flag) {
 				flag = true;
 				hql += " where";
@@ -196,34 +196,34 @@ public class HouseInfoAction extends ActionSupport {
 				hql += " and";
 			}
 			switch (area) {
-			case "lower50":
+			case 50:
 				hql += " h.area<'50'";
 				break;
-			case "50to70":
+			case 5070:
 				hql += " h.area between '50' and '70'";
 				break;
-			case "70to90":
+			case 7090:
 				hql += " h.area between '70' and '90'";
 				break;
-			case "90to110":
+			case 90110:
 				hql += " h.area between '90' and '110'";
 				break;
-			case "110to130":
+			case 110130:
 				hql += " h.area between '110' and '130'";
 				break;
-			case "130to150":
+			case 130150:
 				hql += " h.area between '130' and '150'";
 				break;
-			case "150to200":
+			case 150200:
 				hql += " h.area between '150' and '200'";
 				break;
-			case "200to300":
+			case 200300:
 				hql += " h.area between '200' and '300'";
 				break;
-			case "300to500":
+			case 300500:
 				hql += " h.area between '300' and '500'";
 				break;
-			case "over500":
+			case 500:
 				hql += " h.area>'500'";
 				break;
 			default:
@@ -233,7 +233,7 @@ public class HouseInfoAction extends ActionSupport {
 		}
 
 		/* 添加房屋使用年数检索条件 */
-		if (age != null && !age.equals("")) {
+		if (age != 0) {
 			if (!flag) {
 				flag = true;
 				hql += " where";
@@ -241,16 +241,16 @@ public class HouseInfoAction extends ActionSupport {
 				hql += " and";
 			}
 			switch (age) {
-			case "lower5":
+			case 5:
 				hql += " h.age<'5'";
 				break;
-			case "5to10":
+			case 510:
 				hql += " h.age between '5' and '10'";
 				break;
-			case "10to20":
+			case 1020:
 				hql += " h.age between '10' and '20'";
 				break;
-			case "over20":
+			case 20:
 				hql += " h.age>'20'";
 				break;
 			default:
@@ -320,11 +320,11 @@ public class HouseInfoAction extends ActionSupport {
 		this.location = location;
 	}
 
-	public String getArea() {
+	public int getArea() {
 		return area;
 	}
 
-	public void setArea(String area) {
+	public void setArea(int area) {
 		this.area = area;
 	}
 
@@ -352,19 +352,19 @@ public class HouseInfoAction extends ActionSupport {
 		this.direction = direction;
 	}
 
-	public String getFloor() {
+	public int getFloor() {
 		return floor;
 	}
 
-	public void setFloor(String floor) {
+	public void setFloor(int floor) {
 		this.floor = floor;
 	}
 
-	public String getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 

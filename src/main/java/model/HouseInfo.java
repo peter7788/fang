@@ -18,7 +18,7 @@ public class HouseInfo implements Serializable {
 	// 地段
 	private String location;
 	// 面积
-	private String area;
+	private int area;
 	// 价格
 	private String price;
 	// 房型
@@ -26,9 +26,9 @@ public class HouseInfo implements Serializable {
 	// 朝向
 	private String direction;
 	// 楼层
-	private String floor;
+	private int floor;
 	// 楼龄
-	private String age;
+	private int age;
 	// 装修类型
 	private String decoration;
 	// 纬度
@@ -82,11 +82,11 @@ public class HouseInfo implements Serializable {
 		this.location = location;
 	}
 
-	public String getArea() {
+	public int getArea() {
 		return area;
 	}
 
-	public void setArea(String area) {
+	public void setArea(int area) {
 		this.area = area;
 	}
 
@@ -114,19 +114,19 @@ public class HouseInfo implements Serializable {
 		this.direction = direction;
 	}
 
-	public String getFloor() {
+	public int getFloor() {
 		return floor;
 	}
 
-	public void setFloor(String floor) {
+	public void setFloor(int floor) {
 		this.floor = floor;
 	}
 
-	public String getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 

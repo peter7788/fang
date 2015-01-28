@@ -262,25 +262,25 @@
 					</select></td></tr>
 					<tr><td>面积<label></label></td>
    					<td><select name="area">
-   					<option value ="">不限</option>
-					<option value ="lower50">50平米以下</option>
-					<option value ="50to70">50-70平米</option>
-					<option value="70to90">70-90平米</option>
-					<option value="90to110">90-110平米</option>
-					<option value="110to130">110-130平米</option>
-					<option value="130to150">130-150平米</option>
-					<option value="150to200">150-200平米</option>
-					<option value="200to300">200-300平米</option>
-					<option value="300to500">300-500平米</option>
-					<option value="over500">500平米以上</option>
+   					<option value ="0">不限</option>
+					<option value ="50">50平米以下</option>
+					<option value ="5070">50-70平米</option>
+					<option value="7090">70-90平米</option>
+					<option value="90110">90-110平米</option>
+					<option value="110130">110-130平米</option>
+					<option value="130150">130-150平米</option>
+					<option value="150200">150-200平米</option>
+					<option value="200300">200-300平米</option>
+					<option value="300500">300-500平米</option>
+					<option value="500">500平米以上</option>
 					</select></td></tr>
              		<tr><td>房龄<label></label></td>
    					<td><select name="age">
-   					<option value ="">不限</option>
-					<option value ="lower5">5年以下</option>
-					<option value ="5to10">5-10年</option>
-					<option value="10to20">10-20年</option>
-					<option value="over20">20年以上</option>
+   					<option value ="0">不限</option>
+					<option value ="5">5年以下</option>
+					<option value ="510">5-10年</option>
+					<option value="1020">10-20年</option>
+					<option value="20">20年以上</option>
 					</select></td></tr>
                 <tr><td><input type="submit" id="comfirm" value="检索" /></td>
                 <td><input type="reset" id="reset" value="重置" /></td>
