@@ -8,6 +8,7 @@ import net.sf.json.JSONArray;
 import org.apache.struts2.ServletActionContext;
 import model.HouseInfo;
 import service.HouseInfoService;
+import util.List2String;
 import util.Upload;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -33,9 +34,24 @@ public class HouseInfoAction extends ActionSupport {
 	private String description;// 图片描述
 	private String savePath;// 上传文件的保存路径
 	private String sizeLimit;// 上传文件的大小限制
-	private List<File> upload;// 上传文件
-	private List<String> uploadContentType;// 上传文件类型
-	private List<String> uploadFileName;// 上传文件的文件名
+	private List<File> uploadDisplay;// 上传展示图片
+	private List<String> uploadDisplayContentType;// 上传展示图片
+	private List<String> uploadDisplayFileName;// 上传展示图片
+	private List<File> uploadDisplayThumbnail;// 上传展示图片缩略图
+	private List<String> uploadDisplayThumbnailContentType;// 上传展示图片缩略图
+	private List<String> uploadDisplayThumbnailFileName;// 上传展示图片缩略图
+	private List<File> uploadLocationMap;// 上传Location Map
+	private List<String> uploadLocationMapContentType;// 上传Location Map
+	private List<String> uploadLocationMapFileName;// 上传Location Map
+	private List<File> uploadSitePlan;// 上传Site Plan
+	private List<String> uploadSitePlanContentType;// 上传Site Plan
+	private List<String> uploadSitePlanFileName;// 上传Site Plan
+	private List<File> uploadFloorPlan;// 上传Floor Plan
+	private List<String> uploadFloorPlanContentType;// 上传Floor Plan
+	private List<String> uploadFloorPlanFileName;// 上传Floor Plan
+	private List<File> uploadEBrochure;// 上传E-Brochure
+	private List<String> uploadEBrochureContentType;// 上传E-Brochure
+	private List<String> uploadEBrochureFileName;// 上传E-Brochure
 
 	/**
 	 * 添加房屋信息
@@ -44,7 +60,32 @@ public class HouseInfoAction extends ActionSupport {
 	 * @throws Exception
 	 */
 	public String addHouseInfo() throws Exception {
-		for (File file : getUpload()) {
+		for (File file : getUploadDisplay()) {
+			if (file.length() > Long.parseLong(sizeLimit)) {
+				return ERROR;
+			}
+		}
+		for (File file : getUploadDisplayThumbnail()) {
+			if (file.length() > Long.parseLong(sizeLimit)) {
+				return ERROR;
+			}
+		}
+		for (File file : getUploadLocationMap()) {
+			if (file.length() > Long.parseLong(sizeLimit)) {
+				return ERROR;
+			}
+		}
+		for (File file : getUploadSitePlan()) {
+			if (file.length() > Long.parseLong(sizeLimit)) {
+				return ERROR;
+			}
+		}
+		for (File file : getUploadFloorPlan()) {
+			if (file.length() > Long.parseLong(sizeLimit)) {
+				return ERROR;
+			}
+		}
+		for (File file : getUploadEBrochure()) {
 			if (file.length() > Long.parseLong(sizeLimit)) {
 				return ERROR;
 			}
@@ -65,16 +106,32 @@ public class HouseInfoAction extends ActionSupport {
 		houseInfo.setLongitude(longitude);
 		houseInfo.setMark(mark);
 		houseInfo.setPublish_time(new Date());
-		String tempUrl = "";
-		for (String fileName : getUploadFileName()) {
-			tempUrl += savePath + "/" + fileName + ";";
-		}
-		houseInfo.setImage_url(tempUrl);
+		houseInfo.setDisplay_images_url(List2String.toString(savePath + "/",
+				getUploadDisplayFileName()));
+		houseInfo.setDisplay_thumbnail_images_url(List2String.toString(savePath
+				+ "/", getUploadDisplayThumbnailFileName()));
+		houseInfo.setLocation_map_url(List2String.toString(savePath + "/",
+				getUploadLocationMapFileName()));
+		houseInfo.setSite_plan_url(List2String.toString(savePath + "/",
+				getUploadSitePlanFileName()));
+		houseInfo.setFloor_plan_url(List2String.toString(savePath + "/",
+				getUploadFloorPlanFileName()));
+		houseInfo.setE_brochure_url(List2String.toString(savePath + "/",
+				getUploadEBrochureFileName()));
 		new HouseInfoService().addHouseInfo(houseInfo);
-		for (int i = 0; i < getUploadFileName().size(); i++) {
-			Upload.upload(getSavePath(), getUploadFileName().get(i),
-					getUpload().get(i));
-		}
+
+		Upload.uploadList(getSavePath(), getUploadDisplayFileName(),
+				getUploadDisplay());
+		Upload.uploadList(getSavePath(), getUploadDisplayThumbnailFileName(),
+				getUploadDisplayThumbnail());
+		Upload.uploadList(getSavePath(), getUploadLocationMapFileName(),
+				getUploadLocationMap());
+		Upload.uploadList(getSavePath(), getUploadSitePlanFileName(),
+				getUploadSitePlan());
+		Upload.uploadList(getSavePath(), getUploadFloorPlanFileName(),
+				getUploadFloorPlan());
+		Upload.uploadList(getSavePath(), getUploadEBrochureFileName(),
+				getUploadEBrochure());
 
 		if (houseInfo.getMark().equals("new")) {
 			return "new";
@@ -440,27 +497,155 @@ public class HouseInfoAction extends ActionSupport {
 		this.sizeLimit = value;
 	}
 
-	public List<File> getUpload() {
-		return upload;
+	public List<File> getUploadDisplay() {
+		return uploadDisplay;
 	}
 
-	public void setUpload(List<File> upload) {
-		this.upload = upload;
+	public void setUploadDisplay(List<File> uploadDisplay) {
+		this.uploadDisplay = uploadDisplay;
 	}
 
-	public List<String> getUploadContentType() {
-		return uploadContentType;
+	public List<String> getUploadDisplayContentType() {
+		return uploadDisplayContentType;
 	}
 
-	public void setUploadContentType(List<String> uploadContentType) {
-		this.uploadContentType = uploadContentType;
+	public void setUploadDisplayContentType(
+			List<String> uploadDisplayContentType) {
+		this.uploadDisplayContentType = uploadDisplayContentType;
 	}
 
-	public List<String> getUploadFileName() {
-		return uploadFileName;
+	public List<String> getUploadDisplayFileName() {
+		return uploadDisplayFileName;
 	}
 
-	public void setUploadFileName(List<String> uploadFileName) {
-		this.uploadFileName = uploadFileName;
+	public void setUploadDisplayFileName(List<String> uploadDisplayFileName) {
+		this.uploadDisplayFileName = uploadDisplayFileName;
+	}
+
+	public List<File> getUploadDisplayThumbnail() {
+		return uploadDisplayThumbnail;
+	}
+
+	public void setUploadDisplayThumbnail(List<File> uploadDisplayThumbnail) {
+		this.uploadDisplayThumbnail = uploadDisplayThumbnail;
+	}
+
+	public List<String> getUploadDisplayThumbnailContentType() {
+		return uploadDisplayThumbnailContentType;
+	}
+
+	public void setUploadDisplayThumbnailContentType(
+			List<String> uploadDisplayThumbnailContentType) {
+		this.uploadDisplayThumbnailContentType = uploadDisplayThumbnailContentType;
+	}
+
+	public List<String> getUploadDisplayThumbnailFileName() {
+		return uploadDisplayThumbnailFileName;
+	}
+
+	public void setUploadDisplayThumbnailFileName(
+			List<String> uploadDisplayThumbnailFileName) {
+		this.uploadDisplayThumbnailFileName = uploadDisplayThumbnailFileName;
+	}
+
+	public List<File> getUploadLocationMap() {
+		return uploadLocationMap;
+	}
+
+	public void setUploadLocationMap(List<File> uploadLocationMap) {
+		this.uploadLocationMap = uploadLocationMap;
+	}
+
+	public List<String> getUploadLocationMapContentType() {
+		return uploadLocationMapContentType;
+	}
+
+	public void setUploadLocationMapContentType(
+			List<String> uploadLocationMapContentType) {
+		this.uploadLocationMapContentType = uploadLocationMapContentType;
+	}
+
+	public List<String> getUploadLocationMapFileName() {
+		return uploadLocationMapFileName;
+	}
+
+	public void setUploadLocationMapFileName(
+			List<String> uploadLocationMapFileName) {
+		this.uploadLocationMapFileName = uploadLocationMapFileName;
+	}
+
+	public List<File> getUploadSitePlan() {
+		return uploadSitePlan;
+	}
+
+	public void setUploadSitePlan(List<File> uploadSitePlan) {
+		this.uploadSitePlan = uploadSitePlan;
+	}
+
+	public List<String> getUploadSitePlanContentType() {
+		return uploadSitePlanContentType;
+	}
+
+	public void setUploadSitePlanContentType(
+			List<String> uploadSitePlanContentType) {
+		this.uploadSitePlanContentType = uploadSitePlanContentType;
+	}
+
+	public List<String> getUploadSitePlanFileName() {
+		return uploadSitePlanFileName;
+	}
+
+	public void setUploadSitePlanFileName(List<String> uploadSitePlanFileName) {
+		this.uploadSitePlanFileName = uploadSitePlanFileName;
+	}
+
+	public List<File> getUploadFloorPlan() {
+		return uploadFloorPlan;
+	}
+
+	public void setUploadFloorPlan(List<File> uploadFloorPlan) {
+		this.uploadFloorPlan = uploadFloorPlan;
+	}
+
+	public List<String> getUploadFloorPlanContentType() {
+		return uploadFloorPlanContentType;
+	}
+
+	public void setUploadFloorPlanContentType(
+			List<String> uploadFloorPlanContentType) {
+		this.uploadFloorPlanContentType = uploadFloorPlanContentType;
+	}
+
+	public List<String> getUploadFloorPlanFileName() {
+		return uploadFloorPlanFileName;
+	}
+
+	public void setUploadFloorPlanFileName(List<String> uploadFloorPlanFileName) {
+		this.uploadFloorPlanFileName = uploadFloorPlanFileName;
+	}
+
+	public List<File> getUploadEBrochure() {
+		return uploadEBrochure;
+	}
+
+	public void setUploadEBrochure(List<File> uploadEBrochure) {
+		this.uploadEBrochure = uploadEBrochure;
+	}
+
+	public List<String> getUploadEBrochureContentType() {
+		return uploadEBrochureContentType;
+	}
+
+	public void setUploadEBrochureContentType(
+			List<String> uploadEBrochureContentType) {
+		this.uploadEBrochureContentType = uploadEBrochureContentType;
+	}
+
+	public List<String> getUploadEBrochureFileName() {
+		return uploadEBrochureFileName;
+	}
+
+	public void setUploadEBrochureFileName(List<String> uploadEBrochureFileName) {
+		this.uploadEBrochureFileName = uploadEBrochureFileName;
 	}
 }

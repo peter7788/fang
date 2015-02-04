@@ -39,8 +39,18 @@ public class HouseInfo implements Serializable {
 	private String mark;
 	// 发布时间
 	private Date publish_time;
-	// 图片的url
-	private String image_url;
+	// 展示图片的url
+	private String display_images_url;
+	// 展示图片缩略图的url
+	private String display_thumbnail_images_url;
+	// Location Map的url
+	private String location_map_url;
+	// Site Plan的url
+	private String site_plan_url;
+	// Floor Plan的url
+	private String floor_plan_url;
+	// E-Brochure的url
+	private String e_brochure_url;
 
 	public int getId() {
 		return id;
@@ -170,12 +180,53 @@ public class HouseInfo implements Serializable {
 		this.publish_time = publish_time;
 	}
 
-	public String getImage_url() {
-		return image_url;
+	public String getDisplay_images_url() {
+		return display_images_url;
 	}
 
-	public void setImage_url(String image_url) {
-		this.image_url = image_url;
+	public void setDisplay_images_url(String display_images_url) {
+		this.display_images_url = display_images_url;
+	}
+
+	public String getDisplay_thumbnail_images_url() {
+		return display_thumbnail_images_url;
+	}
+
+	public void setDisplay_thumbnail_images_url(
+			String display_thumbnail_images_url) {
+		this.display_thumbnail_images_url = display_thumbnail_images_url;
+	}
+
+	public String getLocation_map_url() {
+		return location_map_url;
+	}
+
+	public void setLocation_map_url(String location_map_url) {
+		this.location_map_url = location_map_url;
+	}
+
+	public String getSite_plan_url() {
+		return site_plan_url;
+	}
+
+	public void setSite_plan_url(String site_plan_url) {
+		this.site_plan_url = site_plan_url;
+	}
+
+	public String getFloor_plan_url() {
+		return floor_plan_url;
+	}
+
+	public void setFloor_plan_url(String floor_plan_url) {
+		this.floor_plan_url = floor_plan_url;
+	}
+
+	public String getE_brochure_url() {
+		return e_brochure_url;
+	}
+
+	public void setE_brochure_url(String e_brochure_url) {
+		this.e_brochure_url = e_brochure_url;
 	}
 
 	public JSONObject toJson() {
@@ -196,7 +247,12 @@ public class HouseInfo implements Serializable {
 		temp.put("longitude", longitude);
 		temp.put("mark", mark);
 		temp.put("publish_time", publish_time.toString());
-		temp.put("image_url", image_url);
+		temp.put("display_images_url", display_images_url);
+		temp.put("display_thumbnail_images_url", display_thumbnail_images_url);
+		temp.put("location_map_url", location_map_url);
+		temp.put("site_plan_url", site_plan_url);
+		temp.put("floor_plan_url", floor_plan_url);
+		temp.put("e_brochure_url", e_brochure_url);
 		return temp;
 	}
 }

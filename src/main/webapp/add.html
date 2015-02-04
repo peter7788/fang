@@ -14,10 +14,10 @@
 					if($(this).parent().prev().prev().prev().children().val() != "" && $(this).parent().prev().children().val() != ""){
 						var val=$(this).parent().prev().children().val();
 						$(this).parent().parent().parent().append('<div class="add_single_image"><div class="choose">(293*200)</div><div class="choose_image"><input type="file" id="temp" name="temp" class="tableCss" value="" /></div><div class="choose">(65*65)</div><div class="choose_image"><input type="file" id="temp" name="temp" class="tableCss" value="" /></div><div class="add_image_button"><input type="button" id="add_image_button" value="添加"></div><div class="clear"></div></div>');
-						$(this).parent().prev().prev().prev().children().attr("id","upload");
-						$(this).parent().prev().prev().prev().children().attr("name","upload");
-						$(this).parent().prev().children().attr("id","uploadThumb");
-						$(this).parent().prev().children().attr("name","uploadThumb");
+						$(this).parent().prev().prev().prev().children().attr("id","uploadDisplay");
+						$(this).parent().prev().prev().prev().children().attr("name","uploadDisplay");
+						$(this).parent().prev().children().attr("id","uploadDisplayThumbnail");
+						$(this).parent().prev().children().attr("name","uploadDisplayThumbnail");
 						$(this).parent().html('<input type="button" id="delete_image_button" value="删除">');
 					}
 				});
@@ -51,7 +51,7 @@
 				});
 				//重置
 				$('#reset').click(function(){
-					$('#upload').each(function() {
+					$('#uploadDisplay').each(function() {
                         $(this).parent().parent().remove();
                     });
 				});
@@ -104,7 +104,7 @@
 						longitude:{
 							required:true
 						},
-						upload:{
+						uploadDisplay:{
 							required:true
 						},
 						description:{
@@ -157,7 +157,7 @@
 						longitude:{
 							required:"请输入经度"
 						},
-						upload:{
+						uploadDisplay:{
 							required:"请选择一幅图片"
 						},
 						description:{
@@ -224,13 +224,45 @@
                         <div class="project_properties_title">房屋描述</div><div class="project_properties"><input type="text" id="description" name="description" class="tableCss" value="" /></div><div class="clear"></div>
                     </div>
                     <div class="add_picture add_project">
-                        <div class="add_project_title">选择图片</div>
+                        <div class="add_project_title">布局图片</div>
                         <div class="add_single_image">
                             <div class="choose">(293*200)</div>
                             <div class="choose_image"><input type="file" id="temp" name="temp" class="tableCss" value="" /></div>
                             <div class="choose">(100*80)</div>
                             <div class="choose_image"><input type="file" id="temp" name="temp" class="tableCss" value="" /></div>
                             <div class="add_image_button"><input type="button" id="add_image_button" value="添加"></div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="add_location_map add_project">
+                        <div class="add_project_title">Location Map</div>
+                        <div class="add_single_image">
+                            <div class="choose">(293*200)</div>
+                            <div class="choose_image"><input type="file" id="uploadLocationMap" name="uploadLocationMap" class="tableCss" value="" /></div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="add_site_plan add_project">
+                        <div class="add_project_title">Site Plan</div>
+                        <div class="add_single_image">
+                            <div class="choose">(293*200)</div>
+                            <div class="choose_image"><input type="file" id="uploadSitePlan" name="uploadSitePlan" class="tableCss" value="" /></div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="add_floor_plan add_project">
+                        <div class="add_project_title">Floor Plan</div>
+                        <div class="add_single_image">
+                            <div class="choose">(293*200)</div>
+                            <div class="choose_image"><input type="file" id="uploadFloorPlan" name="uploadFloorPlan" class="tableCss" value="" /></div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="add_e_brochure add_project">
+                        <div class="add_project_title">E-brochure</div>
+                        <div class="add_single_image">
+                            <div class="choose">(293*200)</div>
+                            <div class="choose_image"><input type="file" id="uploadEBrochure" name="uploadEBrochure" class="tableCss" value="" /></div>
                             <div class="clear"></div>
                         </div>
                     </div>
