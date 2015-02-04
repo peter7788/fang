@@ -30,6 +30,7 @@
           <script src="js/jquery.mobile.customized.min.js"></script>
 		  <script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
 		  <script type="text/javascript" src="js/camera.min.js"></script>
+          <script type="text/javascript" src="js/word_limit.js"></script>
 		  <script type="text/javascript">
 			$(document).ready(function(){
 				//加载滚动广告页面
@@ -45,7 +46,7 @@
 				htmlString += '<p class="title">最新消息</p><ul>';
 				var newsList=eval('('+$('#jsonArrayNews').val()+')');
 				for(var i=0; i<newsList.length; i++){
-					var tempHtmlString='<li><a href="' + newsList[i].link + '">' + newsList[i].title + '</a></li>';
+					var tempHtmlString='<li><a target="_blank" href="' + newsList[i].link + '">' + newsList[i].title + '</a></li>';
 					htmlString += tempHtmlString;
 				}
 				htmlString += '</ul>';
@@ -57,10 +58,10 @@
 				var newHouseInfoList=eval('('+$('#jsonArrayNew').val()+')');
 				var hot_total=Math.ceil(hotHouseInfoList.length/8);
 				var new_total=Math.ceil(newHouseInfoList.length/8);
-				hot_show(hotPageNum, hotHouseInfoList);
-				hot_page(hotPageNum, newPageNum, hot_total);
-				new_show(newPageNum, newHouseInfoList);
-				new_page(hotPageNum, newPageNum, hot_total);
+				//hot_show(hotPageNum, hotHouseInfoList);
+				//hot_page(hotPageNum, newPageNum, hot_total);
+				//new_show(newPageNum, newHouseInfoList);
+				//new_page(hotPageNum, newPageNum, hot_total);
 				$('#hot_page').on('change','select',function(){
 					var nowHotPageNum=parseInt($('#hotPageSelect :selected').val());
 					window.location.href = 'index.jsp?hotPageNum=' + nowHotPageNum + '&newPageNum=' + (parseInt(newPageNum)) + '#hot';
@@ -81,6 +82,8 @@
 					playPause: true,
 					time: 1000,
 				});
+				//限定字数
+				$('.simple_project_introduction').word(90);
 			});
 			function hot_show(hotPageNum, hotHouseInfoList){
 				var count=8;
@@ -291,9 +294,9 @@
             <div id="news_block" class="message_block">
             	<p class="title">最新消息</p>
                 <ul>
-  					<li><a href="">内环内二手豪宅市场成交大爆发</a></li>
-  					<li><a href="">央行降息利好，100万房贷30年可节省9.43万</a></li>
-  					<li><a href="">单价5万元以上的高端市场或将持续走高</a></li>
+  					<li><a target="_blank" href="">内环内二手豪宅市场成交大爆发</a></li>
+  					<li><a target="_blank" href="">央行降息利好，100万房贷30年可节省9.43万</a></li>
+  					<li><a target="_blank" href="">单价5万元以上的高端市场或将持续走高</a></li>
 				</ul>
             </div>
              <div class="message_block">
@@ -309,9 +312,9 @@
             <div class="message_block">
             	<p class="title">友情链接</h2>
                 <ul>
-                	<li><a href="http://www.dtz-ugl.com/">戴德梁行总公司网站</a></li>
-  					<li><a href="http://www.thebanner-realestate.com/">总经理 Brenda Zee 团队网站</a></li>
-  					<li><a href="http://www.helenxu.myweb.sg/">Helen Xu 个人网站</a></li>
+                	<li><a target="_blank" href="http://www.dtz-ugl.com/">戴德梁行总公司网站</a></li>
+  					<li><a target="_blank" href="http://www.thebanner-realestate.com/">总经理 Brenda Zee 团队网站</a></li>
+  					<li><a target="_blank" href="http://www.helenxu.myweb.sg/">Helen Xu 个人网站</a></li>
 				</ul>
             </div>
             </div>
@@ -320,46 +323,26 @@
             	<a name="hot"></a>
             	<div class="picture_specify">热门推荐</div>
                 <div id="hot_project_items">
-            	<div class="mid-grid"><a href="#hot"><img src="images/example1.jpg" title="image-name" /></a>
-			 		<h3>北京市 海淀区 三房一厅</h3>
-			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.jsp">更多</a>
-			 	</div>
-                <div class="mid-grid"><a href="house.jsp"><img src="images/example2.jpg" title="image-name" /></a>
-			 		<h3>北京市 海淀区 三房一厅</h3>
-			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.jsp">更多</a>
-			 	</div>
-                <div class="mid-grid"><a href="house.jsp"><img src="images/example3.jpg" title="image-name" /></a>
-			 		<h3>北京市 海淀区 三房一厅</h3>
-			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.jsp">更多</a>
-			 	</div>
-                <div class="mid-grid"><a href="house.jsp"><img src="images/example4.jpg" title="image-name" /></a>
-			 		<h3>北京市 海淀区 三房一厅</h3>
-			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.jsp">更多</a>
-			 	</div>
-                <div class="mid-grid"><a href="house.jsp"><img src="images/example5.jpg" title="image-name" /></a>
-			 		<h3>北京市 海淀区 三房一厅</h3>
-			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.jsp">更多</a>
-			 	</div>
-                <div class="mid-grid"><a href="house.jsp"><img src="images/example6.jpg" title="image-name" /></a>
-			 		<h3>北京市 海淀区 三房一厅</h3>
-			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.jsp">更多</a>
-			 	</div>
-                <div class="mid-grid"><a href="house.jsp"><img src="images/example7.jpg" title="image-name" /></a>
-			 		<h3>北京市 海淀区 三房一厅</h3>
-			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.jsp">更多</a>
-			 	</div>
-                <div class="mid-grid"><a href="house.jsp"><img src="images/example8.jpg" title="image-name" /></a>
-			 		<h3>北京市 海淀区 三房一厅</h3>
-			 		<p>66.15平米 170万元</p>
-			 		<a class="mid-button" href="house.jsp">更多</a>
-			 	</div>
+            	<div class="simple_project_block">
+					<div><img class="simple_project_img" src="images/example1.jpg"></div>
+   			 		<div class="simple_project_title"><a target="_blank" href="">城市绿洲</a></div>
+    				<div class="simple_project_introduction">Developed by one of Singapore's renowned luxury developer, GuocoLanc aims to transform the sleepy, quiet Sims Drive area with an iconic first-of-its-kind prime</div>
+				</div>
+				<div class="simple_project_block">
+					<div><img class="simple_project_img" src="images/example1.jpg"></div>
+   			 		<div class="simple_project_title"><a target="_blank" href="">城市绿洲</a></div>
+    				<div class="simple_project_introduction">Developed by one of Singapore's renowned luxury developer, GuocoLanc aims to transform the sleepy, quiet Sims Drive area with an iconic first-of-its-kind prime</div>
+				</div>
+                <div class="simple_project_block">
+					<div><img class="simple_project_img" src="images/example1.jpg"></div>
+   			 		<div class="simple_project_title"><a target="_blank" href="">城市绿洲</a></div>
+    				<div class="simple_project_introduction">Developed by one of Singapore's renowned luxury developer, GuocoLanc aims to transform the sleepy, quiet Sims Drive area with an iconic first-of-its-kind prime</div>
+				</div>
+               <div class="simple_project_block">
+					<div><img class="simple_project_img" src="images/example1.jpg"></div>
+   			 		<div class="simple_project_title"><a target="_blank" href="">城市绿洲</a></div>
+    				<div class="simple_project_introduction">Developed by one of Singapore's renowned luxury developer, GuocoLanc aims to transform the sleepy, quiet Sims Drive area with an iconic first-of-its-kind prime</div>
+				</div>
                 </div>
                 <div class="clear"></div>
                 <div id="hot_page">

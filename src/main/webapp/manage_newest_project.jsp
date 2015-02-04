@@ -13,7 +13,6 @@
 		<link href="css/slider.css" rel="stylesheet" type="text/css"  media="all" />
         <link rel="stylesheet" type="text/css" href="css/lightbox.css" media="screen">
         <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="js/jquery.lightbox.js"></script>
         <script type="text/javascript">
@@ -28,109 +27,6 @@
 				}
 				htmlString+='</table>';
 				$('.ad_management_properties').html(htmlString);
-				//验证表单
-				$('#uploadForm').validate({
-					rules:{
-						zone:{
-							required:true
-						},
-						address:{
-							required:true
-						},
-						sort:{
-							required:true
-						},
-						location:{
-							required:true
-						},
-						area:{
-							required:true,
-							number:true
-						},
-						price:{
-							required:true
-						},
-						type:{
-							required:true
-						},
-						direction:{
-							required:true
-						},
-						floor:{
-							required:true,
-							number:true
-						},
-						age:{
-							required:true,
-							number:true
-						},
-						decoration:{
-							required:true
-						},
-						latitude:{
-							required:true
-						},
-						longitude:{
-							required:true
-						},
-						upload:{
-							required:true
-						},
-						description:{
-							required:true
-						}
-					},
-					messages:{
-						zone:{
-							required:"请输入区域"
-						},
-						address:{
-							required:"请输入地址"
-						},
-						sort:{
-							required:"请输入种类"
-						},
-						location:{
-							required:"请输入地段"
-						},
-						area:{
-							required:"请输入面积",
-							number:"仅限输入数字"
-						},
-						price:{
-							required:"请输入价格"
-						},
-						type:{
-							required:"请输入房屋类型"
-						},
-						direction:{
-							required:"请输入房屋朝向"
-						},
-						floor:{
-							required:"请输入楼层",
-							number:"仅限输入数字"
-						},
-						age:{
-							required:"请输入楼龄",
-							number:"仅限输入数字"
-						},
-						decoration:{
-							required:"请输入装修类型"
-						},
-						latitude:{
-							required:"请输入纬度"
-						},
-						longitude:{
-							required:"请输入经度"
-						},
-						upload:{
-							required:"请选择一幅图片"
-						},
-						description:{
-							required:"请输入房屋描述"
-						}
-					}
-				});
 			});
 		 </script>
 	</head>
@@ -197,28 +93,7 @@
                     </tr>
                 </table>
                 </div>
-                <div class="add">
-                <form method="post" id="uploadForm" action="addHouseInfo.action" enctype="multipart/form-data">
-               		<table>
-                    	<tr><td>区域</td><td><input type="text" id="zone" name="zone" class="tableCss" value="" /></td></tr>
-                        <tr><td>地址</td><td><input type="text" id="address" name="address" class="tableCss" value="" /></td></tr>
-                        <tr><td>种类</td><td><input type="text" id="sort" name="sort" class="tableCss" value="" /></td></tr>
-                        <tr><td>地段</td><td><input type="text" id="location" name="location" class="tableCss" value="" /></td></tr>
-                        <tr><td>面积</td><td><input type="text" id="area" name="area" class="tableCss" value="" /></td></tr>
-                        <tr><td>价格</td><td><input type="text" id="price" name="price" class="tableCss" value="" /></td></tr>
-                        <tr><td>房型</td><td><input type="text" id="type" name="type" class="tableCss" value="" /></td></tr>
-                        <tr><td>朝向</td><td><input type="text" id="direction" name="direction" class="tableCss" value="" /></td></tr>
-                        <tr><td>楼层</td><td><input type="text" id="floor" name="floor" class="tableCss" value="" /></td></tr>
-                        <tr><td>楼龄</td><td><input type="text" id="age" name="age" class="tableCss" value="" /></td></tr>
-                        <tr><td>装修类型</td><td><input type="text" id="decoration" name="decoration" class="tableCss" value="" /><input type="hidden" name="mark" value="new" /></td></tr>
-                        <tr><td>纬度</td><td><input type="text" id="latitude" name="latitude" class="tableCss" value="" /></td></tr>
-                        <tr><td>经度</td><td><input type="text" id="longitude" name="longitude" class="tableCss" value="" /></td></tr>
-                    	<tr><td>选择图片（293*200）</td><td><input type="file" id="upload" name="upload" class="tableCss" value="" /></td></tr>
-                        <tr><td>房屋描述</td><td><input type="text" id="description" name="description" class="tableCss" value="" /></td></tr>
-                        <tr><td><input type="submit" id="comfirm" value="添加" /></td><td><input type="reset" value="重置" /></td></tr>
-                	</table>
-                </form>
-                </div>
+                <div><a href="add.html"><input type="button" value="新建项目"></a></div>
         	</div>
 		</div>				
 		</div>

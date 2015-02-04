@@ -428,12 +428,35 @@ img {
 	background: #D63B37;
 	color:#FFF;
 }
+.project_menu_div ul li {
+	display: inline-block;
+	float: left;
+	width: 20%;
+	text-align: center;
+	background-color: #666;
+	height: 50px;
+}
+.project_menu_div {
+	vertical-align: middle;
+	height: 50px;
+}
+.project_menu_div ul li a{
+	font-size: 18px;
+	color: #FFF;
+	padding: 13px;
+	display: block;
+	text-transform: uppercase;
+}
+.project_menu_div li> a:hover {
+	background: #D63B37;
+	color:#FFF;
+}
 .add {
 	text-align: center;
-	padding-top: 5%;
-	padding-right: 40%;
-	padding-left: 40%;
-	width: 30%;
+	padding-top: 2%;
+	padding-right: 25%;
+	padding-left: 25%;
+	width: 50%;
 }
 .download_title {
 	font-size: xx-large;
@@ -470,4 +493,92 @@ img {
 	font-size: x-large;
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+.choose {
+	float: left;
+	width: 10%;
+}
+.choose_image {
+	float: left;
+	width: 30%;
+}
+.add_image_button {
+	float: left;
+	width: 20%;
+}.add_project_title {
+	font-size: large;
+	position: relative;
+	left: 10px;
+	top: -30px;
+	background-color: #FFF;
+	width: 100px;
+	font-weight: bolder;
+	text-align: center;
+}
+.add_project {
+	border: thin solid #03F;
+	text-align: left;
+	margin-bottom: 30px;
+	padding: 20px;
+}
+.project_properties_title {
+	width: 20%;
+	float: left;
+}
+.project_properties {
+	width: 80%;
+}
+.add_advantage_text {
+	float: left;
+	width: 80%;
+}
+.add_advantage_button {
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+#advantage {
+	width: 100%;
+}
+.add_button {
+	float: left;
+}
+#add_textarea {
+	height: 500px;
+	width: 100%;
+}
+.add_title {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: x-large;
+	text-align: right;
+	margin-bottom: 20px;
+	font-weight: bolder;
+	color: #666;
+}
+.add_textarea_title {
+	font-size: large;
+	font-weight: bolder;
+}
+#add_pre {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+.pre_div {
+	border: thin solid #999;
+	height: 500px;
+}
+.e_brochure {
+	float: left;
+	width: 15%;
+}
+.gotop {
+	display: block;
+	position: fixed;
+	right: 196px;
+	bottom: 44px;
+}
+.project_introduction {
+	margin-top: 30px;
+	margin-right: 10px;
+	margin-left: 10px;
 }

@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+
+.hide_div2 {
+	font-family: Verdana, Geneva, sans-serif;
+	border: thick solid #999;
+	width: 30%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 50px;
+	padding: 15px;
+	display: none;
+	background-color: #FFF;
+}
+.hide_title {
+	float: left;
+	width: 98%;
+	font-size: 18px;
+	color: #999;
+}
+.clear {
+	clear: both;
+}
+.hide_close_button {
+	float: left;
+	width: 2%;
+}
+.hide_textarea {
+	height: 200px;
+	width: 98%;
+}
+.hide_input_text {
+	margin-bottom: 10px;
+	margin-top: 3px;
+}
+.hide_close_button a {
+	text-decoration: none;
+	color: #999;
+}
+.hide_close_button a:hover {
+	text-decoration: underline;
+	color: #F00;
+}
+.hide_simple_agreement a {
+	text-decoration: none;
+	color: #039;
+	background-color: #CCC;
+}
+.hide_agreement {
+	font-size: x-small;
+	background-color: #CCC;
+	display: none;
+	margin-bottom: 10px;
+}
+.hide_body {
+	overflow: auto;
+	height: 400px;
+}
+.hide_simple_agreement {
+	font-size: xx-small;
+}
+.hide_submit_button {
+	
+}
+.hide_mask {
+	z-index: 9998;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:#000;
+	opacity:0.4;
+	filter:alpha(opacity=40);
+	display:none
+}
+.hide_div {
+	z-index:9999;
+	position:fixed;
+	margin:auto; 
+	left:0; 
+	right:0; 
+	top:0; 
+	bottom:0; 
+	font-family: Verdana, Geneva, sans-serif;
+	border: thick solid #999;
+	width: 30%;
+	height: 500px;
+	padding: 15px;
+	display: none;
+	background-color: #FFF;
+	box-shadow: 0 0 10px #666;
+}

@@ -33,9 +33,9 @@ public class HouseInfoAction extends ActionSupport {
 	private String description;// 图片描述
 	private String savePath;// 上传文件的保存路径
 	private String sizeLimit;// 上传文件的大小限制
-	private File upload;// 上传文件
-	private String uploadContentType;// 上传文件类型
-	private String uploadFileName;// 上传文件的文件名
+	private List<File> upload;// 上传文件
+	private List<String> uploadContentType;// 上传文件类型
+	private List<String> uploadFileName;// 上传文件的文件名
 
 	/**
 	 * 添加房屋信息
@@ -44,34 +44,42 @@ public class HouseInfoAction extends ActionSupport {
 	 * @throws Exception
 	 */
 	public String addHouseInfo() throws Exception {
-		if (getUpload().length() > Long.parseLong(sizeLimit)) {
-			return ERROR;
-		} else {
-			HouseInfo houseInfo = new HouseInfo();
-			houseInfo.setZone(zone);
-			houseInfo.setAddress(address);
-			houseInfo.setSort(sort);
-			houseInfo.setLocation(location);
-			houseInfo.setArea(area);
-			houseInfo.setPrice(price);
-			houseInfo.setType(type);
-			houseInfo.setDirection(direction);
-			houseInfo.setFloor(floor);
-			houseInfo.setAge(age);
-			houseInfo.setDecoration(decoration);
-			houseInfo.setLatitude(latitude);
-			houseInfo.setLongitude(longitude);
-			houseInfo.setMark(mark);
-			houseInfo.setPublish_time(new Date());
-			houseInfo.setImage_url(savePath + "/" + getUploadFileName());
-			new HouseInfoService().addHouseInfo(houseInfo);
-			Upload.upload(getSavePath(), getUploadFileName(), getUpload());
-
-			if (houseInfo.getMark().equals("new")) {
-				return "new";
-			} else {
-				return "hot";
+		for (File file : getUpload()) {
+			if (file.length() > Long.parseLong(sizeLimit)) {
+				return ERROR;
 			}
+		}
+		HouseInfo houseInfo = new HouseInfo();
+		houseInfo.setZone(zone);
+		houseInfo.setAddress(address);
+		houseInfo.setSort(sort);
+		houseInfo.setLocation(location);
+		houseInfo.setArea(area);
+		houseInfo.setPrice(price);
+		houseInfo.setType(type);
+		houseInfo.setDirection(direction);
+		houseInfo.setFloor(floor);
+		houseInfo.setAge(age);
+		houseInfo.setDecoration(decoration);
+		houseInfo.setLatitude(latitude);
+		houseInfo.setLongitude(longitude);
+		houseInfo.setMark(mark);
+		houseInfo.setPublish_time(new Date());
+		String tempUrl = "";
+		for (String fileName : getUploadFileName()) {
+			tempUrl += savePath + "/" + fileName + ";";
+		}
+		houseInfo.setImage_url(tempUrl);
+		new HouseInfoService().addHouseInfo(houseInfo);
+		for (int i = 0; i < getUploadFileName().size(); i++) {
+			Upload.upload(getSavePath(), getUploadFileName().get(i),
+					getUpload().get(i));
+		}
+
+		if (houseInfo.getMark().equals("new")) {
+			return "new";
+		} else {
+			return "hot";
 		}
 	}
 
@@ -432,27 +440,27 @@ public class HouseInfoAction extends ActionSupport {
 		this.sizeLimit = value;
 	}
 
-	public File getUpload() {
+	public List<File> getUpload() {
 		return upload;
 	}
 
-	public void setUpload(File upload) {
+	public void setUpload(List<File> upload) {
 		this.upload = upload;
 	}
 
-	public String getUploadContentType() {
+	public List<String> getUploadContentType() {
 		return uploadContentType;
 	}
 
-	public void setUploadContentType(String uploadContentType) {
+	public void setUploadContentType(List<String> uploadContentType) {
 		this.uploadContentType = uploadContentType;
 	}
 
-	public String getUploadFileName() {
+	public List<String> getUploadFileName() {
 		return uploadFileName;
 	}
 
-	public void setUploadFileName(String uploadFileName) {
+	public void setUploadFileName(List<String> uploadFileName) {
 		this.uploadFileName = uploadFileName;
 	}
 }
