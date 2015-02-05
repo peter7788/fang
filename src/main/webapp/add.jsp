@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8"%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -207,21 +209,21 @@
                 <form method="post" id="uploadForm" action="addHouseInfo.action" enctype="multipart/form-data">
                     <div class="basic_properties add_project">
                         <div class="add_project_title">基本属性</div>
-                        <div class="project_properties_title">请选择</div><div class="project_properties"><select name="mark"><option value ="new">最新楼盘</option><option value ="hot">热门推荐</option></select></div><div class="clear"></div>
-                        <div class="project_properties_title">区域</div><div class="project_properties"><input type="text" id="zone" name="zone" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">地址</div><div class="project_properties"><input type="text" id="address" name="address" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">种类</div><div class="project_properties"><input type="text" id="sort" name="sort" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">地段</div><div class="project_properties"><input type="text" id="location" name="location" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">面积</div><div class="project_properties"><input type="text" id="area" name="area" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">价格</div><div class="project_properties"><input type="text" id="price" name="price" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">房型</div><div class="project_properties"><input type="text" id="type" name="type" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">朝向</div><div class="project_properties"><input type="text" id="direction" name="direction" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">楼层</div><div class="project_properties"><input type="text" id="floor" name="floor" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">楼龄</div><div class="project_properties"><input type="text" id="age" name="age" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">装修类型</div><div class="project_properties"><input type="text" id="decoration" name="decoration" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">纬度</div><div class="project_properties"><input type="text" id="latitude" name="latitude" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">经度</div><div class="project_properties"><input type="text" id="longitude" name="longitude" class="tableCss" value="" /></div><div class="clear"></div>
-                        <div class="project_properties_title">房屋描述</div><div class="project_properties"><input type="text" id="description" name="description" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">请选择</div><div class="project_properties_text"><select name="mark"><option value ="new">最新楼盘</option><option value ="hot">热门推荐</option></select></div><div class="clear"></div>
+                        <div class="project_properties_title">区域</div><div class="project_properties_text"><input type="text" id="zone" name="zone" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">地址</div><div class="project_properties_text"><input type="text" id="address" name="address" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">种类</div><div class="project_properties_text"><input type="text" id="sort" name="sort" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">地段</div><div class="project_properties_text"><input type="text" id="location" name="location" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">面积</div><div class="project_properties_text"><input type="text" id="area" name="area" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">价格</div><div class="project_properties_text"><input type="text" id="price" name="price" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">房型</div><div class="project_properties_text"><input type="text" id="type" name="type" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">朝向</div><div class="project_properties_text"><input type="text" id="direction" name="direction" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">楼层</div><div class="project_properties_text"><input type="text" id="floor" name="floor" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">楼龄</div><div class="project_properties_text"><input type="text" id="age" name="age" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">装修类型</div><div class="project_properties_text"><input type="text" id="decoration" name="decoration" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">纬度</div><div class="project_properties_text"><input type="text" id="latitude" name="latitude" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">经度</div><div class="project_properties_text"><input type="text" id="longitude" name="longitude" class="tableCss" value="" /></div><div class="clear"></div>
+                        <div class="project_properties_title">房屋描述</div><div class="project_properties_text"><input type="text" id="description" name="description" class="tableCss" value="" /></div><div class="clear"></div>
                     </div>
                     <div class="add_picture add_project">
                         <div class="add_project_title">布局图片</div>
@@ -289,5 +291,8 @@
                 </form>
             </div>
     	</div>
+        <!---start-copy-right----->
+        <jsp:include page="copyright.html" />
+		<!---End-copy-right---->
 	</body>
 </html>

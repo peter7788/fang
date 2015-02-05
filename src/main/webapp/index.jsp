@@ -26,136 +26,136 @@
 		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
 		<link href="css/slider.css" rel="stylesheet" type="text/css"  media="all" />
         <link href="css/camera.css" rel="stylesheet" type="text/css"  media="all" />
-		  <script src="js/jquery.min.js"></script>
-          <script src="js/jquery.mobile.customized.min.js"></script>
-		  <script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
-		  <script type="text/javascript" src="js/camera.min.js"></script>
-          <script type="text/javascript" src="js/word_limit.js"></script>
-		  <script type="text/javascript">
-			$(document).ready(function(){
-				//加载滚动广告页面
-				var htmlString='';
-				var advertisementList=eval('('+$('#jsonArrayAdvertisement').val()+')');
-				for(var i=0; i<advertisementList.length; i++){
-					var tempHtmlString='<div data-src="' + advertisementList[i].img_src + '"></div>';
-					htmlString += tempHtmlString;
-				}
-				$('.camera_wrap').html(htmlString);
-				//加载最新消息页面
-				var htmlString='';
-				htmlString += '<p class="title">最新消息</p><ul>';
-				var newsList=eval('('+$('#jsonArrayNews').val()+')');
-				for(var i=0; i<newsList.length; i++){
-					var tempHtmlString='<li><a target="_blank" href="' + newsList[i].link + '">' + newsList[i].title + '</a></li>';
-					htmlString += tempHtmlString;
-				}
-				htmlString += '</ul>';
-				$('#news_block').html(htmlString);
-				//加载热门推荐房屋信息
-				var hotPageNum = $('#hotPageNum').val();
-				var newPageNum = $('#newPageNum').val();
-				var hotHouseInfoList=eval('('+$('#jsonArrayHot').val()+')');
-				var newHouseInfoList=eval('('+$('#jsonArrayNew').val()+')');
-				var hot_total=Math.ceil(hotHouseInfoList.length/8);
-				var new_total=Math.ceil(newHouseInfoList.length/8);
-				//hot_show(hotPageNum, hotHouseInfoList);
-				//hot_page(hotPageNum, newPageNum, hot_total);
-				//new_show(newPageNum, newHouseInfoList);
-				//new_page(hotPageNum, newPageNum, hot_total);
-				$('#hot_page').on('change','select',function(){
-					var nowHotPageNum=parseInt($('#hotPageSelect :selected').val());
-					window.location.href = 'index.jsp?hotPageNum=' + nowHotPageNum + '&newPageNum=' + (parseInt(newPageNum)) + '#hot';
-					return false;
-				});
-				$('#new_page').on('change','select',function(){
-					var nowNewPageNum=parseInt($('#newPageSelect :selected').val());
-					window.location.href = 'index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + nowNewPageNum + '#new';
-					return false;
-				});
-				//设置滚动页面
-				jQuery('#camera_wrap_1').camera({
-					height: '400px',
-					pagination: false,
-					thumbnails: false,
-					hover: false,
-					opacityOnGrid: false,
-					playPause: true,
-					time: 1000,
-				});
-				//限定字数
-				$('.simple_project_introduction').word(90);
-			});
-			function hot_show(hotPageNum, hotHouseInfoList){
-				var count=8;
-				var htmlString='';
-				for(var i=(hotPageNum-1)*8; i<hotHouseInfoList.length; i++){
-					if(count == 0){
-						break;
-					}
-					var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + hotHouseInfoList[i].id + '&latitude=' + hotHouseInfoList[i].latitude + '&longitude=' + hotHouseInfoList[i].longitude + '"><img src="' + hotHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + hotHouseInfoList[i].zone + ' ' + hotHouseInfoList[i].type + '</h3><p>' + hotHouseInfoList[i].area + ' ' + hotHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + hotHouseInfoList[i].id + '&latitude=' + hotHouseInfoList[i].latitude + '&longitude=' + hotHouseInfoList[i].longitude + '">更多</a></div>';
-					htmlString += tempHtmlString;
-					count--;
-				}
-				$('#hot_project_items').html(htmlString);
-			}
-			function hot_page(hotPageNum, newPageNum, hot_total){
-				var htmlString='';
-				if(hotPageNum!=1){
-					htmlString+='<span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)-1) + '&newPageNum=' + (parseInt(newPageNum)) + '#hot">&nbsp;上一页&nbsp;</a></span><span><select id="hotPageSelect" name="hotPageSelect">';
-				}else{
-					htmlString+='<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><select id="hotPageSelect" name="hotPageSelect">';
-				}
-				for(var i=1; i<=hot_total; i++){
-					var tempHtmlString='<option value="' + i + '"';
-					if(i==hotPageNum){
-						tempHtmlString+='selected';
-					}
-					tempHtmlString+='>' + i + '</option>';
-					htmlString+=tempHtmlString;
-				}
-				if(hotPageNum!=hot_total){
-					htmlString+='</select></span><span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)+1) + '&newPageNum=' + (parseInt(newPageNum)) + '#hot">&nbsp;下一页&nbsp;</a></span>';
-				}else{
-					htmlString+='</select></span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-				}
-				$('#hot_page').html(htmlString);
-			}
-			function new_show(newPageNum, newHouseInfoList){
-				var count=8;
-				var htmlString='';
-				for(var i=(newPageNum-1)*8; i<newHouseInfoList.length; i++){
-					if(count == 0){
-						break;
-					}
-					var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + newHouseInfoList[i].id + '&latitude=' + newHouseInfoList[i].latitude + '&longitude=' + newHouseInfoList[i].longitude + '"><img src="' + newHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + newHouseInfoList[i].zone + ' ' + newHouseInfoList[i].type + '</h3><p>' + newHouseInfoList[i].area + ' ' + newHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + newHouseInfoList[i].id + '&latitude=' + newHouseInfoList[i].latitude + '&longitude=' + newHouseInfoList[i].longitude + '">更多</a></div>';
-					htmlString += tempHtmlString;
-					count--;
-				}
-				$('#new_project_items').html(htmlString);
-			}
-			function new_page(hotPageNum, newPageNum, new_total){
-				var htmlString='';
-				if(newPageNum!=1){
-					htmlString+='<span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + (parseInt(newPageNum)-1) + '#new">&nbsp;上一页&nbsp;</a></span><span><select id="newPageSelect" name="newPageSelect">';
-				}else{
-					htmlString+='<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><select id="newPageSelect" name="newPageSelect">';
-				}
-				for(var i=1; i<=new_total; i++){
-					var tempHtmlString='<option value="' + i + '"';
-					if(i==newPageNum){
-						tempHtmlString+='selected';
-					}
-					tempHtmlString+='>' + i + '</option>';
-					htmlString+=tempHtmlString;
-				}
-				if(newPageNum!=new_total){
-					htmlString+='</select></span><span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + (parseInt(newPageNum)+1) + '#new">&nbsp;下一页&nbsp;</a></span>';
-				}else{
-					htmlString+='</select></span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-				}
-				$('#new_page').html(htmlString);
-			}
-		  </script>
+		<script src="js/jquery.min.js"></script>
+        <script src="js/jquery.mobile.customized.min.js"></script>
+        <script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
+        <script type="text/javascript" src="js/camera.min.js"></script>
+        <script type="text/javascript" src="js/word_limit.js"></script>
+        <script type="text/javascript">
+          $(document).ready(function(){
+              //加载滚动广告页面
+              var htmlString='';
+              var advertisementList=eval('('+$('#jsonArrayAdvertisement').val()+')');
+              for(var i=0; i<advertisementList.length; i++){
+                  var tempHtmlString='<div data-src="' + advertisementList[i].img_src + '"></div>';
+                  htmlString += tempHtmlString;
+              }
+              $('.camera_wrap').html(htmlString);
+              //加载最新消息页面
+              var htmlString='';
+              htmlString += '<p class="title">最新消息</p><ul>';
+              var newsList=eval('('+$('#jsonArrayNews').val()+')');
+              for(var i=0; i<newsList.length; i++){
+                  var tempHtmlString='<li><a target="_blank" href="' + newsList[i].link + '">' + newsList[i].title + '</a></li>';
+                  htmlString += tempHtmlString;
+              }
+              htmlString += '</ul>';
+              $('#news_block').html(htmlString);
+              //加载热门推荐房屋信息
+              var hotPageNum = $('#hotPageNum').val();
+              var newPageNum = $('#newPageNum').val();
+              var hotHouseInfoList=eval('('+$('#jsonArrayHot').val()+')');
+              var newHouseInfoList=eval('('+$('#jsonArrayNew').val()+')');
+              var hot_total=Math.ceil(hotHouseInfoList.length/8);
+              var new_total=Math.ceil(newHouseInfoList.length/8);
+              //hot_show(hotPageNum, hotHouseInfoList);
+              //hot_page(hotPageNum, newPageNum, hot_total);
+              //new_show(newPageNum, newHouseInfoList);
+              //new_page(hotPageNum, newPageNum, hot_total);
+              $('#hot_page').on('change','select',function(){
+                  var nowHotPageNum=parseInt($('#hotPageSelect :selected').val());
+                  window.location.href = 'index.jsp?hotPageNum=' + nowHotPageNum + '&newPageNum=' + (parseInt(newPageNum)) + '#hot';
+                  return false;
+              });
+              $('#new_page').on('change','select',function(){
+                  var nowNewPageNum=parseInt($('#newPageSelect :selected').val());
+                  window.location.href = 'index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + nowNewPageNum + '#new';
+                  return false;
+              });
+              //设置滚动页面
+              jQuery('#camera_wrap_1').camera({
+                  height: '400px',
+                  pagination: false,
+                  thumbnails: false,
+                  hover: false,
+                  opacityOnGrid: false,
+                  playPause: true,
+                  time: 1000,
+              });
+              //限定字数
+              $('.simple_project_introduction').word(90);
+          });
+          function hot_show(hotPageNum, hotHouseInfoList){
+              var count=8;
+              var htmlString='';
+              for(var i=(hotPageNum-1)*8; i<hotHouseInfoList.length; i++){
+                  if(count == 0){
+                      break;
+                  }
+                  var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + hotHouseInfoList[i].id + '&latitude=' + hotHouseInfoList[i].latitude + '&longitude=' + hotHouseInfoList[i].longitude + '"><img src="' + hotHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + hotHouseInfoList[i].zone + ' ' + hotHouseInfoList[i].type + '</h3><p>' + hotHouseInfoList[i].area + ' ' + hotHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + hotHouseInfoList[i].id + '&latitude=' + hotHouseInfoList[i].latitude + '&longitude=' + hotHouseInfoList[i].longitude + '">更多</a></div>';
+                  htmlString += tempHtmlString;
+                  count--;
+              }
+              $('#hot_project_items').html(htmlString);
+          }
+          function hot_page(hotPageNum, newPageNum, hot_total){
+              var htmlString='';
+              if(hotPageNum!=1){
+                  htmlString+='<span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)-1) + '&newPageNum=' + (parseInt(newPageNum)) + '#hot">&nbsp;上一页&nbsp;</a></span><span><select id="hotPageSelect" name="hotPageSelect">';
+              }else{
+                  htmlString+='<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><select id="hotPageSelect" name="hotPageSelect">';
+              }
+              for(var i=1; i<=hot_total; i++){
+                  var tempHtmlString='<option value="' + i + '"';
+                  if(i==hotPageNum){
+                      tempHtmlString+='selected';
+                  }
+                  tempHtmlString+='>' + i + '</option>';
+                  htmlString+=tempHtmlString;
+              }
+              if(hotPageNum!=hot_total){
+                  htmlString+='</select></span><span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)+1) + '&newPageNum=' + (parseInt(newPageNum)) + '#hot">&nbsp;下一页&nbsp;</a></span>';
+              }else{
+                  htmlString+='</select></span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+              }
+              $('#hot_page').html(htmlString);
+          }
+          function new_show(newPageNum, newHouseInfoList){
+              var count=8;
+              var htmlString='';
+              for(var i=(newPageNum-1)*8; i<newHouseInfoList.length; i++){
+                  if(count == 0){
+                      break;
+                  }
+                  var tempHtmlString='<div class="mid-grid"><a href="house.jsp?id=' + newHouseInfoList[i].id + '&latitude=' + newHouseInfoList[i].latitude + '&longitude=' + newHouseInfoList[i].longitude + '"><img src="' + newHouseInfoList[i].image_url + '" title="image-name" /></a><h3>' + newHouseInfoList[i].zone + ' ' + newHouseInfoList[i].type + '</h3><p>' + newHouseInfoList[i].area + ' ' + newHouseInfoList[i].price + '</p><a class="mid-button" href="house.jsp?id=' + newHouseInfoList[i].id + '&latitude=' + newHouseInfoList[i].latitude + '&longitude=' + newHouseInfoList[i].longitude + '">更多</a></div>';
+                  htmlString += tempHtmlString;
+                  count--;
+              }
+              $('#new_project_items').html(htmlString);
+          }
+          function new_page(hotPageNum, newPageNum, new_total){
+              var htmlString='';
+              if(newPageNum!=1){
+                  htmlString+='<span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + (parseInt(newPageNum)-1) + '#new">&nbsp;上一页&nbsp;</a></span><span><select id="newPageSelect" name="newPageSelect">';
+              }else{
+                  htmlString+='<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><select id="newPageSelect" name="newPageSelect">';
+              }
+              for(var i=1; i<=new_total; i++){
+                  var tempHtmlString='<option value="' + i + '"';
+                  if(i==newPageNum){
+                      tempHtmlString+='selected';
+                  }
+                  tempHtmlString+='>' + i + '</option>';
+                  htmlString+=tempHtmlString;
+              }
+              if(newPageNum!=new_total){
+                  htmlString+='</select></span><span><a href="index.jsp?hotPageNum=' + (parseInt(hotPageNum)) + '&newPageNum=' + (parseInt(newPageNum)+1) + '#new">&nbsp;下一页&nbsp;</a></span>';
+              }else{
+                  htmlString+='</select></span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+              }
+              $('#new_page').html(htmlString);
+          }
+        </script>
 	</head>
 	<body>
     	<input type="hidden" id="jsonArrayAdvertisement" value='<%=jsonArrayAdvertisement%>' />

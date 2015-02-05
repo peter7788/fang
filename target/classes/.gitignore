@@ -2,3 +2,7 @@
 /action/
 /service/
 /util/
+/globalMessages_en_US.properties
+/globalMessages_zh_CN.properties
+/listener/
+/globalMessages_zh_TW.properties

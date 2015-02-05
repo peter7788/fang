@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page pageEncoding="utf-8"%>
-<%@ page language="java" import="util.List2String" %>
 <%
 	String jsonArrayNew = (String) application.getAttribute("newHouseInfoList");
 	String jsonArrayHot = (String) application.getAttribute("hotHouseInfoList");
@@ -39,8 +38,6 @@
         <script type="text/javascript" src="js/streetdirectory_map.js"></script>
         <script language="Javascript">
 			$(document).ready(function(){
-				//显示slider gallery
-				var galleries = $('.ad-gallery').adGallery();
 				//预处理界面
 				$('#project_detail').css('position','static');
 				$('#location_map').css('position','absolute');
@@ -174,22 +171,57 @@
 					}
 					for(var i=0; i<houseInfoList.length; i++){
 						if(houseInfoList[i].id==id){
+							var array_display_images_url=houseInfoList[i].display_images_url.split(";");
+							var array_display_thumbnail_images_url=houseInfoList[i].display_thumbnail_images_url.split(";");
+							var array_location_map_url=houseInfoList[i].location_map_url.split(";");
+							var array_site_plan_url=houseInfoList[i].site_plan_url.split(";");
+							var array_floor_plan_url=houseInfoList[i].floor_plan_url.split(";");
+							var array_e_brochure_url=houseInfoList[i].e_brochure_url.split(";");
+							var array_advantage=houseInfoList[i].advantage.split(";");
+							var introduction=houseInfoList[i].introduction;
+							//设置展示图片
 							htmlString='';
+							for (var j=0;j<array_display_images_url.length-1;j++){
+								htmlString += '<li><a href="' + array_display_images_url[j] + '"><img src="' + array_display_thumbnail_images_url[j] + '" title="A title for 1.jpg" alt="This is a nice, and incredibly descriptive, description of the image v1.jpg"></a></li>';
+							}
+							$('.ad-thumb-list').html(htmlString);
+							//设置简介
+							$('#add_pre').html(introduction);
+							//设置location map
+							htmlString='';
+							htmlString += '<img src="' + array_location_map_url[0] + '" />';
+							$('#location_map_div').html(htmlString);
+							//设置site plan
+							htmlString='';
+							htmlString += '<img src="' + array_site_plan_url[0] + '" />';
+							$('#site_plan_div').html(htmlString);
+							//设置floor plan
+							//htmlString='';
+							//htmlString += '';
+							//$('').html(htmlString);
+							//设置E-Brochure
+							//htmlString='';
+							//htmlString += '';
+							//$('').html(htmlString);
+							//设置优点
+							htmlString='';
+							for (var j=0;j<array_advantage.length-1;j++){
+								htmlString += '<li>' + array_advantage[j] + '</li>';
+							}
+							$('#advantage_ul').html(htmlString);
 							
-							$('.level1').html(htmlString);
-							
-							var tempHtmlString='<div class="single_image light"><a href="'+ houseInfoList[i].image_url + '"><img src="'+ houseInfoList[i].image_url + '" /></a></div> <div class="house_properties"><table><tr><td>区域</td><td>'+ houseInfoList[i].zone + '</td><td>地址</td><td>'+ houseInfoList[i].address + '</td></tr><tr><td>种类</td><td>'+ houseInfoList[i].sort + '</td><td>地段</td><td>'+ houseInfoList[i].location + '</td></tr><tr><td>面积</td><td>'+ houseInfoList[i].area + '</td><td>价格</td><td>'+ houseInfoList[i].price + '</td></tr><tr><td>房型</td><td>'+ houseInfoList[i].type + '</td><td>朝向</td><td>'+ houseInfoList[i].direction + '</td></tr><tr><td>楼层</td><td>'+ houseInfoList[i].floor + '</td><td>楼龄</td><td>'+ houseInfoList[i].age + '</td></tr><tr><td>装修类型</td><td>'+ houseInfoList[i].decoration + '</td><td>发布时间</td><td>'+ houseInfoList[i].publish_time + '</td></tr></table></div><div class="clear"></div>';
-							htmlString += tempHtmlString;
 							mark=2;
 							break;
 						}
 					}
 				}
+				//显示slider gallery
+				var galleries = $('.ad-gallery').adGallery();
 			});
 		</script>
 		<title>新版房屋信息</title>
 	</head>
-	<body onLoad="initialize();map_initialize(1.3318916, 103.8493879, 'here');forbid_copy();">
+	<body onLoad="initialize();map_initialize(<%=latitude%>, <%=longitude%>, 'here');">
     	<input type="hidden" id="jsonArrayNew" value='<%=jsonArrayNew%>' />
         <input type="hidden" id="jsonArrayHot" value='<%=jsonArrayHot%>' />
         <input type="hidden" id="id" value='<%=id%>' />
@@ -210,11 +242,8 @@
                  <div class="hide_agreement">
                   <p>DTZ个人信息收集及使用同意书</p>
                   <P>DTZ, Co., Ltd（戴德梁行，以下简称“公司”)为了提供房屋项目下载服务(以下简称“服务”)，收集以下信息。公司只收集用于提供服务的最少信息，并不会收集用户的敏感信息或唯一识别信息。</p>
-                  <p>※ 未满14周岁的用户无法使用服务。</p>
-                  <p>※ 服务提供对象只限于三星账户注册会员。</p>
                   <p>(1) 收集项目 </p>
-                  <p>① 在注册及使用三星账户的过程中收集的个人信息：姓名、出生日期、国籍、登录ID、密码、电子邮件地址、访问日志、访问IP信息、服务使用记录</p>
-                  <p>② 服务注册及使用过程中收集的个人信息：公司名称、居住或工作国家、职位、个人或公司电话</p>
+                  <p>① 在服务的过程中收集的个人信息：姓名、电子邮件地址、电话号码</p>
                   <p>(2) 收集及使用目的</p>
                   <p>- 提供服务，并管理用户</p>
                   <p>- 用户改善服务、营销及广告</p>
@@ -222,7 +251,7 @@
                   <p>- 发送主要公告等通知邮件(例如：给新注册会员发送欢迎邮件等)</p> 
                   <p>(3) 保存及使用期限 </p>
                   <p>至达成个人信息收集及使用目的为止(但根据相关法律法规规定有必要保存个人信息时，则遵守该规定</p>
-                  <p>※ 您有权拒绝同意个人信息收集及使用条款。拒绝时，注册及使用本服务将受到限制。</p>
+                  <p>※ 您有权拒绝同意个人信息收集及使用条款。拒绝时，使用本服务将受到限制。</p>
                   <p>※ 有关个人信息处理的详细内容请参照隐私保护政策。如隐私保护政策与本同意书的内容有冲突时，以本同意书的内容为准。</p>
                </div>
                 <form method="post" action="">
@@ -415,7 +444,7 @@ A choice location, with a whole kaleidoscope of activties and amenities availabl
                 </div>
                 <div class="project_subtitle">Unique Feature of 城市绿地</div>
                 <div>
-                    <ui>
+                    <ul id="advantage_ul">
                       <li>Development by renowned Guoco Land</li>
                       <li>Only 5 min walk to Aljunied Mrt</li>
                       <li>1 Mrt station away from Paya Lebar Mrt/Interchange, Commercial Hub</li>
@@ -423,7 +452,7 @@ A choice location, with a whole kaleidoscope of activties and amenities availabl
                       <li>Ten minutes drive to CBD, Marina Bay</li>
                       <li>Two Olympic size swimming pool, tennis court, extensive gym for all ages, large lawn, Barbeque pavillions, jogging track and poolside cabanas</li>
                       <li>Units designed with SOHO, Dual key concept, with premium fittings</li>
-                  </ui>
+                  </ul>
                 </div>
                 <div class="project_subtitle">Related Projects</div>
                 <!---start-related-project---->
@@ -454,7 +483,7 @@ A choice location, with a whole kaleidoscope of activties and amenities availabl
                 <div class="e_brochure"><a href="#" id="open_windows" title="下载"><img src="images/e_brochure.jpg"></a></div>
                 <div class="clear"></div>
                 <div class="project_content">Interested to be the first few to unravel the secret plus point of this property location? Let us share our expertise & knowledge with you. Contact us today!</div>
-                <div><img src="uploadFiles/CW_location map.jpg" /></div>
+                <div id="location_map_div"><img src="uploadFiles/CW_location map.jpg" /></div>
                 <div id="map_div" class="Gmap"></div>
                 <div id="streetdirectory_div" style="width:600px; height:600px"></div>
             </div>
@@ -465,7 +494,7 @@ A choice location, with a whole kaleidoscope of activties and amenities availabl
                 <div class="e_brochure"><a href="#" id="open_windows" title="下载"><img src="images/e_brochure.jpg"></a></div>
                 <div class="clear"></div>
                 <div class="project_content">Below site plan shows the architectural representation of the development project. If you require detailed information and presentation, contact us today!</div>
-                <div><img src="uploadFiles/Site plan FINAL.jpg" /></div>
+                <div id="site_plan_div"><img src="uploadFiles/Site plan FINAL.jpg" /></div>
             </div>
             <!---end-content---->
             <!---start-content---->

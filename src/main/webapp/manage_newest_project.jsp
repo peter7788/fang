@@ -93,7 +93,7 @@
                     </tr>
                 </table>
                 </div>
-                <div><a href="add.html"><input type="button" value="新建项目"></a></div>
+                <div><a href="add.jsp"><input type="button" value="新建项目"></a></div>
         	</div>
 		</div>				
 		</div>
