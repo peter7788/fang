@@ -51,6 +51,10 @@ public class HouseInfo implements Serializable {
 	private String floor_plan_url;
 	// E-Brochure的url
 	private String e_brochure_url;
+	// 优点
+	private String advantage;
+	// 简介
+	private String introduction;
 
 	public int getId() {
 		return id;
@@ -229,6 +233,22 @@ public class HouseInfo implements Serializable {
 		this.e_brochure_url = e_brochure_url;
 	}
 
+	public String getAdvantage() {
+		return advantage;
+	}
+
+	public void setAdvantage(String advantage) {
+		this.advantage = advantage;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+
 	public JSONObject toJson() {
 		JSONObject temp = new JSONObject();
 		temp.put("id", id);
@@ -253,6 +273,8 @@ public class HouseInfo implements Serializable {
 		temp.put("site_plan_url", site_plan_url);
 		temp.put("floor_plan_url", floor_plan_url);
 		temp.put("e_brochure_url", e_brochure_url);
+		temp.put("advantage", advantage);
+		temp.put("introduction", introduction);
 		return temp;
 	}
 }

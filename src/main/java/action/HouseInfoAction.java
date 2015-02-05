@@ -30,8 +30,9 @@ public class HouseInfoAction extends ActionSupport {
 	private String latitude;// 纬度
 	private String longitude;// 经度
 	private String mark;// 标签
-	private String image_url;// 图片的url
 	private String description;// 图片描述
+	private List<String> advantage;// 优点
+	private String introduction;// 简介
 	private String savePath;// 上传文件的保存路径
 	private String sizeLimit;// 上传文件的大小限制
 	private List<File> uploadDisplay;// 上传展示图片
@@ -118,6 +119,8 @@ public class HouseInfoAction extends ActionSupport {
 				getUploadFloorPlanFileName()));
 		houseInfo.setE_brochure_url(List2String.toString(savePath + "/",
 				getUploadEBrochureFileName()));
+		houseInfo.setAdvantage(List2String.toString("", getAdvantage()));
+		houseInfo.setIntroduction(introduction);
 		new HouseInfoService().addHouseInfo(houseInfo);
 
 		Upload.uploadList(getSavePath(), getUploadDisplayFileName(),
@@ -465,20 +468,28 @@ public class HouseInfoAction extends ActionSupport {
 		this.mark = mark;
 	}
 
-	public String getImage_url() {
-		return image_url;
-	}
-
-	public void setImage_url(String image_url) {
-		this.image_url = image_url;
-	}
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<String> getAdvantage() {
+		return advantage;
+	}
+
+	public void setAdvantage(List<String> advantage) {
+		this.advantage = advantage;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
 
 	public String getSavePath() {

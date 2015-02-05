@@ -1,5 +1,6 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class List2String {
@@ -21,5 +22,25 @@ public class List2String {
 			}
 		}
 		return tempString;
+	}
+
+	/**
+	 * 把String还原成List<String>的形式
+	 * 
+	 * @param text
+	 * @return
+	 */
+	public static List<String> toList(String text) {
+		String[] array = text.split(SEPERATOR);
+		List<String> list = new ArrayList<String>();
+		for (int i = 0; i < array.length; i++) {
+			list.add(array[i]);
+		}
+		return list;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
 	}
 }

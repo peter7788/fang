@@ -1,3 +1,26 @@
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8"%>
+<%@ page language="java" import="util.List2String" %>
+<%
+	String jsonArrayNew = (String) application.getAttribute("newHouseInfoList");
+	String jsonArrayHot = (String) application.getAttribute("hotHouseInfoList");
+	String id;
+	String latitude;
+	String longitude;
+	if(request.getParameter("id") != null){
+		id = (String) request.getParameter("id");
+	}else{
+		id = "1";
+	}
+	if(request.getParameter("latitude") != null && request.getParameter("longitude") != null){
+		latitude = (String) request.getParameter("latitude");
+		longitude = (String) request.getParameter("longitude");
+	}else{
+		latitude = "0";
+		longitude = "0";
+	}
+%>
+<!--<%@taglib prefix="s" uri="/struts-tags"%>-->
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -132,11 +155,44 @@
 						$('.hide_submit_button').attr("disabled","disabled");
 					}
 				});
+				//填充项目信息
+				var hotHouseInfoList=eval('('+$('#jsonArrayHot').val()+')');
+				var newHouseInfoList=eval('('+$('#jsonArrayNew').val()+')');
+				var houseInfoList;
+				var id=eval('('+$('#id').val()+')');
+				var mark=0;
+				var htmlString='';
+				while(true){
+					if(mark==0){
+						houseInfoList=hotHouseInfoList;
+						mark++;
+					}else if(mark==1){
+						houseInfoList=newHouseInfoList;
+						mark++;
+					}else{
+						break;
+					}
+					for(var i=0; i<houseInfoList.length; i++){
+						if(houseInfoList[i].id==id){
+							htmlString='';
+							
+							$('.level1').html(htmlString);
+							
+							var tempHtmlString='<div class="single_image light"><a href="'+ houseInfoList[i].image_url + '"><img src="'+ houseInfoList[i].image_url + '" /></a></div> <div class="house_properties"><table><tr><td>区域</td><td>'+ houseInfoList[i].zone + '</td><td>地址</td><td>'+ houseInfoList[i].address + '</td></tr><tr><td>种类</td><td>'+ houseInfoList[i].sort + '</td><td>地段</td><td>'+ houseInfoList[i].location + '</td></tr><tr><td>面积</td><td>'+ houseInfoList[i].area + '</td><td>价格</td><td>'+ houseInfoList[i].price + '</td></tr><tr><td>房型</td><td>'+ houseInfoList[i].type + '</td><td>朝向</td><td>'+ houseInfoList[i].direction + '</td></tr><tr><td>楼层</td><td>'+ houseInfoList[i].floor + '</td><td>楼龄</td><td>'+ houseInfoList[i].age + '</td></tr><tr><td>装修类型</td><td>'+ houseInfoList[i].decoration + '</td><td>发布时间</td><td>'+ houseInfoList[i].publish_time + '</td></tr></table></div><div class="clear"></div>';
+							htmlString += tempHtmlString;
+							mark=2;
+							break;
+						}
+					}
+				}
 			});
 		</script>
 		<title>新版房屋信息</title>
 	</head>
 	<body onLoad="initialize();map_initialize(1.3318916, 103.8493879, 'here');forbid_copy();">
+    	<input type="hidden" id="jsonArrayNew" value='<%=jsonArrayNew%>' />
+        <input type="hidden" id="jsonArrayHot" value='<%=jsonArrayHot%>' />
+        <input type="hidden" id="id" value='<%=id%>' />
     	<!--start-需要填写的表格-->
     	<div class="hide_mask"></div>
         <div class="hide_div">
@@ -432,7 +488,7 @@ A choice location, with a whole kaleidoscope of activties and amenities availabl
         </div>
         <div class="gotop"><a href="javascript:scroll(0,0)"><img src="images/gotop.png" /></a></div>
         <!---start-copy-right----->
-        <!--<jsp:include page="copyright.html" />-->
+        <jsp:include page="copyright.html" />
 		<!---End-copy-right---->
 	</body>
 </html>

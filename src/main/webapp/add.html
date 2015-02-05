@@ -56,7 +56,7 @@
                     });
 				});
 				//文本区域失去焦点
-				$('#add_textarea').blur(function(){
+				$('#introduction').blur(function(){
 					$('#add_pre').html($(this).val());
 				});
 				//验证表单
@@ -277,7 +277,7 @@
                     <div class="add_other_textarea add_project">
                         <div class="add_project_title">文档文本</div>
                         <div class="add_textarea_title">输入</div>
-                        <div class="add_single_textarea"><textarea id="add_textarea"></textarea></div>
+                        <div class="add_single_textarea"><textarea id="introduction" name="introduction"></textarea></div>
                         <div class="add_textarea_title">预览</div>
                         <div class="pre_div">
                             <pre id="add_pre"></pre>

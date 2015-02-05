@@ -86,33 +86,43 @@
 			</column>
 		</property>
 		<property name="display_images_url" type="java.lang.String">
-			<column name="display_images_url" length="255" not-null="true">
+			<column name="display_images_url" length="1000" not-null="true">
 				<comment>展示图片的url</comment>
 			</column>
 		</property>
 		<property name="display_thumbnail_images_url" type="java.lang.String">
-			<column name="display_thumbnail_images_url" length="255" not-null="true">
+			<column name="display_thumbnail_images_url" length="1000" not-null="true">
 				<comment>展示图片缩略图的url</comment>
 			</column>
 		</property>
 		<property name="location_map_url" type="java.lang.String">
-			<column name="location_map_url" length="255" not-null="true">
+			<column name="location_map_url" length="1000" not-null="true">
 				<comment>Location Map的url</comment>
 			</column>
 		</property>
 		<property name="site_plan_url" type="java.lang.String">
-			<column name="site_plan_url" length="255" not-null="true">
+			<column name="site_plan_url" length="1000" not-null="true">
 				<comment>Site Plan的url</comment>
 			</column>
 		</property>
 		<property name="floor_plan_url" type="java.lang.String">
-			<column name="floor_plan_url" length="255" not-null="true">
+			<column name="floor_plan_url" length="1000" not-null="true">
 				<comment>Floor Plan的url</comment>
 			</column>
 		</property>
 		<property name="e_brochure_url" type="java.lang.String">
-			<column name="e_brochure_url" length="255" not-null="true">
+			<column name="e_brochure_url" length="1000" not-null="true">
 				<comment>E-Brochure的url</comment>
+			</column>
+		</property>
+		<property name="advantage" type="java.lang.String">
+			<column name="advantage" length="10000" not-null="true">
+				<comment>优点</comment>
+			</column>
+		</property>
+		<property name="introduction" type="java.lang.String">
+			<column name="introduction" length="10000" not-null="true">
+				<comment>简介</comment>
 			</column>
 		</property>
 	</class>
